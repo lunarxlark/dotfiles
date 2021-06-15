@@ -1,58 +1,58 @@
 [core]
-  pager = less -q -R
-  excludesfile = ~/.gitignore
-  preloadindex = true
+	pager = less -q -R
+	excludesfile = ~/.gitignore
+	preloadindex = true
 
 [init]
-   defaultBranch = main
+	defaultBranch = main
 
 [user]
-  name = lunarxlark
-  email = lunarxlark@gmail.com
+	name = lunarxlark
+	email = lunarxlark@gmail.com
 
 [color "diff"]
-  meta = 242 238
-  frag = 239 236
-  old = 167 normal
-  new = 030 normal
-  context = 240
-  commit = 246 024
+	meta = 242 238
+	frag = 239 236
+	old = 167 normal
+	new = 030 normal
+	context = 240
+	commit = 246 024
 
 [pager]
-  diff = delta
-  log = delta
-  reflog = delta
-  show = delta
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
 
 [delta]
-  plus-style = "syntax #012800"
-  minus-style = "syntax #340001"
-  syntax-theme = Monokai Extended
-  navigate = true
+	plus-style = "syntax #012800"
+	minus-style = "syntax #340001"
+	syntax-theme = Monokai Extended
+	navigate = true
 
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [ghq]
-  root = ~/dev/src
+	root = ~/dev/src
 
 [github]
-  user = lunarxlark
+	user = lunarxlark
 
 [alias]
-  st = status
+	st = status
 
 [secrets]
-  providers = git secrets --aws-provider
-  patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
-  patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
-  patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
-  allowed = AKIAIOSFODNN7EXAMPLE
-  allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
 [filter "lfs"]
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 
