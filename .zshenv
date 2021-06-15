@@ -8,6 +8,7 @@ export XDG_CACHE_HOME=~/.cache
 
 # go
 export GO111MODULE=on
+#export GOPROXY=https://proxy.golang.org
 export GOPATH=$HOME/dev
 export GOBIN=$GOPATH/bin
 export GOENV=$GOPATH/env
@@ -26,6 +27,7 @@ export PATH=$ANYENV_ROOT/bin:$PATH
 eval "$(anyenv init -)"
 
 export PATH=~/.local/bin:$PATH
+export PATH=~/.local/go/bin:$PATH
 export PATH=~/Library/Python/3.7/bin:$PATH
 
 HISTFILE=~/.zsh_history
