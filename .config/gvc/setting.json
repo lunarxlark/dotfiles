@@ -1,0 +1,56 @@
+[
+	{
+		"name": "x/tools",
+		"url": "golang.org/x/tools/...",
+		"cvs": "git",
+		"enable": false
+	},
+	{
+		"name": "gvc",
+		"url": "lunarxlark/gvc@latest",
+		"cvs": "git",
+		"enable": true
+	},
+	{
+		"name": "gopls",
+		"url": "golang.org/x/tools/gopls@latest",
+		"cvs": "git",
+		"enable": true
+	},
+	{
+		"name": "staticcheck",
+		"url": "honnef.co/go/tools/cmd/staticcheck",
+		"cvs": "git",
+		"enable": true
+	},
+	{
+		"name": "ghq",
+		"url": "x-motemen/ghq@latest",
+		"cvs": "git",
+		"enable": true
+	},
+	{
+		"name": "rclone",
+		"url": "rclone/rclone@latest",
+		"cvs": "git",
+		"enable": true
+	},
+	{
+		"name": "direnv",
+		"url": "direnv/direnv@latest",
+		"cvs": "git",
+		"enable": true
+	},
+	{
+		"name": "memo",
+		"url": "mattn/memo@latest",
+		"cvs": "git",
+		"enable": true
+	},
+	{
+		"name": "hugo",
+		"url": "gohugoio/hugo@latest",
+		"cvs": "git",
+		"enable": true
+	}
+]
