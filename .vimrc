@@ -298,33 +298,23 @@ nmap ,t  :SonicTemplate<CR>
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('./vim-lsp.log')
 
-"let g:lsp_async_completion = 1
-"let g:lsp_text_edit_enabled = 0
+let g:lsp_async_completion = 1
+let g:lsp_text_edit_enabled = 1
 
 let g:lsp_diagnostics_enabled = 1
-"let g:lsp_diagnostics_echo_delay = 0
+let g:lsp_diagnostics_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_echo_delay = 200
+let g:lsp_diagnostics_float_delay = 200
+let g:lsp_diagnostics_float_cursor = 1
 
-"let g:lsp_highlight_references_enabled = 1
+let g:lsp_document_highlight_enabled = 1
+let g:lsp_highlight_references_enabled = 1
 
-"let g:lsp_signs_enabled = 1         " enable signs
+
+let g:lsp_signs_enabled = 1         " enable signs
 "let g:lsp_signs_error = {'text': '✗'}
 "let g:lsp_signs_warning = {'text': '‼'}
-
-"augroup VimLsp
-"  autocmd!
-"  autocmd FileType * setlocal omnifunc=lsp#complete
-"  autocmd Filetype * nmap <buffer> <leader>ac <plug>(lsp-code-action)
-"  autocmd Filetype * nmap <buffer> <leader>im <plug>(lsp-implementation)
-"  autocmd Filetype * nmap <buffer> <leader>df <plug>(lsp-definition)
-"  autocmd Filetype * nmap <buffer> <leader>pdf <plug>(lsp-peek-definition)
-"  autocmd Filetype * nmap <buffer> <leader>pt <plug>(lsp-peek-type-definition)
-"  autocmd Filetype * nmap <buffer> <leader>ho <plug>(lsp-hover)
-"  autocmd Filetype * nmap <buffer> <leader>rn <plug>(lsp-rename)
-"  autocmd Filetype * nmap <buffer> <leader>rf <plug>(lsp-references)
-"  autocmd FileType * nmap <buffer> <leader>en <plug>(lsp-next-error)
-"  autocmd FileType * nmap <buffer> <leader>ep <plug>(lsp-previous-error)
-"augroup END
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -333,6 +323,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> <leader>ac <plug>(lsp-code-action)
     nmap <buffer> <leader>cl <plug>(lsp-code-lens)
     nmap <buffer> <leader>df <plug>(lsp-definition)
+    nmap <buffer> <leader>dd <plug>(lsp-document-diagnostics)
     nmap <buffer> <leader>im <plug>(lsp-implementation)
     nmap <buffer> <leader>pdf <plug>(lsp-peek-definition)
     nmap <buffer> <leader>sm <plug>(lsp-document-symbol-search)
@@ -360,7 +351,6 @@ set foldmethod=expr
   \ foldexpr=lsp#ui#vim#folding#foldexpr()
   \ foldtext=lsp#ui#vim#folding#foldtext()
 
-let g:lsp_document_highlight_enabled = 1
 
 " ------------------------------------------------------------------------------
 " vim-terraform

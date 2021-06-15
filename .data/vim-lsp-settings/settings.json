@@ -1,12 +1,9 @@
 {
   "go": {
     "gopls": {
-      "workspace_config": {
-        "analyses" : {"fillstruct":true},
-        "staticcheck": true
-      },
       "initialization_options": {
         "analyses" : {"fillstruct":true},
+        "staticcheck": true,
         "directoryFilters": [
           "-debug"
         ],
