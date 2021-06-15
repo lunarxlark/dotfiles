@@ -8,3 +8,4 @@
 .config/direnv/*
 .config/dlv/.dbg_history
 .config/anyenv/*
+.config/memo/_posts

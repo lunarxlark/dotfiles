@@ -1,6 +1,6 @@
-memodir = "/Users/yuta_kobayashi/.config/memo/_posts"
-editor = "nvim"
+memodir = "${XDG_CONFIG_HOME}/memo/_posts"
+editor = "vim"
 column = 20
-selectcmd = "fzf"
+selectcmd = "fzf --height=30%"
 grepcmd = "grep -nH ${PATTERN} ${FILES}"
 assetsdir = "."
