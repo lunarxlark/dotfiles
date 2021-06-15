@@ -9,3 +9,4 @@
 .config/dlv/.dbg_history
 .config/anyenv/*
 .config/memo/_posts
+.config/gh/hosts.yml
