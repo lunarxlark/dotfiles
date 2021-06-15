@@ -4,16 +4,13 @@ tap 'caskroom/cask'
 brew 'mas'
 brew 'zlib'
 brew 'coreutils'
-#brew 'bash'
-#brew 'zsh'
 
 brew 'wget'
 brew 'curl'
 brew 'git'
-brew 'gist'
 brew 'tree'
-#brew 'nvim'
 brew 'macvim'
+brew 'alp'
 
 brew 'colordiff'
 brew 'ctags'
@@ -21,24 +18,19 @@ brew 'shellcheck'
 
 # develop
 cask 'google-chrome'
-cask 'docker'
-#cask 'oni'
 cask 'visual-studio-code'
 cask 'postman'
+cask 'docker'
 
 # util
 cask 'alfred'
 cask 'keycastr'
-#cask 'duet'
-#cask 'station'
 
 # communication
-#cask 'discord' -> station
+cask 'discord'
 cask 'kindle'
-#cask 'java'
 cask 'dbeaver-community'
-#cask 'sequel-pro'
 #cask 'qmk-toolbox'
 
-#mas 'pocket', id: 568494494 -> station
-#mas 'Slack', id: 803453959 -> station
+mas 'pocket', id: 568494494
+mas 'Slack', id: 803453959
