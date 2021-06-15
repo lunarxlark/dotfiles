@@ -7,6 +7,7 @@ autoload -U promptinit; promptinit
 alias v='vim'
 alias g='gvim'
 
+alias E='exec $SHELL -l'
 alias t='tmux'
 alias cp='cp -i'
 alias mv='mv -i'
