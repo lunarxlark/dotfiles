@@ -4,10 +4,11 @@
 **/bk/
 .DS_Store
 **/plugged/
-.config/hub
 .config/direnv/*
 .config/dlv/.dbg_history
 .config/anyenv/*
 .config/memo/_posts
 .config/gh/hosts.yml
 .data/vim-lsp-settings/servers/*
+.vim/autoload/*
+.vim/plugged/*
