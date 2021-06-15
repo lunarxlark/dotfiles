@@ -10,3 +10,4 @@
 .config/anyenv/*
 .config/memo/_posts
 .config/gh/hosts.yml
+.data/vim-lsp-setting/servers/*

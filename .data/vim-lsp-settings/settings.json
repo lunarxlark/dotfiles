@@ -1,0 +1,30 @@
+{
+  "go": {
+    "gopls": {
+      "workspace_config": {
+        "staticcheck": true
+      },
+      "initialization_options": {
+        "directoryFilters": [
+          "-debug"
+        ],
+        "completeUnimported": true,
+        "usePlaceholders": true,
+        "matcher": "fuzzy",
+        "codelenses": {
+          "gc_details": false,
+          "generate": true,
+          "test": true,
+          "tidy": true,
+          "vendor": false
+        },
+        "hoverKind": "SynopsisDocumentation"
+      }
+    }
+  },
+  "terraform": {
+    "terraform-lsp": {
+      "disabled": 1
+    }
+  }
+}
