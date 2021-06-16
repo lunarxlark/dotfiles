@@ -3,7 +3,6 @@ bindkey -v
 autoload -U promptinit; promptinit
 
 # ### Aliases {{{
-
 alias v='vim'
 alias g='gvim'
 
@@ -81,7 +80,7 @@ if [[ -f ~/.zplug/init.zsh ]]; then
 
   zplug "zsh-users/zsh-completions"
   zplug "Valodim/zsh-curl-completion"
-  #zplug "aws/aws-cli", use:"bin/aws_zsh_completer.sh"
+  zplug "aws/aws-cli", use:"bin/aws_zsh_completer.sh"
 
   # prompt
   zplug "modules/git", from:prezto

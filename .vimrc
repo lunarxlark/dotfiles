@@ -65,7 +65,7 @@ Plug 'thinca/vim-quickrun'
 " LSP
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 "Plug 'prabirshrestha/async.vim'
 "Plug 'govim/govim'
@@ -304,9 +304,10 @@ let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_echo_delay = 200
-let g:lsp_diagnostics_float_delay = 200
+let g:lsp_diagnostics_echo_delay = 0
+let g:lsp_diagnostics_float_delay = 0
 let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_document_code_action_signs_delay = 0
 
 let g:lsp_document_highlight_enabled = 1
 let g:lsp_highlight_references_enabled = 1

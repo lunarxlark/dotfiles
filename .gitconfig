@@ -33,9 +33,6 @@
 [interactive]
 	diffFilter = delta --color-only
 
-[ghq]
-	root = ~/dev/src
-
 [github]
 	user = lunarxlark
 
