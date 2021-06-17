@@ -1,5 +1,6 @@
 [core]
-	pager = less -q -R
+  #pager = less -q -R
+  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
 	excludesfile = ~/.gitignore
 	preloadindex = true
 
@@ -27,7 +28,7 @@
 [delta]
 	plus-style = "syntax #012800"
 	minus-style = "syntax #340001"
-	syntax-theme = Monokai Extended
+	syntax-theme = base16
 	navigate = true
 
 [interactive]

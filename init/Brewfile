@@ -11,6 +11,7 @@ brew 'git'
 brew 'tree'
 brew 'macvim'
 brew 'alp'
+brew 'git-delta'
 
 brew 'colordiff'
 brew 'ctags'

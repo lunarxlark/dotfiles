@@ -29,9 +29,3 @@ eval "$(anyenv init -)"
 export PATH=~/.local/bin:$PATH
 export PATH=~/.local/go/bin:$PATH
 export PATH=~/Library/Python/3.7/bin:$PATH
-
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-
-export PATH=/usr/local/share/git-core/contrib/diff-highlight:$PATH
