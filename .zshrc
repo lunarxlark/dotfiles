@@ -4,7 +4,6 @@ autoload -U promptinit; promptinit
 
 # ### Aliases {{{
 alias v='vim'
-alias gv='gvim'
 
 alias E='exec $SHELL -l'
 alias t='tmux'
@@ -32,8 +31,12 @@ alias ghils='gh issue list | fzf --preview "gh issue view {+1}" | awk '{print $1
 alias ghpls='gh pr list | fzf --preview "gh pr diff --color=always {+1}"'
 alias gmaster='gh pr create -B master -H develop -d -t "[$(date "+%Y-%m-%d %H:%M")] merge develop to master"'
 
+# for rust {{{
+alias ru='rustup'
+alias c='cargo'
+# }}}
+
 #alias diff='type colordiff > /dev/null && colordiff -u || diff'
-alias diff='colordiff'
 alias d='docker'
 alias dps='docker ps'
 alias dpsa='docker ps -a'

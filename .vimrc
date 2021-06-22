@@ -44,6 +44,7 @@ Plug 'direnv/direnv.vim'
 Plug 'mattn/vim-goimports'
 Plug 'easymotion/vim-easymotion'
 Plug 'thinca/vim-quickrun'
+Plug 'nicwest/vim-camelsnek'
 "Plug 'tyru/open-browser.vim'
 "Plug 'vim-test/vim-test'
 "Plug 'tpope/vim-surround'
@@ -55,22 +56,21 @@ Plug 'thinca/vim-quickrun'
 "Plug 'Shougo/context_filetype.vim'
 "Plug 'rhysd/vim-clang-format'
 
+" LSP
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'prabirshrestha/async.vim'
+"Plug 'thomasfaingnaert/vim-lsp-snippets'
+"Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+
 " Completion
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
 
-" LSP
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-"Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'lighttiger2505/sqls.vim'
-"Plug 'prabirshrestha/async.vim'
-"Plug 'govim/govim'
-"Plug 'thomasfaingnaert/vim-lsp-snippets'
-"Plug 'thomasfaingnaert/vim-lsp-ultisnips'
-
 " Language / Filetype
+Plug 'lighttiger2505/sqls.vim'
 Plug 'mattn/vim-gomod'
 Plug 'stephpy/vim-yaml',          { 'for': 'yaml'}
 Plug 'cespare/vim-toml',          { 'for': 'toml'}
@@ -87,8 +87,6 @@ call plug#end()
 " ==============================================================================
 " vim-plugin extension {{{
 " ==============================================================================
-
-
 " ------------------------------------------------------------------------------
 " vimdoc-ja
 " ------------------------------------------------------------------------------
@@ -124,7 +122,7 @@ let g:lightline = {
 " ------------------------------------------------------------------------------
 " vim-lsp-settings
 " ------------------------------------------------------------------------------
-"  use setting.json
+"  use XDG_DATA_HOME/vim-lsp-settings/setting.json
 
 
 "" ------------------------------------------------------------------------------

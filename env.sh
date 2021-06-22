@@ -26,6 +26,9 @@ export ANYENV_ROOT=~/dev/src/github.com/anyenv/anyenv
 export PATH=$ANYENV_ROOT/bin:$PATH
 eval "$(anyenv init -)"
 
+# rustup
+. "$HOME/.cargo/env"
+
 export PATH=~/.local/bin:$PATH
 export PATH=~/.local/go/bin:$PATH
 export PATH=~/Library/Python/3.7/bin:$PATH
