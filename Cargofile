@@ -1,0 +1,3 @@
+#cat Cargofile| grep -v "^#" | xargs cargo install
+git-delta
+bat
