@@ -32,9 +32,9 @@
 [delta]
 	syntax-theme = gruvbox-dark
 	line-numbers = true
-	navigate = true 
-	plus-style = syntax "#145214"
-	plus-emph-style = bold syntax "#175c2e"
+	navigate = true
+  #plus-style = syntax "#145214"
+	#plus-emph-style = bold syntax "#175c2e"
 
 [interactive]
 	diffFilter = delta --color-only
