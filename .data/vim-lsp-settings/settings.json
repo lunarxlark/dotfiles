@@ -25,5 +25,10 @@
     "terraform-lsp": {
       "disabled": 1
     }
+  },
+  "sql": {
+    "sql-language-server": {
+      "disabled": 1
+    }
   }
 }

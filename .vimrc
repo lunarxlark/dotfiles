@@ -55,9 +55,6 @@ Plug 'thinca/vim-quickrun'
 "Plug 'Shougo/context_filetype.vim'
 "Plug 'rhysd/vim-clang-format'
 
-" SQL
-"Plug 'lighttiger2505/sqls.vim'
-
 " Completion
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
@@ -67,6 +64,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 "Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'lighttiger2505/sqls.vim'
 "Plug 'prabirshrestha/async.vim'
 "Plug 'govim/govim'
 "Plug 'thomasfaingnaert/vim-lsp-snippets'

@@ -1,15 +1,19 @@
-[core]
-  #pager = less -q -R
-  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
-	excludesfile = ~/.gitignore
-	preloadindex = true
+[user]
+	name = lunarxlark
+	email = lunarxlark@gmail.com
+
+[github]
+	user = lunarxlark
 
 [init]
 	defaultBranch = main
 
-[user]
-	name = lunarxlark
-	email = lunarxlark@gmail.com
+[core]
+  #pager = less -q -R
+  #pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
+  pager = delta --theme='gruvbox-dark'
+	excludesfile = ~/.gitignore
+	preloadindex = true
 
 [color "diff"]
 	meta = 242 238
@@ -26,19 +30,14 @@
 	show = delta
 
 [delta]
-	plus-style = "syntax #012800"
-	minus-style = "syntax #340001"
-	syntax-theme = base16
-	navigate = true
+	syntax-theme = gruvbox-dark
+	line-numbers = true
+	navigate = true 
+	plus-style = syntax "#145214"
+	plus-emph-style = bold syntax "#175c2e"
 
 [interactive]
 	diffFilter = delta --color-only
-
-[github]
-	user = lunarxlark
-
-[alias]
-	st = status
 
 [secrets]
 	providers = git secrets --aws-provider
