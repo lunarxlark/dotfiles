@@ -30,5 +30,10 @@
     "sql-language-server": {
       "disabled": 1
     }
+  },
+  "rust": {
+    "rls": {
+      "disabled": 1
+    }
   }
 }
