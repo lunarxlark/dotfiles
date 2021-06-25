@@ -168,7 +168,7 @@ dkill() {
 }
 
 drmf() {
-	docker ps -a | fzf -m --height=40% --reverse --header-lines=1 | awk '{print $1}' | xargs -I% docker rm %
+  docker ps -a | fzf -m --height=40% --reverse --header-lines=1 | awk '{print $1}' | xargs -I% docker rm %
 }
 
 drm() {
