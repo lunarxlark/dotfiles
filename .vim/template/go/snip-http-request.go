@@ -1,8 +1,8 @@
 	client := http.Client{}
-	url := ""
 	method := ""
+	url := ""
 	body := bytes.NewBufferString("")
-	req, err := http.NewRequest(url, method, body)
+	req, err := http.NewRequest(method, url, body)
 	if err != nil {
 		return err
 	}
