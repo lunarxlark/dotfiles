@@ -14,4 +14,7 @@
 	}
 	defer res.Body.Close()
 
-	pp.Println(res.Body)
+	b, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return err
+	}
