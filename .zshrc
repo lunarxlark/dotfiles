@@ -38,6 +38,7 @@ alias c='cargo'
 
 #alias diff='type colordiff > /dev/null && colordiff -u || diff'
 alias d='docker'
+alias di='docker images'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias dc='docker-compose'

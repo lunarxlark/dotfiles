@@ -336,6 +336,7 @@ function! s:on_lsp_buffer_enabled() abort
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
 
     " refer to doc to add more commands
+    inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 endfunction
 
 augroup lsp_install
@@ -344,10 +345,10 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-set foldmethod=expr
-  \ foldexpr=lsp#ui#vim#folding#foldexpr()
-  \ foldtext=lsp#ui#vim#folding#foldtext()
-
+"set foldmethod=expr
+"  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+"  \ foldtext=lsp#ui#vim#folding#foldtext()
+let g:lsp_fold_enabled = 0
 
 " ------------------------------------------------------------------------------
 " vim-terraform
