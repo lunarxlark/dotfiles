@@ -71,6 +71,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 " Language / Filetype
 Plug 'lighttiger2505/sqls.vim'
+Plug 'jparise/vim-graphql'
 Plug 'mattn/vim-gomod'
 Plug 'stephpy/vim-yaml',          { 'for': 'yaml'}
 Plug 'cespare/vim-toml',          { 'for': 'toml'}
