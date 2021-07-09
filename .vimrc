@@ -45,6 +45,10 @@ Plug 'mattn/vim-goimports'
 Plug 'easymotion/vim-easymotion'
 Plug 'thinca/vim-quickrun'
 Plug 'nicwest/vim-camelsnek'
+Plug 'mattn/emmet-vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install --save-dev --save-exact prettier',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'html'] }
 "Plug 'tyru/open-browser.vim'
 "Plug 'vim-test/vim-test'
 "Plug 'tpope/vim-surround'
@@ -76,6 +80,8 @@ Plug 'stephpy/vim-yaml',          { 'for': 'yaml'}
 Plug 'cespare/vim-toml',          { 'for': 'toml'}
 Plug 'b4b4r07/vim-ltsv',          { 'for': 'ltsv'}
 Plug 'mechatroner/rainbow_csv'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
@@ -92,6 +98,17 @@ call plug#end()
 " ------------------------------------------------------------------------------
 "set helplang=en,ja
 
+" ------------------------------------------------------------------------------
+" vim-prettier
+" ------------------------------------------------------------------------------
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_files = ['.prettierrc.json']
+
+" ------------------------------------------------------------------------------
+" emmet-vim
+" ------------------------------------------------------------------------------
+autocmd FileType html,css,javascript,typescript EmmetInstall
 " ------------------------------------------------------------------------------
 " splash
 " ------------------------------------------------------------------------------
@@ -272,7 +289,8 @@ command! -bang -nargs=* SonicTemplate
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-nmap ,f  :Files<CR>
+nmap ,F  :Files<CR>
+nmap ,f :GFiles<CR>
 nmap ,s  :Snippet<CR>
 nmap ,b  :Buffers<CR>
 nmap ,g  :Ghq<CR>
