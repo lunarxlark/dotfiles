@@ -12,3 +12,4 @@
 .data/vim-lsp-settings/servers/*
 .vim/autoload/*
 .vim/plugged/*
+.envrc

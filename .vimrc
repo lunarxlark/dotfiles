@@ -48,7 +48,8 @@ Plug 'nicwest/vim-camelsnek'
 Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install --save-dev --save-exact prettier',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'html'] }
+"Plug 'APZelos/blamer.nvim'
 "Plug 'tyru/open-browser.vim'
 "Plug 'vim-test/vim-test'
 "Plug 'tpope/vim-surround'
@@ -74,8 +75,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 "Plug 'honza/vim-snippets'
 
 " Language / Filetype
-Plug 'lighttiger2505/sqls.vim'
-Plug 'jparise/vim-graphql'
+"Plug 'lighttiger2505/sqls.vim'
+"Plug 'jparise/vim-graphql'
 Plug 'mattn/vim-gomod'
 Plug 'stephpy/vim-yaml',          { 'for': 'yaml'}
 Plug 'cespare/vim-toml',          { 'for': 'toml'}
@@ -102,9 +103,11 @@ call plug#end()
 " ------------------------------------------------------------------------------
 " vim-prettier
 " ------------------------------------------------------------------------------
-let g:prettier#autoformat = 1
+let g:prettier#autoformat = 0
 let g:prettier#autoformat_require_pragma = 0
-let g:prettier#autoformat_config_files = ['.prettierrc.json']
+let g:prettier#autoformat_config_files = ['.prettierrc']
+
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.vue,*.css,*.scss,*.json,*.md PrettierAsync
 
 " ------------------------------------------------------------------------------
 " emmet-vim
@@ -240,10 +243,11 @@ let g:indent_guides_guide_size = 2            " indent-guideの単位
 let g:indent_guides_color_change_percent = 5
 let g:indent_guides_auto_colors = 0
 
+
 " ------------------------------------------------------------------------------
 " fzf
 " ------------------------------------------------------------------------------
-"let g:fzf_layout = { 'down': '~40%'}
+let g:fzf_layout = { 'down': '~40%'}
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'border': 'rounded'}}
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
@@ -291,7 +295,7 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap ,F  :Files<CR>
-nmap ,f :GFiles<CR>
+nmap ,f  :GFiles<CR>
 nmap ,s  :Snippet<CR>
 nmap ,b  :Buffers<CR>
 nmap ,g  :Ghq<CR>
@@ -399,7 +403,7 @@ set fileencodings=utf-8,sjis " バッファの改行コード指定
 set fileformats=unix,mac,dos " バッファの改行コード指定
 
 " edit
-set nonumber
+set number
 set clipboard+=unnamed     " clipboardとの連携
 set noswapfile             " swapファイルを作成しない
 set nobackup               " backupを作成しない
