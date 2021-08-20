@@ -57,8 +57,8 @@ Plug 'prettier/vim-prettier', {
 "Plug 'junegunn/vim-easy-align'
 "Plug 'majutsushi/tagbar'
 "Plug 'thinca/vim-showtime'
-"Plug 'osyo-manga/vim-precious'
-"Plug 'Shougo/context_filetype.vim'
+Plug 'osyo-manga/vim-precious'
+Plug 'Shougo/context_filetype.vim'
 "Plug 'rhysd/vim-clang-format'
 
 " LSP
