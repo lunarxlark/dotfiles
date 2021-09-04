@@ -2,11 +2,9 @@
   "go": {
     "gopls": {
       "initialization_options": {
-        "analyses" : {"fillstruct":true},
+        "analyses": { "fillstruct": true },
         "staticcheck": true,
-        "directoryFilters": [
-          "-debug"
-        ],
+        "directoryFilters": ["-debug"],
         "completeUnimported": true,
         "usePlaceholders": true,
         "matcher": "fuzzy",
