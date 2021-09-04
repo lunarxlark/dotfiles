@@ -149,18 +149,17 @@ let g:lightline = {
 "" ------------------------------------------------------------------------------
 "" context_filetype
 "" ------------------------------------------------------------------------------
-"if !exists('g:context_filetype#filetypes')
-"  let g:context_filetype#filetypes = {}
-"endif
-"let g:context_filetype#filetypes.go = [
-"  \ {
-"  \   'filetype': 'sql',
-"  \   'start' : 'sql\s:=\s`',
-"  \   'end' : '\s*\`'
-"  \ }
-"  \]
-"  "\   'start' : '(sql|SQL)\s*\:=\s*`', 'end' : '\s*`'}]
-"
+if !exists('g:context_filetype#filetypes')
+  let g:context_filetype#filetypes = {}
+endif
+let g:context_filetype#filetypes.go = [
+  \ {
+  \   'filetype': 'sql',
+  \   'start' : 'sql\s:=\s`',
+  \   'end' : '\s*\`'
+  \ }
+  \]
+
 "let g:context_filetype#filetypes.terraform = [
 "  \ {
 "  \   'filetype': 'json',
@@ -471,6 +470,7 @@ augroup vimrc
   au BufNewFile,BufRead Dockerfile* set filetype=dockerfile
   au BufNewFile,BufRead *.tsv set filetype=tsv
   au BufNewFile,BufRead *.tf,*.tfvars,*.tfstate setlocal filetype=terraform
+  au FileType sql setlocal noexpandtab ts=4 sw=4 smartindent
 augroup END
 
 " "TODOと同じハイライトに追加
