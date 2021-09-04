@@ -48,7 +48,7 @@ Plug 'nicwest/vim-camelsnek'
 Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install --save-dev --save-exact prettier',
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'vue', 'html'] }
 "Plug 'APZelos/blamer.nvim'
 "Plug 'tyru/open-browser.vim'
 "Plug 'vim-test/vim-test'
@@ -107,7 +107,7 @@ let g:prettier#autoformat = 0
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#autoformat_config_files = ['.prettierrc']
 
-autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.vue,*.css,*.scss,*.json,*.md PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.vue,*.css,*.scss,*.json PrettierAsync
 
 " ------------------------------------------------------------------------------
 " emmet-vim

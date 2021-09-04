@@ -33,5 +33,10 @@
     "rls": {
       "disabled": 1
     }
+  },
+  "markdown": {
+    "yaml-language-server": {
+      "disabled": 1
+    }
   }
 }
