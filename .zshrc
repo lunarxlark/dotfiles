@@ -99,7 +99,7 @@ if [[ -f ~/.zplug/init.zsh ]]; then
   zplug "awslabs/git-secrets",                  as:command, hook-build:"PREFIX=~/.zplug make install"
   zplug "daveewart/colordiff",                  as:command, at:current, use:"colordiff.pl", rename-to:"colordiff"
 
-  if [[ $(type dirne) > /dev/null ]];then
+  if [[ $(type direnv) > /dev/null ]];then
     eval "$(direnv hook zsh)"
   fi
   # }}}
