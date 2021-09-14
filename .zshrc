@@ -3,7 +3,9 @@ bindkey -v
 autoload -U promptinit; promptinit
 
 # ### Aliases {{{
-alias v='vim'
+#alias v='vim'
+alias v='nvim'
+alias vi='nvim'
 alias n='nvim'
 
 alias E='exec $SHELL -l'

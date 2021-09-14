@@ -246,7 +246,7 @@ let g:indent_guides_auto_colors = 0
 " ------------------------------------------------------------------------------
 " fzf
 " ------------------------------------------------------------------------------
-let g:fzf_layout = { 'down': '~40%'}
+"let g:fzf_layout = { 'down': '~40%'}
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'border': 'rounded'}}
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
