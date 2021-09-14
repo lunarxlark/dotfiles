@@ -4,6 +4,7 @@ autoload -U promptinit; promptinit
 
 # ### Aliases {{{
 alias v='vim'
+alias n='nvim'
 
 alias E='exec $SHELL -l'
 alias t='tmux'
