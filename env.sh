@@ -1,6 +1,6 @@
 export LANG=ja_JP.UTF-8
-export TERM=screen-256color
-export EDITOR='vim'
+#export TERM=screen-256color
+export EDITOR='nvim'
 
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME=~/.data

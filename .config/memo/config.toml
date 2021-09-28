@@ -1,5 +1,5 @@
 memodir = "${XDG_CONFIG_HOME}/memo/_posts"
-editor = "vim"
+editor = "nvim"
 column = 20
 selectcmd = "fzf --height=30%"
 grepcmd = "grep -nH ${PATTERN} ${FILES}"

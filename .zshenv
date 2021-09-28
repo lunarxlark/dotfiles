@@ -2,3 +2,4 @@ source $HOME/env.sh
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
+FZF_DEFAULT_COMMAND='fd --type f'

@@ -4,8 +4,8 @@ autoload -U promptinit; promptinit
 
 # ### Aliases {{{
 #alias v='vim'
-alias v='nvim'
-alias vi='nvim'
+alias v='vi'
+alias vi='vi'
 alias n='nvim'
 
 alias E='exec $SHELL -l'
