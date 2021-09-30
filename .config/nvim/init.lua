@@ -138,6 +138,7 @@ require('packer').startup(function()
   use { 'nicwest/vim-camelsnek' }
   use { 'mattn/emmet-vim' }
   use { 'thinca/vim-quickrun' }
+  use { 'vim-test/vim-test' }
   use { 'thinca/vim-showtime', ft = {'markdown'} }
   use { 'mechatroner/rainbow_csv', ft = {'csv', 'tsv'} }
   use { 'stephpy/vim-yaml', ft = {'yaml'} }
@@ -275,6 +276,24 @@ map('n', '<leader>p', '<cmd>cprevious<cr>', { silent = true})
 
 map('n', '<esc><esc>', '<cmd>set hls!<cr>', { silent = true } )
 map('n', '<leader>T', '<cmd>TigOpenProjectRootDir<cr>')
+
+
+-- ==============================================================================
+-- test
+-- ==============================================================================
+-- vim.g['test#neovim#start_normal'] = 1
+--vim.g['test#strategy'] = 'neovim'
+vim.g['test#strategy'] = 'neovim'
+vim.g['test#neovim#term_position'] = 'vert botright'
+vim.g['test#go#gotest#executable'] =  'gotest'
+vim.g['test#go#runner'] =  'gotest'
+vim.g['test#go#gotest#options'] =  '-v'
+map('n', '<leader>tn', '<cmd>TestNearest<CR>', { silent = true})
+map('n', '<leader>tf', '<cmd>TestFile<CR>', { silent = true})
+map('n', '<leader>ts', '<cmd>TestSuite<CR>', { silent = true})
+map('n', '<leader>tl', '<cmd>TestLast<CR>', { silent = true})
+map('n', '<leader>tv', '<cmd>TestVisit<CR>', { silent = true})
+
 
 -- ==============================================================================
 -- fzf
