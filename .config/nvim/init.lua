@@ -131,6 +131,7 @@ require('packer').startup(function()
 
   use { 'mattn/vim-goimports', ft = {'go'} }
   use { 'mattn/vim-gomod', ft = {'gomod'}}
+  use { 'kyoh86/vim-go-coverage', ft = {'go'}}
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'mattn/vim-sonictemplate' }
   use { 'iberianpig/tig-explorer.vim' }
@@ -175,7 +176,7 @@ local on_attach = function(client, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  -- buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.lsp.codelens.get()<CR>', opts)
+  buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.lsp.codelens.get()<CR>', opts)
   buf_set_keymap('n', '<leader>df', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<leader>sm', '<cmd>lua vim.lsp.buf.document_symbol_search()<CR>', opts)
