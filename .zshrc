@@ -212,3 +212,5 @@ hadolint() {
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/yuta_kobayashi/dev/bin/terraform terraform
+
+alias luamake=/Users/lunarxlark/dev/src/github.com/sumneko/lua-language-server/3rd/luamake/luamake
