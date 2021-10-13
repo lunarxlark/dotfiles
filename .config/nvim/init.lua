@@ -192,7 +192,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>n', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 end
 
-require('lspconfig').gopls.setup {
+nvim_lsp.gopls.setup {
   cmd = { vim.fn.exepath('gopls'), 'serve'},
   flags = {
     debounce_text_changes = 150,
