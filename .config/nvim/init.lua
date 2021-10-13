@@ -26,10 +26,14 @@ require('packer').startup(function()
   use { 'neovim/nvim-lspconfig'}
 
   -- fuzzy finder
+  --use {
+  --  'junegunn/fzf',
+  --  run = ":call fzf#install()",
+  --  requires = {'junegunn/fzf.vim', opt = true}
+  --}
   use {
-    'junegunn/fzf',
-    run = ":call fzf#install()",
-    requires = {'junegunn/fzf.vim', opt = true}
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   -- colorscheme
@@ -56,7 +60,7 @@ require('packer').startup(function()
               'diagnostics',
               sources = { 'nvim_lsp' },
               sections = {'error', 'warn', 'info'},
-              symbols = {error = ' ', warn = ' ', info = ' '},
+              symbols = {error = ' ', warn = ' ', info = ' ', hint = ''},
               color_error = '#ec5f67',
               color_warn = '#ECBE7B',
               color_info = '#008080',
@@ -189,7 +193,7 @@ local on_attach = function(client, bufnr)
 end
 
 require('lspconfig').gopls.setup {
-  cmd = { vim.fn.exepath('gopls'), 'serve' },
+  cmd = { vim.fn.exepath('gopls'), 'serve'},
   flags = {
     debounce_text_changes = 150,
   },
@@ -320,12 +324,30 @@ vim.api.nvim_command[[
   call fzf#sonictemplate#run()
 ]]
 
-map('n', ',f',  '<cmd>Files<cr>', { silent = true})
-map('n', ',b',  '<cmd>Buffers<cr>', { silent = true})
-map('n', ',g',  '<cmd>Ghq<cr>', { silent = true})
-map('n', ',rg', '<cmd>Rg<cr>', { silent = true})
-map('n', ',st', '<cmd>SonicTemplate<cr>', { silent = true})
+--map('n', ',f',  '<cmd>Files<cr>', { silent = true})
+--map('n', ',b',  '<cmd>Buffers<cr>', { silent = true})
+--map('n', ',rg', '<cmd>Rg<cr>', { silent = true})
+--map('n', ',g',  '<cmd>Ghq<cr>', { silent = true})
+--map('n', ',st', '<cmd>SonicTemplate<cr>', { silent = true})
 
+map('n', ',f',  '<cmd>Telescope find_files<cr>', {silent=true})
+map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
+map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
+
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close
+      },
+    },
+    file_ignore_patterns = {'.git/*', 'node_modules/*', '.terraform/*'},
+    color_devicons = true,
+    sorting_strategy = 'ascending',
+    layout_strategy = 'flex',
+  }
+}
 
 -- ==============================================================================
 -- settings
