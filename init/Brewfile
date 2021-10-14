@@ -21,6 +21,7 @@ cask 'visual-studio-code'
 cask 'postman'
 cask 'docker'
 cask 'nvim'
+cask 'ninja'
 
 # util
 cask 'alfred'

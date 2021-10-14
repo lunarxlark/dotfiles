@@ -26,10 +26,14 @@ require('packer').startup(function()
   use { 'neovim/nvim-lspconfig'}
 
   -- fuzzy finder
+  --use {
+  --  'junegunn/fzf',
+  --  run = ":call fzf#install()",
+  --  requires = {'junegunn/fzf.vim', opt = true}
+  --}
   use {
-    'junegunn/fzf',
-    run = ":call fzf#install()",
-    requires = {'junegunn/fzf.vim', opt = true}
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   -- colorscheme
@@ -56,7 +60,7 @@ require('packer').startup(function()
               'diagnostics',
               sources = { 'nvim_lsp' },
               sections = {'error', 'warn', 'info'},
-              symbols = {error = ' ', warn = ' ', info = ' '},
+              symbols = {error = ' ', warn = ' ', info = ' ', hint = ''},
               color_error = '#ec5f67',
               color_warn = '#ECBE7B',
               color_info = '#008080',
@@ -189,8 +193,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>n', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 end
 
-require('lspconfig').gopls.setup {
-  cmd = { vim.fn.exepath('gopls'), 'serve' },
+nvim_lsp.gopls.setup {
+  cmd = { vim.fn.exepath('gopls'), 'serve'},
   flags = {
     debounce_text_changes = 150,
   },
@@ -215,6 +219,48 @@ require('lspconfig').gopls.setup {
       },
     }
   }
+}
+
+local system_name
+if vim.fn.has("mac") == 1 then
+  system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+  system_name = "Linux"
+elseif vim.fn.has('win32') == 1 then
+  system_name = "Windows"
+else
+  print("Unsupported system for sumneko")
+end
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+local sumneko_root_path = os.getenv("GHQ_ROOT")..'/github.com/sumneko/lua-language-server'
+local sumneko_binary = sumneko_root_path..'/bin/'..system_name..'/lua-language-server'
+nvim_lsp.sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  flags = {
+    debounce_text_changes = 150,
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 }
 
 --require('lspconfig').terraformls.setup {
@@ -321,12 +367,30 @@ vim.api.nvim_command[[
   call fzf#sonictemplate#run()
 ]]
 
-map('n', ',f',  '<cmd>Files<cr>', { silent = true})
-map('n', ',b',  '<cmd>Buffers<cr>', { silent = true})
-map('n', ',g',  '<cmd>Ghq<cr>', { silent = true})
-map('n', ',rg', '<cmd>Rg<cr>', { silent = true})
-map('n', ',st', '<cmd>SonicTemplate<cr>', { silent = true})
+--map('n', ',f',  '<cmd>Files<cr>', { silent = true})
+--map('n', ',b',  '<cmd>Buffers<cr>', { silent = true})
+--map('n', ',rg', '<cmd>Rg<cr>', { silent = true})
+--map('n', ',g',  '<cmd>Ghq<cr>', { silent = true})
+--map('n', ',st', '<cmd>SonicTemplate<cr>', { silent = true})
 
+map('n', ',f',  '<cmd>Telescope find_files<cr>', {silent=true})
+map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
+map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
+
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close
+      },
+    },
+    file_ignore_patterns = {'.git/*', 'node_modules/*', '.terraform/*'},
+    color_devicons = true,
+    sorting_strategy = 'ascending',
+    layout_strategy = 'flex',
+  }
+}
 
 -- ==============================================================================
 -- settings
