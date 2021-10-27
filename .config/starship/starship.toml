@@ -1,0 +1,45 @@
+add_newline = false
+
+[character]
+success_symbol = "[>](bold red)[>](bold yellow)[>](bold cyan)"
+
+[directory]
+truncation_length = 1
+truncate_to_repo = true
+style = "cyan"
+
+[aws]
+format = '\[[$symbol($profile)]($style)\]'
+style = "fg:208"
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[git_branch]
+format = '\[[$symbol$branch]($style)\]'
+style = "purple"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+style = "red"
+
+[golang]
+format = '\[[$symbol($version)]($style)\]'
+style = "blue"
+symbol = " "
+
+[nodejs]
+format = '\[[$symbol($version)]($style)\]'
+
+[python]
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+symbol = " "
+
+[rust]
+format = '\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[terraform]
+format = '\[[$symbol$workspace]($style)\]'
+detect_files = [".terraform-version"]
