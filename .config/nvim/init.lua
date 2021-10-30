@@ -33,7 +33,11 @@ require('packer').startup(function()
   --}
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-github.nvim'},
+      {'lunarxlark/telescope-memo.nvim'},
+    }
   }
 
   -- colorscheme
@@ -150,6 +154,7 @@ require('packer').startup(function()
   use { 'cespare/vim-toml', ft = {'toml'} }
   use { 'b4b4r07/vim-ltsv', ft = {'ltsv'} }
   use { 'hashivim/vim-terraform', ft = {'terraform'} }
+  use { 'wakatime/vim-wakatime' }
 end)
 
 vim.g.sonictemplate_vim_template_dir = fn.stdpath('config')..'/template'
@@ -254,7 +259,10 @@ nvim_lsp.sumneko_lua.setup {
         globals = {'vim'},
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
+        --library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+        preloadFileSize = 1000,
+        maxPreload = 1600
       },
       telemetry = {
         enable = false,
@@ -391,6 +399,9 @@ require('telescope').setup{
     layout_strategy = 'flex',
   }
 }
+
+require('telescope').load_extension('gh')
+require('telescope').load_extension('memo')
 
 -- ==============================================================================
 -- settings
