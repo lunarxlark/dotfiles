@@ -72,12 +72,12 @@ zinit wait'!1' lucid \
   src'zhook.zsh' \
   light-mode for @direnv/direnv
 
-export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/config
-export ASDF_DIR=$XDG_DATA_HOME/asdf
-export ASDF_DATA_DIR=$XDG_DATA_HOME/asdf
-zinit wait'1' lucid \
-  pick"asdf.sh" \
-  light-mode for @asdf-vm/asdf
+#export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/config
+#export ASDF_DIR=$XDG_DATA_HOME/asdf
+#export ASDF_DATA_DIR=$XDG_DATA_HOME/asdf
+#zinit wait'1' lucid \
+#  pick"asdf.sh" \
+#  light-mode for @asdf-vm/asdf
 
 # delta
 zinit wait'1' lucid \
