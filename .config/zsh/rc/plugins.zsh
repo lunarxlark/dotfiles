@@ -86,6 +86,13 @@ zinit wait'1' lucid \
   pick"delta*/delta" \
   light-mode for @dandavison/delta
 
+# exa
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick"**/exa" \
+  light-mode for @ogham/exa
+
 # ripgrep
 zinit wait'1' lucid blockf nocompletions \
   from"gh-r" \
@@ -113,6 +120,14 @@ zinit wait'1' lucid \
   pick"bat*/bat" \
   atload"export BAT_THEME='gruvbox-dark'; alias cat=bat" \
   light-mode for @sharkdp/bat
+
+# jq
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  mv"jq* -> jq" \
+  pick"**/jq" \
+  light-mode for @stedolan/jq
 
 # wakatime
 zinit load 'wbingli/zsh-wakatime'
