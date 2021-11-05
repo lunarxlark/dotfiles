@@ -45,13 +45,6 @@ zinit ice \
   from"gh-r"
 zinit light junegunn/fzf-bin
 
-# git
-zinit wait'1' lucid \
-  from"gh-r" \
-  as"program" \
-  pick"lazygit*/lazygit" \
-  light-mode for @jesseduffield/lazygit
-
 # github
 zinit wait'1' lucid \
   from"gh-r" \
