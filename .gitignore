@@ -5,6 +5,7 @@
 .DS_Store
 **/plugged/
 .config/direnv/*
+.config/nvim/plugin
 .config/dlv/.dbg_history
 .config/anyenv/*
 .config/gh/*
