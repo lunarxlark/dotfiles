@@ -13,7 +13,7 @@
 .config/filezilla/*
 .config/memo/_posts
 .config/gh/hosts.yml
-.data/vim-lsp-settings/servers/*
+.data/*
 .vim/autoload/*
 .vim/plugged/*
 .envrc

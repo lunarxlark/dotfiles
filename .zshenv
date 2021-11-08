@@ -17,6 +17,7 @@ export ZDOTDIR=$HOME
 export ZHOMEDIR=$ZDOTDIR/.config/zsh
 export ZRCDIR=$ZHOMEDIR/rc
 export ZDATADIR=$XDG_DATA_HOME/zsh
+export ZINIT_HOME=$HOME/.zinit
 
 # go
 export GO111MODULE=on
