@@ -226,6 +226,31 @@ nvim_lsp.gopls.setup {
   }
 }
 
+nvim_lsp.intelephense.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    intelephense = {
+      stubs = {
+          "bcmath", "bz2", "calendar", "Core", "curl", "date",
+          "dba", "dom", "enchant", "fileinfo", "filter", "ftp",
+          "gd", "gettext", "hash", "iconv", "imap", "intl",
+          "json", "ldap", "libxml", "mbstring", "mcrypt", "mysql",
+          "mysqli", "password", "pcntl", "pcre", "PDO", "pdo_mysql",
+          "Phar", "readline", "recode", "Reflection", "regex", "session",
+          "SimpleXML", "soap", "sockets", "sodium", "SPL", "standard",
+          "superglobals", "sysvsem", "sysvshm", "tokenizer", "xml", "xdebug",
+          "xmlreader", "xmlwriter", "yaml", "zip", "zlib", "wordpress",
+          "woocommerce", "acf-pro", "wordpress-globals", "wp-cli", "genesis", "polylang"
+      },
+      files = {
+          maxSize = 5000000;
+      };
+    };
+  }
+}
+
+
 local system_name
 if vim.fn.has("mac") == 1 then
   system_name = "macOS"
@@ -397,6 +422,9 @@ require('telescope').setup{
     color_devicons = true,
     sorting_strategy = 'ascending',
     layout_strategy = 'flex',
+    preview = {
+      timeout = 1000
+    }  
   }
 }
 
