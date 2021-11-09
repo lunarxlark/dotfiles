@@ -54,8 +54,9 @@ zinit wait'1' lucid \
 
 zinit wait'1' lucid \
   from"gh-r" \
-  as'program' \
+  as"program" \
   pick'**/gh' \
+  atclone"./**/gh completion -s zsh > $ZINIT_HOME/completions/_gh" \
   light-mode for @cli/cli
 
 # syntax highlight

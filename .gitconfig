@@ -11,6 +11,7 @@
 [core]
   #pager = less -q -R
   #pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
+  editor = "nvim"
   pager = delta --theme='gruvbox-dark'
 	excludesfile = ~/.gitignore
 	preloadindex = true
