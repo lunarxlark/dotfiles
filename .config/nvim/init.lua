@@ -120,7 +120,9 @@ require('packer').startup(
         use { 'wakatime/vim-wakatime' }
         use { 'fladson/vim-kitty', ft = {'kitty'} }
         use { 'simeji/winresizer' }
-        use { 'norcalli/nvim-colorizer.lua' }
+        use { 'norcalli/nvim-colorizer.lua',
+            config = function() require('colorizer').setup {'*'}  end
+        }
     end
 )
 
@@ -349,8 +351,12 @@ require('lualine').setup{
         icons_enabled = true,
     },
     sections = {
-        lualine_a = { { 'mode', upper = true } },
-        lualine_b = { { 'branch', icon = '' }, { 'filename', file_status = true }, { 'filetype', colored = true, icon_only = true } },
+        lualine_a = { 'mode'},
+        lualine_b = {
+            { 'branch', icon = '' },
+            { 'filename', file_status = true },
+            { 'filetype', colored = true, icon_only = true }
+        },
         lualine_c = {
           {
               'diff',
@@ -379,7 +385,7 @@ require('lualine').setup{
               always_visible = true
             },
         },
-        lualine_x = { },
+        lualine_x = {},
         lualine_y = {
             {
                 'fileformat',
@@ -395,8 +401,7 @@ require('lualine').setup{
             { 'progress' },
             { 'location' },
         },
-    },
-    extensions = { 'quickfix', 'fzf' }
+    }
 }
 
 
