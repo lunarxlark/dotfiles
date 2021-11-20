@@ -45,8 +45,7 @@ require('packer').startup(
         -- statusline
         use { 'hoob3rt/lualine.nvim',
             requires = {
-                {'kyazdani42/nvim-web-devicons', opt = true},
-                {'morhetz/gruvbox'}
+                {'kyazdani42/nvim-web-devicons'}
             },
         }
 
@@ -104,7 +103,9 @@ require('packer').startup(
         use { 'mattn/vim-gomod', ft = {'gomod'}}
         use { 'kyoh86/vim-go-coverage', ft = {'go'}}
         use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-        use { 'mattn/vim-sonictemplate' }
+        use { 'mattn/vim-sonictemplate',
+            run = function() vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config')..'/template' end
+        }
         use { 'iberianpig/tig-explorer.vim' }
         use { 'easymotion/vim-easymotion' }
         use { 'nicwest/vim-camelsnek' }
@@ -126,11 +127,11 @@ require('packer').startup(
     end
 )
 
-require('nvim-treesitter').setup {
-  highlight = {
-    enable = true
-  }
-}
+--require('nvim-treesitter').setup {
+--  highlight = {
+--    enable = true
+--  }
+--}
 
 -- ==============================================================================
 -- LSP
@@ -358,31 +359,31 @@ require('lualine').setup{
             { 'filetype', colored = true, icon_only = true }
         },
         lualine_c = {
-          {
-              'diff',
-              colored = true,
-              diff_color = {
-                  added    = { 'DiffAdd' },
-                  modified = { 'DiffChange' },
-                  removed  = { 'DiffDelete' },
-              },
-              symbols = { added = '+', modified = '~', removed = '-' },
-              source = nil,
-          },
-          {
-              'diagnostics',
-              sources = { 'nvim_lsp' },
-              sections = { 'error', 'warn', 'info', 'hint' },
-              symbols = { error = '', warn = '', info = '', hint = '' },
-              colored = true,
-              diagnostics_color = {
-                error = { fg = '#ec5f67' },
-                warn  = { fg = '#ff8800' },
-                info  = { fg = '#008080' },
-                hint  = { fg = '#ecbe7b' },
-              },
-              update_in_insert = false,
-              always_visible = true
+            {
+                'diff',
+                colored = true,
+                diff_color = {
+                    added    = { 'DiffAdd' },
+                    modified = { 'DiffChange' },
+                    removed  = { 'DiffDelete' },
+                },
+                symbols = { added = '+', modified = '~', removed = '-' },
+                source = nil,
+            },
+            {
+                'diagnostics',
+                sources = { 'nvim_lsp' },
+                sections = { 'error', 'warn', 'info', 'hint' },
+                symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+                colored = true,
+                diagnostics_color = {
+                  error = { fg = '#fb4934' },
+                  warn  = { fg = '#fe8019' },
+                  info  = { fg = '#83a598' },
+                  hint  = { fg = '#fabd2f' },
+                },
+                update_in_insert = false,
+                always_visible = true
             },
         },
         lualine_x = {},
