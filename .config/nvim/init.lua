@@ -192,8 +192,6 @@ if server_available then
     end
 end
 
-
-
 require('lspconfig').gopls.setup {
     cmd = { lsp_installer_dir .. '/go/gopls', 'serve'},
     flags = {
