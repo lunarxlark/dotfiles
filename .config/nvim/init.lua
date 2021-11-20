@@ -50,13 +50,6 @@ require('packer').startup(
             },
         }
 
-        use { 'kdheepak/tabline.nvim',
-            requires = {
-              { 'hoob3rt/lualine.nvim', opt=true },
-              {'kyazdani42/nvim-web-devicons', opt = true},
-            }
-        }
-
         use {
             'lewis6991/gitsigns.nvim',
             requires = {
@@ -130,8 +123,6 @@ require('packer').startup(
         use { 'norcalli/nvim-colorizer.lua' }
     end
 )
-
-vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config')..'/template'
 
 require('nvim-treesitter').setup {
   highlight = {
@@ -359,7 +350,7 @@ require('lualine').setup{
     },
     sections = {
         lualine_a = { { 'mode', upper = true } },
-        lualine_b = { { 'branch', icon = '' }, { 'filename', file_status = true } },
+        lualine_b = { { 'branch', icon = '' }, { 'filename', file_status = true }, { 'filetype', colored = true, icon_only = true } },
         lualine_c = {
           {
               'diff',
@@ -388,9 +379,8 @@ require('lualine').setup{
               always_visible = true
             },
         },
-        lualine_x = {
-            'encoding',
-            'filetype',
+        lualine_x = { },
+        lualine_y = {
             {
                 'fileformat',
                 symbols = {
@@ -399,39 +389,15 @@ require('lualine').setup{
                     mac = '',
                 },
             },
+            'encoding',
         },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' },
-    },
-    inactive_sections = {
-        lualine_a = {  },
-        lualine_b = {  },
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {  },
-        lualine_z = {  }
+        lualine_z = {
+            { 'progress' },
+            { 'location' },
+        },
     },
     extensions = { 'quickfix', 'fzf' }
 }
-
-
--- ==============================================================================
--- tab
--- ==============================================================================
-require'tabline'.setup {
-    enable = true,
-    options = {
-        show_tabs_always = true,
-        show_devicons = true,
-        show_bufnr = false,
-        show_filename_only = false,
-    }
-}
-
-vim.cmd[[
-    set guioptions-=e " Use showtabline in gui vim
-    set sessionoptions+=tabpages,globals " store tabpages and globals in session
-]]
 
 
 -- ==============================================================================
@@ -549,7 +515,7 @@ vim.opt.encoding = 'utf-8'                           -- vimでの文字エンコ
 vim.opt.fileencodings = 'utf-8,sjis'                 -- バッファの改行コード指定
 vim.opt.fileformats = 'unix,mac,dos'                 -- バッファの改行コード指定
 -- #edit
-vim.opt.showtabline=2
+vim.opt.showtabline=0
 vim.cmd 'noswapfile'
 vim.opt.clipboard = 'unnamedplus'                    -- clipboardとの連携
 vim.opt.viminfo = ''                                 -- viminfoファイルを作成しない
