@@ -1,17 +1,15 @@
-local fn = vim.fn
-local cmd = vim.cmd
 local opt = vim.opt
 
 -- ==============================================================================
 -- plugins
 -- ==============================================================================
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  cmd 'packadd packer.nvim'
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd 'packadd packer.nvim'
 end
 
-cmd [[
+vim.cmd [[
   augroup Packer
     autocmd!
     autocmd BufWritePost init.lua source <afile> | PackerCompile
@@ -564,10 +562,10 @@ opt.fileencodings = 'utf-8,sjis'                 -- バッファの改行コー�
 opt.fileformats = 'unix,mac,dos'                 -- バッファの改行コード指定
 -- #edit
 opt.showtabline=2
-cmd 'noswapfile'
+vim.cmd 'noswapfile'
 opt.clipboard = 'unnamedplus'                    -- clipboardとの連携
 opt.viminfo = ''                                 -- viminfoファイルを作成しない
-opt.undodir = fn.stdpath('data')..'/undo'
+opt.undodir = vim.fn.stdpath('data')..'/undo'
 opt.undofile = true
 opt.cursorline = true                            -- カーソル位置(行)の非表示
 opt.virtualedit = 'block'                        -- visual-block時、行末を超えて選択可能にする
