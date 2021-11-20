@@ -135,7 +135,7 @@ require('packer').startup(
     end
 )
 
-vim.g.sonictemplate_vim_template_dir = fn.stdpath('config')..'/template'
+vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config')..'/template'
 
 require('nvim-treesitter').setup {
   highlight = {
@@ -170,8 +170,36 @@ local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   buf_set_keymap('n', '<leader>n',  '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 end
 
+-- lsp-installer
+local lsp_installer_dir = os.getenv("XDG_DATA_HOME").."/nvim-lsp-installer"
+require("nvim-lsp-installer").settings({
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    },
+    install_root_dir = lsp_installer_dir,
+    max_concurrent_installers = 4,
+})
+
+local servers = { "rust_analyzer", "gopls", "intelephense", "sumneko_lua", "terraformls" }
+local server_available, requested_server = require'nvim-lsp-installer.servers'.get_server(servers)
+if server_available then
+    requested_server:on_ready(function ()
+      local opts = {}
+        requested_server:setup(opts)
+    end)
+    if not requested_server:is_installed() then
+        requested_server:install()
+    end
+end
+
+
+
 require('lspconfig').gopls.setup {
-    cmd = { vim.fn.exepath('gopls'), 'serve'},
+    cmd = { lsp_installer_dir .. '/go/gopls', 'serve'},
     flags = {
         debounce_text_changes = 150,
     },
@@ -186,6 +214,7 @@ require('lspconfig').gopls.setup {
                 nilness = true,
                 unusedwrite = true
             },
+            completeUnimported = true,
             hoverKind = 'SynopsisDocumentation',
             staticcheck = true,
             directoryFilters = {'-debug'},
@@ -199,9 +228,6 @@ require('lspconfig').gopls.setup {
                 vendor = false,
             },
         }
-    },
-    init_options = {
-        completeUnimported = true
     }
 }
 
@@ -224,8 +250,8 @@ require('lspconfig').intelephense.setup{
             },
             files = {
                 maxSize = 5000000;
-            };
-        };
+            }
+        }
     }
 }
 
@@ -243,11 +269,9 @@ end
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-
-local sumneko_root_path = os.getenv("GHQ_ROOT")..'/github.com/sumneko/lua-language-server'
-local sumneko_binary = sumneko_root_path..'/bin/'..system_name..'/lua-language-server'
+local sumneko_root_path = lsp_installer_dir .. '/sumneko_lua/extension/server/bin/'..system_name
 require('lspconfig').sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    cmd = { sumneko_root_path..'/lua-language-server', "-E", sumneko_root_path.."/main.lua" };
     flags = {
         debounce_text_changes = 150,
     },
@@ -274,15 +298,16 @@ require('lspconfig').sumneko_lua.setup {
     },
 }
 
---require('lspconfig').terraformls.setup {
---  cmd = { vim.fn.exepath('terraform-ls'), 'serve' },
---  filetypes = { "terraform" },
---  on_attach = on_attach,
---  capabilities = capabilities,
---  flags = {
---    debounce_text_changes = 150,
---  }
---}
+require('lspconfig').terraformls.setup {
+    cmd = { lsp_installer_dir..'/terraform/terraform-ls/terraform-ls', 'serve' },
+    filetypes = { "terraform" },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 150,
+    }
+}
+
 
 -- ==============================================================================
 -- completion
