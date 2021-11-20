@@ -1,5 +1,3 @@
-local opt = vim.opt
-
 -- ==============================================================================
 -- plugins
 -- ==============================================================================
@@ -556,21 +554,21 @@ require('telescope').load_extension('memo')
 vim.opt.termguicolors = true
 vim.cmd [[colorscheme gruvbox]]
 -- #file
-opt.number = true
-opt.encoding = 'utf-8'                           -- vimでの文字エンコーディング
-opt.fileencodings = 'utf-8,sjis'                 -- バッファの改行コード指定
-opt.fileformats = 'unix,mac,dos'                 -- バッファの改行コード指定
+vim.opt.number = true
+vim.opt.encoding = 'utf-8'                           -- vimでの文字エンコーディング
+vim.opt.fileencodings = 'utf-8,sjis'                 -- バッファの改行コード指定
+vim.opt.fileformats = 'unix,mac,dos'                 -- バッファの改行コード指定
 -- #edit
-opt.showtabline=2
+vim.opt.showtabline=2
 vim.cmd 'noswapfile'
-opt.clipboard = 'unnamedplus'                    -- clipboardとの連携
-opt.viminfo = ''                                 -- viminfoファイルを作成しない
-opt.undodir = vim.fn.stdpath('data')..'/undo'
-opt.undofile = true
-opt.cursorline = true                            -- カーソル位置(行)の非表示
-opt.virtualedit = 'block'                        -- visual-block時、行末を超えて選択可能にする
-opt.list = true                                  -- 不可視文字を表示
-opt.listchars = {
+vim.opt.clipboard = 'unnamedplus'                    -- clipboardとの連携
+vim.opt.viminfo = ''                                 -- viminfoファイルを作成しない
+vim.opt.undodir = vim.fn.stdpath('data')..'/undo'
+vim.opt.undofile = true
+vim.opt.cursorline = true                            -- カーソル位置(行)の非表示
+vim.opt.virtualedit = 'block'                        -- visual-block時、行末を超えて選択可能にする
+vim.opt.list = true                                  -- 不可視文字を表示
+vim.opt.listchars = {
   tab = '>-',
   trail = '-',
   extends = '>',
@@ -578,20 +576,20 @@ opt.listchars = {
 }
 --opt.fixendofline = false
 --opt.eol = false                                  -- ファイル末尾にeolを付けない
-opt.foldmethod = 'marker'
-opt.write = true
+vim.opt.foldmethod = 'marker'
+vim.opt.write = true
 -- #tab
-opt.smarttab = true                             -- 行頭の余白内で<Tab>を入力すると、'shiftwidth'分をインデントする
-opt.autoindent = true                            -- 自動インデント
-opt.smartindent = true                           -- 自動インデント(ブロック対応)
-opt.tabstop = 2                                  -- ファイル内の<Tab>が対応する空白の数
-opt.softtabstop = 2                              -- 編集で<Tab>の幅として使用する空白の数
-opt.expandtab = true                             -- 挿入モードで<Tab>入力時、代わりに使う空白の数
-opt.shiftwidth = 2                               -- 自動インデントでのインデントの長さ
+vim.opt.smarttab = true                             -- 行頭の余白内で<Tab>を入力すると、'shiftwidth'分をインデントする
+vim.opt.autoindent = true                            -- 自動インデント
+vim.opt.smartindent = true                           -- 自動インデント(ブロック対応)
+vim.opt.tabstop = 2                                  -- ファイル内の<Tab>が対応する空白の数
+vim.opt.softtabstop = 2                              -- 編集で<Tab>の幅として使用する空白の数
+vim.opt.expandtab = true                             -- 挿入モードで<Tab>入力時、代わりに使う空白の数
+vim.opt.shiftwidth = 2                               -- 自動インデントでのインデントの長さ
 -- #search
-opt.showmatch = true                             -- 対応する括弧をハイライトする
-opt.hlsearch = true                              -- 検索結果をハイライト
-opt.ignorecase = true                            -- 大文字/小文字の区別しない
-opt.smartcase = true                             -- 大文字で検索されたら大文字/小文字を区別する
+vim.opt.showmatch = true                             -- 対応する括弧をハイライトする
+vim.opt.hlsearch = true                              -- 検索結果をハイライト
+vim.opt.ignorecase = true                            -- 大文字/小文字の区別しない
+vim.opt.smartcase = true                             -- 大文字で検索されたら大文字/小文字を区別する
 -- #json
-opt.conceallevel = 0                             -- ダブルクォーテーションを表示
+vim.opt.conceallevel = 0                             -- ダブルクォーテーションを表示
