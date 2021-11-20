@@ -308,6 +308,9 @@ require('lspconfig').terraformls.setup {
 -- ==============================================================================
 local cmp = require('cmp')
 cmp.setup {
+    completion = {
+        completeopt = 'menu,menuone,noinsert',
+    },
     formatting = {
         format = function(entry, vim_item)
             vim_item.menu = ({
@@ -342,7 +345,6 @@ cmp.setup {
         { name = 'vnip' }
     }
 }
-vim.opt.completeopt = 'menuone,noinsert,noselect'
 
 
 -- ==============================================================================
