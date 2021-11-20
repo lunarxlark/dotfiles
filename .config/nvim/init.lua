@@ -344,16 +344,6 @@ cmp.setup {
 }
 vim.opt.completeopt = 'menuone,noinsert,noselect'
 
-local lspkind = require('lspkind')
-cmp.setup {
-    formatting = {
-        format = lspkind.cmp_format({
-            with_text = true,
-            preset = 'default',
-        })
-    }
-}
-
 
 -- ==============================================================================
 -- statusline
