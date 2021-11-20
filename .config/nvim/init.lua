@@ -15,7 +15,7 @@ vim.cmd [[
 ]]
 
 require('packer').startup(
-    function()
+    function(use)
         use { 'wbthomason/packer.nvim' }
 
         -- LSP
