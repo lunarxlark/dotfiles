@@ -45,6 +45,9 @@ zinit ice \
   from"gh-r"
 zinit light junegunn/fzf-bin
 
+# aws
+zinit snippet https://github.com/aws/aws-cli/blob/master/bin/aws_zsh_completer.sh
+
 # github
 zinit wait'1' lucid \
   from"gh-r" \

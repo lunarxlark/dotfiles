@@ -32,6 +32,9 @@ export GOCACHE=$GOPATH/go-build
 # ghq
 export GHQ_ROOT=$GOPATH/src
 
+# kitty
+export KITTY_CONFIG_DIRECTORY=$XDG_CONFIG_HOME/kitty
+
 # rustup
 . "$HOME/.cargo/env"
 
