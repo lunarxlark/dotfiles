@@ -18,144 +18,122 @@ cmd [[
   augroup end
 ]]
 
-require('packer').startup(function()
-  -- Packer can manage itself
-  use { 'wbthomason/packer.nvim' }
+require('packer').startup(
+    function()
+        use { 'wbthomason/packer.nvim' }
 
-  -- LSP
-  use { 'neovim/nvim-lspconfig'}
+        -- LSP
+        use {
+          'neovim/nvim-lspconfig',
+          'williamboman/nvim-lsp-installer',
+        }
 
-  -- fuzzy finder
-  --use {
-  --  'junegunn/fzf',
-  --  run = ":call fzf#install()",
-  --  requires = {'junegunn/fzf.vim', opt = true}
-  --}
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-github.nvim'},
-      {'lunarxlark/telescope-memo.nvim'},
-    }
-  }
+        -- fuzzy finder
+        --use {
+        --  'junegunn/fzf',
+        --  run = ":call fzf#install()",
+        --  requires = {'junegunn/fzf.vim', opt = true}
+        --}
+        use { 'nvim-telescope/telescope.nvim',
+            requires = {
+                { 'nvim-lua/plenary.nvim' },
+                { 'nvim-telescope/telescope-github.nvim' },
+                { 'delphinus/telescope-memo.nvim' },
+            }
+        }
 
-  -- colorscheme
-  --use { 'sainnhe/gruvbox-material' }
-  use { 'morhetz/gruvbox' }
+        -- colorscheme
+        --use { 'sainnhe/gruvbox-material' }
+        use { 'morhetz/gruvbox' }
 
-  -- statusline
-  use { 'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    config = function()
-      require('lualine').setup{
-        options = {
-          theme = 'gruvbox_material',
-          section_separators = {'', ''},
-          component_separators = {'', ''},
-          icons_enabled = true,
-        },
-        sections = {
-          lualine_a = { {'mode', upper = true} },
-          lualine_b = { {'branch', icon = ''} },
-          lualine_c = {
-            {'filename', file_status = true},
-            {
-              'diagnostics',
-              sources = { 'nvim_lsp' },
-              sections = {'error', 'warn', 'info'},
-              symbols = {error = ' ', warn = ' ', info = ' ', hint = ''},
-              color_error = '#ec5f67',
-              color_warn = '#ECBE7B',
-              color_info = '#008080',
+        -- statusline
+        use { 'hoob3rt/lualine.nvim',
+            requires = {
+                {'kyazdani42/nvim-web-devicons', opt = true},
+                {'morhetz/gruvbox'}
             },
-          },
-          lualine_x = { 'encoding', 'filetype' },
-          lualine_y = { 'progress' },
-          lualine_z = { 'location' },
-        },
-        inactive_sections = {
-          lualine_a = {  },
-          lualine_b = {  },
-          lualine_c = { 'filename' },
-          lualine_x = { 'location' },
-          lualine_y = {  },
-          lualine_z = {  }
-        },
-        extensions = { 'quickfix', 'fzf' }
-      }
+        }
+
+        use { 'kdheepak/tabline.nvim',
+            requires = {
+              { 'hoob3rt/lualine.nvim', opt=true },
+              {'kyazdani42/nvim-web-devicons', opt = true},
+            }
+        }
+
+        use {
+            'lewis6991/gitsigns.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim'
+            },
+            config = function()
+                require('gitsigns').setup{
+                    signcolumn = true,
+                    numhl      = true,
+                    linehl     = false,
+                    word_diff  = true,
+                }
+            end
+        }
+
+        use { 'hrsh7th/nvim-cmp',
+            requires = {
+                'hrsh7th/vim-vsnip',
+                'hrsh7th/cmp-nvim-lsp',
+                'onsails/lspkind-nvim'
+            }
+        }
+
+        use {
+            "folke/trouble.nvim",
+            requires = { "kyazdani42/nvim-web-devicons" },
+            config = function()
+                require("trouble").setup {
+                    position = "right",
+                    icon = true,
+                    indent_lines = true,
+                    fold_open = "",
+                    fold_closed = "",
+                    mode = "lsp_workspace_diagnostics",
+                    use_lsp_diagnostic_signs = true,
+                    action_keys = {
+                        close = "q",
+                        preview = "<C-p>",
+                        cancel = "<esc>",
+                    },
+                    signs = {
+                        error = "error",
+                        warning = "warn",
+                        hint = "hint",
+                        information = "info"
+                    }
+                }
+            end
+        }
+
+        use { 'mattn/vim-goimports', ft = {'go'} }
+        use { 'mattn/vim-gomod', ft = {'gomod'}}
+        use { 'kyoh86/vim-go-coverage', ft = {'go'}}
+        use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+        use { 'mattn/vim-sonictemplate' }
+        use { 'iberianpig/tig-explorer.vim' }
+        use { 'easymotion/vim-easymotion' }
+        use { 'nicwest/vim-camelsnek' }
+        use { 'mattn/emmet-vim' }
+        use { 'thinca/vim-quickrun' }
+        use { 'vim-test/vim-test' }
+        use { 'thinca/vim-showtime', ft = {'markdown'} }
+        use { 'mechatroner/rainbow_csv', ft = {'csv', 'tsv'} }
+        use { 'stephpy/vim-yaml', ft = {'yaml'} }
+        use { 'cespare/vim-toml', ft = {'toml'} }
+        use { 'b4b4r07/vim-ltsv', ft = {'ltsv'} }
+        use { 'hashivim/vim-terraform', ft = {'terraform'} }
+        use { 'wakatime/vim-wakatime' }
+        use { 'fladson/vim-kitty', ft = {'kitty'} }
+        use { 'simeji/winresizer' }
+        use { 'norcalli/nvim-colorizer.lua' }
     end
-  }
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    },
-    config = function()
-      require('gitsigns').setup{
-        signcolumn = true,
-        numhl      = true,
-        linehl     = false,
-        word_diff  = true,
-    }
-    end
-  }
-
-  use { 'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/vim-vsnip',
-      'hrsh7th/cmp-nvim-lsp'
-    }
-  }
-
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        position = "bottom",
-        height = 3,
-        icon = true,
-        mode = "lsp_workspace_diagnostics",
-        indent_lines = true, -- add an indent guide below the fold icons
-        fold_open = "", -- icon used for open folds
-        fold_closed = "", -- icon used for closed folds
-        action_keys = { -- key mappings for actions in the trouble list
-          close = "q", -- close the list
-          preview = "p", -- preview the diagnostic location
-          cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
-        },
-        signs = {
-            error = "error",
-            warning = "warn",
-            hint = "hint",
-            information = "info"
-        },
-        use_lsp_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
-      }
-    end
-  }
-
-  use { 'mattn/vim-goimports', ft = {'go'} }
-  use { 'mattn/vim-gomod', ft = {'gomod'}}
-  use { 'kyoh86/vim-go-coverage', ft = {'go'}}
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use { 'mattn/vim-sonictemplate' }
-  use { 'iberianpig/tig-explorer.vim' }
-  use { 'easymotion/vim-easymotion' }
-  use { 'nicwest/vim-camelsnek' }
-  use { 'mattn/emmet-vim' }
-  use { 'thinca/vim-quickrun' }
-  use { 'vim-test/vim-test' }
-  use { 'thinca/vim-showtime', ft = {'markdown'} }
-  use { 'mechatroner/rainbow_csv', ft = {'csv', 'tsv'} }
-  use { 'stephpy/vim-yaml', ft = {'yaml'} }
-  use { 'cespare/vim-toml', ft = {'toml'} }
-  use { 'b4b4r07/vim-ltsv', ft = {'ltsv'} }
-  use { 'hashivim/vim-terraform', ft = {'terraform'} }
-  use { 'wakatime/vim-wakatime' }
-end)
+)
 
 vim.g.sonictemplate_vim_template_dir = fn.stdpath('config')..'/template'
 
@@ -168,22 +146,16 @@ require('nvim-treesitter').setup {
 -- ==============================================================================
 -- LSP
 -- ==============================================================================
--- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  -- Enable completion triggered by <c-x><c-o>
+local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
   local opts = { noremap=true, silent=true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.lsp.codelens.get()<CR>', opts)
   buf_set_keymap('n', '<leader>df', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -194,72 +166,79 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>ho', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>p', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', '<leader>n', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>p',  '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', '<leader>n',  '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 end
 
-nvim_lsp.gopls.setup {
-  cmd = { vim.fn.exepath('gopls'), 'serve'},
-  flags = {
-    debounce_text_changes = 150,
-  },
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    gopls = {
-      analyses = {
-        fullstruct = true,
-      },
-      hoverKind = 'SynopsisDocumentation',
-      staticcheck = true,
-      directoryFilters = {'-debug'},
-      usePlaceholders = true,
-      matcher = 'fuzzy',
-      codelenses = {
-        gc_details = true,
-        generate = true,
-        test = true,
-        tidy = true,
-        vendor = false,
-      },
+require('lspconfig').gopls.setup {
+    cmd = { vim.fn.exepath('gopls'), 'serve'},
+    flags = {
+        debounce_text_changes = 150,
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        gopls = {
+            analyses = {
+                unreachable = true,
+                unusedparams = true,
+                fullstruct = true,
+                nilness = true,
+                unusedwrite = true
+            },
+            hoverKind = 'SynopsisDocumentation',
+            staticcheck = true,
+            directoryFilters = {'-debug'},
+            matcher = 'fuzzy',
+            usePlaceholders = true,
+            codelenses = {
+                gc_details = true,
+                generate = true,
+                test = true,
+                tidy = true,
+                vendor = false,
+            },
+        }
+    },
+    init_options = {
+        completeUnimported = true
     }
-  }
 }
 
-nvim_lsp.intelephense.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    intelephense = {
-      stubs = {
-          "bcmath", "bz2", "calendar", "Core", "curl", "date",
-          "dba", "dom", "enchant", "fileinfo", "filter", "ftp",
-          "gd", "gettext", "hash", "iconv", "imap", "intl",
-          "json", "ldap", "libxml", "mbstring", "mcrypt", "mysql",
-          "mysqli", "password", "pcntl", "pcre", "PDO", "pdo_mysql",
-          "Phar", "readline", "recode", "Reflection", "regex", "session",
-          "SimpleXML", "soap", "sockets", "sodium", "SPL", "standard",
-          "superglobals", "sysvsem", "sysvshm", "tokenizer", "xml", "xdebug",
-          "xmlreader", "xmlwriter", "yaml", "zip", "zlib", "wordpress",
-          "woocommerce", "acf-pro", "wordpress-globals", "wp-cli", "genesis", "polylang"
-      },
-      files = {
-          maxSize = 5000000;
-      };
-    };
-  }
+require('lspconfig').intelephense.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        intelephense = {
+            stubs = {
+              "bcmath", "bz2", "calendar", "Core", "curl", "date",
+              "dba", "dom", "enchant", "fileinfo", "filter", "ftp",
+              "gd", "gettext", "hash", "iconv", "imap", "intl",
+              "json", "ldap", "libxml", "mbstring", "mcrypt", "mysql",
+              "mysqli", "password", "pcntl", "pcre", "PDO", "pdo_mysql",
+              "Phar", "readline", "recode", "Reflection", "regex", "session",
+              "SimpleXML", "soap", "sockets", "sodium", "SPL", "standard",
+              "superglobals", "sysvsem", "sysvshm", "tokenizer", "xml", "xdebug",
+              "xmlreader", "xmlwriter", "yaml", "zip", "zlib", "wordpress",
+              "woocommerce", "acf-pro", "wordpress-globals", "wp-cli", "genesis", "polylang"
+            },
+            files = {
+                maxSize = 5000000;
+            };
+        };
+    }
 }
 
 
 local system_name
 if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
+    system_name = "macOS"
 elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
+    system_name = "Linux"
 elseif vim.fn.has('win32') == 1 then
-  system_name = "Windows"
+    system_name = "Windows"
 else
-  print("Unsupported system for sumneko")
+    print("Unsupported system for sumneko")
 end
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -267,33 +246,32 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 local sumneko_root_path = os.getenv("GHQ_ROOT")..'/github.com/sumneko/lua-language-server'
 local sumneko_binary = sumneko_root_path..'/bin/'..system_name..'/lua-language-server'
-nvim_lsp.sumneko_lua.setup {
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-  flags = {
-    debounce_text_changes = 150,
-  },
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        path = runtime_path,
-      },
-      diagnostics = {
-        globals = {'vim'},
-      },
-      workspace = {
-        --library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-        preloadFileSize = 1000,
-        maxPreload = 1600
-      },
-      telemetry = {
-        enable = false,
-      },
+require('lspconfig').sumneko_lua.setup {
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    flags = {
+        debounce_text_changes = 150,
     },
-  },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+                path = runtime_path,
+            },
+            diagnostics = {
+                globals = {'vim'},
+            },
+            workspace = {
+                checkThirdParty = false,
+                preloadFileSize = 1000,
+                maxPreload = 1600
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
 }
 
 --require('lspconfig').terraformls.setup {
@@ -311,37 +289,148 @@ nvim_lsp.sumneko_lua.setup {
 -- ==============================================================================
 local cmp = require('cmp')
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  },
-  srouces = {
-    { name = 'nvim_lsp' },
-    { name = 'vnip' }
-  }
+    formatting = {
+        format = function(entry, vim_item)
+            vim_item.menu = ({
+                path = "[Path]",
+                buffer = "[Buf]",
+                nvim_lsp = "[LSP]",
+                vsnip = "[Vsnip]",
+            })[entry.source.name]
+            vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+            vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
+            return vim_item
+        end
+    },
+    snippet = {
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+        end,
+    },
+    mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = {
+        { name = 'path' },
+        { name = 'buffer' },
+        { name = 'nvim_lsp' },
+        { name = 'vnip' }
+    }
 }
 vim.opt.completeopt = 'menuone,noinsert,noselect'
+
+local lspkind = require('lspkind')
+cmp.setup {
+    formatting = {
+        format = lspkind.cmp_format({
+            with_text = true,
+            preset = 'default',
+        })
+    }
+}
+
+
+-- ==============================================================================
+-- statusline
+-- ==============================================================================
+require('lualine').setup{
+    options = {
+        theme = 'gruvbox',
+        section_separators = { left = '', right = ''},
+        component_separators = { left = '', right = ''},
+        icons_enabled = true,
+    },
+    sections = {
+        lualine_a = { { 'mode', upper = true } },
+        lualine_b = { { 'branch', icon = '' }, { 'filename', file_status = true } },
+        lualine_c = {
+          {
+              'diff',
+              colored = true,
+              diff_color = {
+                  added    = { 'DiffAdd' },
+                  modified = { 'DiffChange' },
+                  removed  = { 'DiffDelete' },
+              },
+              symbols = { added = '+', modified = '~', removed = '-' },
+              source = nil,
+          },
+          {
+              'diagnostics',
+              sources = { 'nvim_lsp' },
+              sections = { 'error', 'warn', 'info', 'hint' },
+              symbols = { error = '', warn = '', info = '', hint = '' },
+              colored = true,
+              diagnostics_color = {
+                error = { fg = '#ec5f67' },
+                warn  = { fg = '#ff8800' },
+                info  = { fg = '#008080' },
+                hint  = { fg = '#ecbe7b' },
+              },
+              update_in_insert = false,
+              always_visible = true
+            },
+        },
+        lualine_x = {
+            'encoding',
+            'filetype',
+            {
+                'fileformat',
+                symbols = {
+                    unix = '',
+                    dos = '',
+                    mac = '',
+                },
+            },
+        },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+    },
+    inactive_sections = {
+        lualine_a = {  },
+        lualine_b = {  },
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {  },
+        lualine_z = {  }
+    },
+    extensions = { 'quickfix', 'fzf' }
+}
+
+
+-- ==============================================================================
+-- tab
+-- ==============================================================================
+require'tabline'.setup {
+    enable = true,
+    options = {
+        show_tabs_always = true,
+        show_devicons = true,
+        show_bufnr = false,
+        show_filename_only = false,
+    }
+}
+
+vim.cmd[[
+    set guioptions-=e " Use showtabline in gui vim
+    set sessionoptions+=tabpages,globals " store tabpages and globals in session
+]]
 
 
 -- ==============================================================================
 -- key-mappings
 -- ==============================================================================
 vim.g.mapleader = ' '
--- map helper
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = {noremap = true}
+    if opts then options = vim.tbl_extend('force', options, opts) end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 map('n', '<leader>s', '<cmd>source $MYVIMRC<cr>', { silent = true})
@@ -356,7 +445,11 @@ map('n', '<leader>p', '<cmd>cprevious<cr>', { silent = true})
 
 map('n', '<esc><esc>', '<cmd>set hls!<cr>', { silent = true } )
 map('n', '<leader>T', '<cmd>TigOpenProjectRootDir<cr>')
+map('n', '<leader>Tc', '<cmd>TigOpenCurrentFile<cr>')
+map('n', '<leader>Tb', '<cmd>TigBlame<cr>')
 
+map("n", "<leader>xx",  "<cmd>TroubleToggle<cr>", {silent = true})
+map("n", "<leader>xw",  "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", {silent = true})
 
 -- ==============================================================================
 -- test
@@ -381,23 +474,23 @@ map('n', '<leader>tv', '<cmd>TestVisit<CR>', { silent = true})
 vim.env.FZF_DEFAULT_COMMAND = [[fd --type f --hidden --follow --exclude .git --exclude node_modules]]
 
 vim.api.nvim_command[[
-  command! -bang -nargs=? -complete=dir Files
-  call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+    command! -bang -nargs=? -complete=dir Files
+    call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 ]]
 
 vim.api.nvim_command[[
-  command! -nargs=0 Ghq
-  call fzf#run({ 'source' : 'ghq list --full-path', 'sink' : 'cd'})
+    command! -nargs=0 Ghq
+    call fzf#run({ 'source' : 'ghq list --full-path', 'sink' : 'cd'})
 ]]
 
 vim.api.nvim_command[[
-  command! -bang -nargs=* Rg
-  call fzf#vim#grep( 'rg --column --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+    command! -bang -nargs=* Rg
+    call fzf#vim#grep( 'rg --column --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 ]]
 
 vim.api.nvim_command[[
-  command! -bang -nargs=* SonicTemplate
-  call fzf#sonictemplate#run()
+    command! -bang -nargs=* SonicTemplate
+    call fzf#sonictemplate#run()
 ]]
 
 --map('n', ',f',  '<cmd>Files<cr>', { silent = true})
@@ -411,21 +504,24 @@ map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
 map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
 
 local actions = require('telescope.actions')
+local actions_layout = require('telescope.actions.layout')
 require('telescope').setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close
-      },
-    },
-    file_ignore_patterns = {'.git/*', 'node_modules/*', '.terraform/*'},
-    color_devicons = true,
-    sorting_strategy = 'ascending',
-    layout_strategy = 'flex',
-    preview = {
-      timeout = 1000
-    }  
-  }
+    defaults = {
+        mappings = {
+            i = {
+                ["<c-p>"] = actions_layout.toggle_preview,
+                ["<esc>"] = actions.close
+            },
+        },
+        file_ignore_patterns = {'.git/*', 'node_modules/*', '.terraform/*'},
+        color_devicons = true,
+        sorting_strategy = 'ascending',
+        layout_strategy = 'flex',
+        preview = {
+            timeout = 1000,
+            hide_on_startup = true
+        }
+    }
 }
 
 require('telescope').load_extension('gh')
