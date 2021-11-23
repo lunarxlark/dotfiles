@@ -246,13 +246,55 @@ require("nvim-treesitter.configs").setup {
     highlight = {
         enable = true
     },
+    refactor = {
+      highlight_definitions = { enable = true },
+    },
     -- experimental
     indent = {
         enable = true
     }
 }
 -- }}}
---
+
+-- ==============================================================================
+-- dap {{{
+-- ==============================================================================
+local dap = require("dap")
+dap.adapters.go = function(callback, config)
+    local stdout = vim.loop.new_pipe(false)
+    local handle
+    local pid_or_err
+    local port = 38697
+    local opts = {
+      stdio = {nil, stdout},
+      args = {"dap", "-l", "127.0.0.1:" .. port},
+      detached = true
+    }
+    handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+      stdout:close()
+      handle:close()
+      if code ~= 0 then
+        print('dlv exited with code', code)
+      end
+    end)
+    assert(handle, 'Error running dlv: ' .. tostring(pid_or_err))
+    stdout:read_start(function(err, chunk)
+      assert(not err, err)
+      if chunk then
+        vim.schedule(function()
+          require('dap.repl').append(chunk)
+        end)
+      end
+    end)
+    -- Wait for delve to start
+    vim.defer_fn(
+      function()
+        callback({type = "server", host = "127.0.0.1", port = port})
+      end,
+      100)
+end
+-- }}}
+
 -- ==============================================================================
 -- telescope {{{
 -- ==============================================================================
@@ -289,7 +331,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
