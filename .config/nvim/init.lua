@@ -46,7 +46,7 @@ vim.opt.conceallevel = 0                             -- ダブルクォーテー
 
 
 -- ==============================================================================
--- common
+-- common {{{
 -- ==============================================================================
 local symbols = {
     error = { icon = ' ', fg = "#fb4934" },
@@ -54,9 +54,10 @@ local symbols = {
     info = { icon = ' ', fg = "#83a598" },
     hint = { icon = ' ', fg = "#fabd2f" }
 }
+-- }}}
 
 -- ==============================================================================
--- plugins
+-- plugins {{{
 -- ==============================================================================
 local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -96,7 +97,6 @@ require('packer').startup(
         }
 
         -- colorscheme
-        --use { 'sainnhe/gruvbox-material' }
         use { 'morhetz/gruvbox' }
 
         -- statusline
@@ -106,6 +106,7 @@ require('packer').startup(
             },
         }
 
+        -- file explorer
         use {
             'kyazdani42/nvim-tree.lua',
             requires = 'kyazdani42/nvim-web-devicons',
@@ -132,7 +133,6 @@ require('packer').startup(
             end
         }
 
-
         use {
             'lewis6991/gitsigns.nvim',
             requires = {
@@ -148,6 +148,7 @@ require('packer').startup(
             end
         }
 
+        -- completion
         use { 'hrsh7th/nvim-cmp',
             requires = {
                 'hrsh7th/vim-vsnip',
@@ -188,14 +189,25 @@ require('packer').startup(
         use { 'kyoh86/vim-go-coverage', ft = {'go'}}
         use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
         use { 'mattn/vim-sonictemplate',
-            run = function() vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config')..'/template' end
+            setup = function()
+                vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config')..'/template'
+            end
         }
         use { 'iberianpig/tig-explorer.vim' }
         use { 'easymotion/vim-easymotion' }
         use { 'nicwest/vim-camelsnek' }
         use { 'mattn/emmet-vim' }
         use { 'thinca/vim-quickrun' }
-        use { 'vim-test/vim-test' }
+        use { 'vim-test/vim-test',
+            config = function ()
+                -- vim.g['test#neovim#start_normal'] = 1
+                vim.g['test#strategy'] = 'neovim'
+                vim.g['test#neovim#term_position'] = 'vert botright'
+                vim.g['test#go#gotest#executable'] =  'gotest'
+                vim.g['test#go#runner'] =  'gotest'
+                vim.g['test#go#gotest#options'] =  '-v'
+            end
+        }
         use { 'thinca/vim-showtime', ft = {'markdown'} }
         use { 'mechatroner/rainbow_csv', ft = {'csv', 'tsv'} }
         use { 'stephpy/vim-yaml', ft = {'yaml'} }
@@ -210,34 +222,38 @@ require('packer').startup(
         }
     end
 )
-
---require('nvim-treesitter').setup {
---  highlight = {
---    enable = true
---  }
---}
-
+-- }}}
 
 -- ==============================================================================
--- file explorer
+-- telescope {{{
 -- ==============================================================================
---require('nvim-tree').setup {
---    disable_netrw = true,
---    hijack_netrw = true,
---    diagnostics = {
---        enable = true,
---        icons = {
---          error = symbols.error.icon,
---          warning = symbols.warn.icon,
---          info = symbols.info.icon,
---          hint = symbols.hint.icon
---        }
---    }
---}
+local actions = require('telescope.actions')
+local actions_layout = require('telescope.actions.layout')
+require('telescope').setup{
+    defaults = {
+        mappings = {
+            i = {
+                ["<c-p>"] = actions_layout.toggle_preview,
+                ["<esc>"] = actions.close
+            },
+        },
+        file_ignore_patterns = {'.git/*', 'node_modules/*', '.terraform/*'},
+        color_devicons = true,
+        sorting_strategy = 'ascending',
+        layout_strategy = 'flex',
+        preview = {
+            timeout = 1000,
+            hide_on_startup = true
+        }
+    }
+}
 
+require('telescope').load_extension('gh')
+require('telescope').load_extension('memo')
+-- }}}
 
 -- ==============================================================================
--- LSP
+-- LSP {{{
 -- ==============================================================================
 --vim.lsp.set_log_level("debug")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -278,7 +294,14 @@ require("nvim-lsp-installer").settings({
     max_concurrent_installers = 4,
 })
 
-local servers = { "rust_analyzer", "gopls", "intelephense", "sumneko_lua", "terraformls", "tsserver" }
+local servers = {
+    "rust_analyzer",
+    "gopls",
+    "intelephense",
+    "sumneko_lua",
+    "terraformls",
+    "tsserver",
+}
 local server_available, requested_server = require'nvim-lsp-installer.servers'.get_server(servers)
 if server_available then
     requested_server:on_ready(function ()
@@ -347,7 +370,6 @@ require('lspconfig').intelephense.setup{
     }
 }
 
-
 local system_name
 if vim.fn.has("mac") == 1 then
     system_name = "macOS"
@@ -405,10 +427,10 @@ require('lspconfig').tsserver.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
-
+-- }}}
 
 -- ==============================================================================
--- completion
+-- completion {{{
 -- ==============================================================================
 local cmp = require('cmp')
 cmp.setup {
@@ -449,10 +471,10 @@ cmp.setup {
         { name = 'vnip' }
     }
 }
-
+-- }}}
 
 -- ==============================================================================
--- statusline
+-- statusline {{{
 -- ==============================================================================
 require('lualine').setup{
     options = {
@@ -519,10 +541,10 @@ require('lualine').setup{
         },
     }
 }
-
+-- }}}
 
 -- ==============================================================================
--- key-mappings
+-- key-mappings {{{
 -- ==============================================================================
 vim.g.mapleader = ' '
 local function map(mode, lhs, rhs, opts)
@@ -542,9 +564,10 @@ map('n', '<leader>n', '<cmd>cnext<cr>', { silent = true})
 map('n', '<leader>p', '<cmd>cprevious<cr>', { silent = true})
 
 map('n', '<esc><esc>', '<cmd>set hls!<cr>', { silent = true } )
-map('n', '<leader>T', '<cmd>TigOpenProjectRootDir<cr>')
-map('n', '<leader>Tc', '<cmd>TigOpenCurrentFile<cr>')
-map('n', '<leader>Tb', '<cmd>TigBlame<cr>')
+
+map('n', ',f',  '<cmd>Telescope find_files<cr>', {silent=true})
+map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
+map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
 
 map("n", "<leader>xx",  "<cmd>TroubleToggle<cr>", {silent = true})
 map("n", "<leader>xw",  "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", {silent = true})
@@ -552,79 +575,13 @@ map("n", "<leader>xw",  "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", {sil
 map("n", ",n", "<cmd>NvimTreeToggle<CR>", {silent = true})
 map("n", ",N", "<cmd>NvimTreeFindFile<CR>", {silent = true})
 
+map('n', '<leader>T', '<cmd>TigOpenProjectRootDir<cr>')
+map('n', '<leader>Tc', '<cmd>TigOpenCurrentFile<cr>')
+map('n', '<leader>Tb', '<cmd>TigBlame<cr>')
 
--- ==============================================================================
--- test
--- ==============================================================================
--- vim.g['test#neovim#start_normal'] = 1
---vim.g['test#strategy'] = 'neovim'
-vim.g['test#strategy'] = 'neovim'
-vim.g['test#neovim#term_position'] = 'vert botright'
-vim.g['test#go#gotest#executable'] =  'gotest'
-vim.g['test#go#runner'] =  'gotest'
-vim.g['test#go#gotest#options'] =  '-v'
 map('n', '<leader>tn', '<cmd>TestNearest<CR>', { silent = true})
 map('n', '<leader>tf', '<cmd>TestFile<CR>', { silent = true})
 map('n', '<leader>ts', '<cmd>TestSuite<CR>', { silent = true})
 map('n', '<leader>tl', '<cmd>TestLast<CR>', { silent = true})
 map('n', '<leader>tv', '<cmd>TestVisit<CR>', { silent = true})
-
-
--- ==============================================================================
--- fzf
--- ==============================================================================
-vim.env.FZF_DEFAULT_COMMAND = [[fd --type f --hidden --follow --exclude .git --exclude node_modules]]
-
-vim.api.nvim_command[[
-    command! -bang -nargs=? -complete=dir Files
-    call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-]]
-
-vim.api.nvim_command[[
-    command! -nargs=0 Ghq
-    call fzf#run({ 'source' : 'ghq list --full-path', 'sink' : 'cd'})
-]]
-
-vim.api.nvim_command[[
-    command! -bang -nargs=* Rg
-    call fzf#vim#grep( 'rg --column --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
-]]
-
-vim.api.nvim_command[[
-    command! -bang -nargs=* SonicTemplate
-    call fzf#sonictemplate#run()
-]]
-
---map('n', ',f',  '<cmd>Files<cr>', { silent = true})
---map('n', ',b',  '<cmd>Buffers<cr>', { silent = true})
---map('n', ',rg', '<cmd>Rg<cr>', { silent = true})
---map('n', ',g',  '<cmd>Ghq<cr>', { silent = true})
---map('n', ',st', '<cmd>SonicTemplate<cr>', { silent = true})
-
-map('n', ',f',  '<cmd>Telescope find_files<cr>', {silent=true})
-map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
-map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
-
-local actions = require('telescope.actions')
-local actions_layout = require('telescope.actions.layout')
-require('telescope').setup{
-    defaults = {
-        mappings = {
-            i = {
-                ["<c-p>"] = actions_layout.toggle_preview,
-                ["<esc>"] = actions.close
-            },
-        },
-        file_ignore_patterns = {'.git/*', 'node_modules/*', '.terraform/*'},
-        color_devicons = true,
-        sorting_strategy = 'ascending',
-        layout_strategy = 'flex',
-        preview = {
-            timeout = 1000,
-            hide_on_startup = true
-        }
-    }
-}
-
-require('telescope').load_extension('gh')
-require('telescope').load_extension('memo')
+-- }}}
