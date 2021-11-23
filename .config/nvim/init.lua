@@ -195,7 +195,7 @@ require("nvim-lsp-installer").settings({
     max_concurrent_installers = 4,
 })
 
-local servers = { "rust_analyzer", "gopls", "intelephense", "sumneko_lua", "terraformls" }
+local servers = { "rust_analyzer", "gopls", "intelephense", "sumneko_lua", "terraformls", "tsserver" }
 local server_available, requested_server = require'nvim-lsp-installer.servers'.get_server(servers)
 if server_available then
     requested_server:on_ready(function ()
@@ -315,6 +315,12 @@ require('lspconfig').terraformls.setup {
     flags = {
         debounce_text_changes = 150,
     }
+}
+
+require('lspconfig').tsserver.setup {
+    cmd = { lsp_installer_dir..'/tsserver/node_modules/.bin/typescript-language-server', '--stdio'},
+    on_attach = on_attach,
+    capabilities = capabilities
 }
 
 
