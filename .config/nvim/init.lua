@@ -133,9 +133,30 @@ require('packer').startup(
 --  }
 --}
 
+
+-- ==============================================================================
+-- common
+-- ==============================================================================
+local symbols = {
+    error = { icon = ' ', fg = "#fb4934" },
+    warn = { icon = ' ', fg = "#fe8019" },
+    info = { icon = ' ', fg = "#83a598" },
+    hint = { icon = ' ', fg = "#fabd2f" }
+}
+
+
+-- ==============================================================================
+-- file explorer
+-- ==============================================================================
+require('nvim-tree').setup {
+    disable_netrw = true,
+    hijack_netrw = true,
+}
+
 -- ==============================================================================
 -- LSP
 -- ==============================================================================
+--vim.lsp.set_log_level("debug")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -374,13 +395,18 @@ require('lualine').setup{
                 'diagnostics',
                 sources = { 'nvim_lsp' },
                 sections = { 'error', 'warn', 'info', 'hint' },
-                symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+                symbols = {
+                    error = symbols.error.icon,
+                    warn = symbols.warn.icon,
+                    info = symbols.info.icon,
+                    hint = symbols.hint.icon
+                },
                 colored = true,
                 diagnostics_color = {
-                  error = { fg = '#fb4934' },
-                  warn  = { fg = '#fe8019' },
-                  info  = { fg = '#83a598' },
-                  hint  = { fg = '#fabd2f' },
+                  error = { fg = symbols.error.fg },
+                  warn  = { fg = symbols.warn.fg },
+                  info  = { fg = symbols.info.fg },
+                  hint  = { fg = symbols.hint.fg },
                 },
                 update_in_insert = false,
                 always_visible = true
