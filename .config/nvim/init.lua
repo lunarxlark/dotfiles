@@ -184,6 +184,25 @@ require('packer').startup(
             end
         }
 
+        -- dap
+        use {
+            "rcarriga/nvim-dap-ui",
+            requires = {
+                "mfussenegger/nvim-dap",
+                "leoluz/nvim-dap-go"
+            },
+            config = function ()
+                require('dapui').setup({
+                    floating = {
+                        max_height = 0.9,
+                        max_width = 0.9
+                    }
+                })
+                require('dap-go').setup()
+                require('dap.ext.vscode').load_launchjs()
+            end
+        }
+
         use { 'mattn/vim-goimports', ft = {'go'} }
         use { 'mattn/vim-gomod', ft = {'gomod'}}
         use { 'kyoh86/vim-go-coverage', ft = {'go'}}
@@ -655,4 +674,14 @@ map('n', '<leader>tf', '<cmd>TestFile<CR>', { silent = true})
 map('n', '<leader>ts', '<cmd>TestSuite<CR>', { silent = true})
 map('n', '<leader>tl', '<cmd>TestLast<CR>', { silent = true})
 map('n', '<leader>tv', '<cmd>TestVisit<CR>', { silent = true})
+
+map("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { silent = true})
+map("n", "<leader><leader>df", ":lua require'dapui'.eval()<CR>", { silent = true})
+map("n", "<F5>", ":lua require'dap'.continue()<CR>", { silent = true})
+map("n", "<F10>", ":lua require'dap'.step_over()<CR>", { silent = true})
+map("n", "<F11>", ":lua require'dap'.step_into()<CR>", { silent = true})
+map("n", "<F12>", ":lua require'dap'.step_out()<CR>", { silent = true})
+map("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true})
+map("n", "<leader>bc", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true})
+map("n", "<leader>l", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", { silent = true})
 -- }}}
