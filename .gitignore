@@ -18,3 +18,4 @@
 .vim/autoload/*
 .vim/plugged/*
 .envrc
+.wakatime-project
