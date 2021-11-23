@@ -50,6 +50,11 @@ require('packer').startup(
         }
 
         use {
+            'kyazdani42/nvim-tree.lua',
+            requires = 'kyazdani42/nvim-web-devicons'
+        }
+
+        use {
             'lewis6991/gitsigns.nvim',
             requires = {
                 'nvim-lua/plenary.nvim'
