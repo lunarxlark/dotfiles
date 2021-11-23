@@ -108,8 +108,30 @@ require('packer').startup(
 
         use {
             'kyazdani42/nvim-tree.lua',
-            requires = 'kyazdani42/nvim-web-devicons'
+            requires = 'kyazdani42/nvim-web-devicons',
+            setup = function()
+              vim.g.nvim_tree_highlight_opened_files = 1
+            end,
+            config = function() require'nvim-tree'.setup {
+                disable_netrw       = true,
+                hijack_netrw        = true,
+                open_on_setup       = false,
+                ignore_ft_on_setup  = {},
+                auto_close          = false,
+                open_on_tab         = false,
+                hijack_cursor       = false,
+                update_cwd          = false,
+                update_to_buf_dir   = {
+                  enable = true,
+                  auto_open = true,
+                },
+                diagnostics = {
+                    enable = true
+                }
+            }
+            end
         }
+
 
         use {
             'lewis6991/gitsigns.nvim',
@@ -154,8 +176,8 @@ require('packer').startup(
                     signs = {
                         error = "error",
                         warning = "warn",
-                        hint = "hint",
-                        information = "info"
+                        information = "info",
+                        hint = "hint"
                     }
                 }
             end
@@ -197,23 +219,22 @@ require('packer').startup(
 
 
 -- ==============================================================================
--- common
--- ==============================================================================
-local symbols = {
-    error = { icon = ' ', fg = "#fb4934" },
-    warn = { icon = ' ', fg = "#fe8019" },
-    info = { icon = ' ', fg = "#83a598" },
-    hint = { icon = ' ', fg = "#fabd2f" }
-}
-
-
--- ==============================================================================
 -- file explorer
 -- ==============================================================================
-require('nvim-tree').setup {
-    disable_netrw = true,
-    hijack_netrw = true,
-}
+--require('nvim-tree').setup {
+--    disable_netrw = true,
+--    hijack_netrw = true,
+--    diagnostics = {
+--        enable = true,
+--        icons = {
+--          error = symbols.error.icon,
+--          warning = symbols.warn.icon,
+--          info = symbols.info.icon,
+--          hint = symbols.hint.icon
+--        }
+--    }
+--}
+
 
 -- ==============================================================================
 -- LSP
@@ -527,6 +548,10 @@ map('n', '<leader>Tb', '<cmd>TigBlame<cr>')
 
 map("n", "<leader>xx",  "<cmd>TroubleToggle<cr>", {silent = true})
 map("n", "<leader>xw",  "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", {silent = true})
+
+map("n", ",n", "<cmd>NvimTreeToggle<CR>", {silent = true})
+map("n", ",N", "<cmd>NvimTreeFindFile<CR>", {silent = true})
+
 
 -- ==============================================================================
 -- test
