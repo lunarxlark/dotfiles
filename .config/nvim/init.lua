@@ -225,6 +225,35 @@ require('packer').startup(
 -- }}}
 
 -- ==============================================================================
+-- tree-sitter {{{
+-- ==============================================================================
+require("nvim-treesitter.configs").setup {
+    ensure_installed = {
+      "bash",
+      "cmake", "comment",
+      "dockerfile", "dot",
+      "http", "html",
+      "go", "gomod",
+      "json", "jsonc",
+      "lua",
+      "php", "python",
+      "regex",
+      "tsx", "typescript", "toml",
+      "vim",
+      "yaml",
+    },
+    sync_install = true,
+    highlight = {
+        enable = true
+    },
+    -- experimental
+    indent = {
+        enable = true
+    }
+}
+-- }}}
+--
+-- ==============================================================================
 -- telescope {{{
 -- ==============================================================================
 local actions = require('telescope.actions')
