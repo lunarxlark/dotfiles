@@ -195,12 +195,7 @@ require('packer').startup(
             config = function ()
                 vim.fn.sign_define('DapBreakpoint', {text='⛔', texthl='', linehl='', numhl=''})
                 vim.fn.sign_define('DapStopped', {text='👉', texthl='', linehl='', numhl=''})
-                require('dapui').setup({
-                    floating = {
-                        max_height = 0.9,
-                        max_width = 0.9
-                    }
-                })
+                require('dapui').setup()
                 require('dap-go').setup()
                 require('dap.ext.vscode').load_launchjs()
             end
