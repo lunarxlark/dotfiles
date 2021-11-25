@@ -189,7 +189,8 @@ require('packer').startup(
             "rcarriga/nvim-dap-ui",
             requires = {
                 "mfussenegger/nvim-dap",
-                "leoluz/nvim-dap-go"
+                "leoluz/nvim-dap-go",
+                "nvim-treesitter/nvim-treesitter"
             },
             config = function ()
                 vim.fn.sign_define('DapBreakpoint', {text='⛔', texthl='', linehl='', numhl=''})
@@ -329,7 +330,7 @@ end
         mode = "test",
         program = "${file}"
     },
-    -- works with go.mod packages and sub packages 
+    -- works with go.mod packages and sub packages
     {
         type = "go",
         name = "Debug test (go.mod)",
