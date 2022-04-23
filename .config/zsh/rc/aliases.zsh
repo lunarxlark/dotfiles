@@ -32,3 +32,5 @@ alias ghpls='gh pr list | fzf --preview "gh pr diff --color=always {+1}"'
 alias gmaster='gh pr create -B master -H develop -d -t "[$(date "+%Y-%m-%d %H:%M")] merge develop to master"'
 alias ghprc="gh pr create"
 alias ghprv="gh pr view --web"
+alias dc="docker-compose"
+alias dps="docker ps"
