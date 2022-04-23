@@ -52,7 +52,8 @@ local symbols = {
     error = { icon = ' ', fg = "#fb4934" },
     warn = { icon = ' ', fg = "#fe8019" },
     info = { icon = ' ', fg = "#83a598" },
-    hint = { icon = ' ', fg = "#fabd2f" }
+    hint = { icon = ' ', fg = "#fabd2f" },
+    success = { icon = "﫠"}
 }
 -- }}}
 
@@ -167,19 +168,19 @@ require('packer').startup(
                     indent_lines = true,
                     fold_open = "",
                     fold_closed = "",
-                    mode = "lsp_workspace_diagnostics",
-                    use_lsp_diagnostic_signs = true,
+                    mode = "workspace_diagnostics",
+                    use_diagnostic_signs = true,
                     action_keys = {
                         close = "q",
                         preview = "<C-p>",
                         cancel = "<esc>",
                     },
-                    signs = {
-                        error = "error",
-                        warning = "warn",
-                        information = "info",
-                        hint = "hint"
-                    }
+                    --signs = {
+                    --    error = symbols.error.icon,
+                    --    warning = "warn",
+                    --    information = "info",
+                    --    hint = "hint"
+                    --}
                 }
             end
         }
@@ -217,11 +218,12 @@ require('packer').startup(
         use { 'thinca/vim-quickrun' }
         use { 'vim-test/vim-test',
             config = function ()
-                -- vim.g['test#neovim#start_normal'] = 1
                 vim.g['test#strategy'] = 'neovim'
-                vim.g['test#neovim#term_position'] = 'vert botright'
+                vim.g['test#neovim#start_normal'] = 1
+                vim.g['test#basic#start_normal'] = 1
+                --vim.g['test#neovim#term_position'] = 'vert botright'
+                vim.g['test#neovim#term_position'] = 'below 20'
                 vim.g['test#go#gotest#executable'] =  'gotest'
-                vim.g['test#go#runner'] =  'gotest'
                 vim.g['test#go#gotest#options'] =  '-v'
             end
         }
@@ -234,9 +236,15 @@ require('packer').startup(
         use { 'wakatime/vim-wakatime' }
         use { 'fladson/vim-kitty', ft = {'kitty'} }
         use { 'simeji/winresizer' }
-        use { 'norcalli/nvim-colorizer.lua',
-            config = function() require('colorizer').setup {'*'}  end
+        use { 'chrisbra/Colorizer',
+            setup = function ()
+              vim.g.colorizer_auto_filetype = 'dap-repl'
+              vim.g.colorizer_disable_bufleave = 1
+            end
         }
+        --use { 'norcalli/nvim-colorizer.lua',
+        --    config = function() require('colorizer').setup {'*'}  end
+        --}
     end
 )
 -- }}}
@@ -316,7 +324,7 @@ end
         type = "go",
         name = "Debug",
         request = "launch",
-        program = "${file}"
+        program = "${workspaceFolder}/main.go"
     },
     {
         type = "go",
@@ -331,7 +339,7 @@ end
         name = "Debug test (go.mod)",
         request = "launch",
         mode = "test",
-        program = "./${relativeFileDirname}"
+        program = "${file}"
     }
 }
 -- }}}
@@ -353,6 +361,7 @@ require('telescope').setup{
         color_devicons = true,
         sorting_strategy = 'ascending',
         layout_strategy = 'flex',
+        prompt_position = 'top',
         preview = {
             timeout = 1000,
             hide_on_startup = true
@@ -382,8 +391,8 @@ local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.lsp.codelens.get()<CR>', opts)
   buf_set_keymap('n', '<leader>df', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader>sm', '<cmd>lua vim.lsp.buf.document_symbol_search()<CR>', opts)
-  buf_set_keymap('n', '<leader>Sm', '<cmd>lua vim.lsp.buf.workspace_symbol_search()<CR>', opts)
+  -- buf_set_keymap('n', '<leader>sm', '<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>', opts)
+  buf_set_keymap('n', '<leader>Sm', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
   buf_set_keymap('n', '<leader>rf', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -413,6 +422,7 @@ local servers = {
     "sumneko_lua",
     "terraformls",
     "tsserver",
+    "yamlls",
 }
 local server_available, requested_server = require'nvim-lsp-installer.servers'.get_server(servers)
 if server_available then
@@ -539,6 +549,12 @@ require('lspconfig').tsserver.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
+
+require('lspconfig').yamlls.setup {
+    cmd = { lsp_installer_dir..'/yaml/node_modules/.bin/yaml-language-server', '--stdio'},
+    on_attach = on_attach,
+    capabilities = capabilities
+}
 -- }}}
 
 -- ==============================================================================
@@ -616,7 +632,7 @@ require('lualine').setup{
             },
             {
                 'diagnostics',
-                sources = { 'nvim_lsp' },
+                sources = { 'nvim_diagnostic' },
                 sections = { 'error', 'warn', 'info', 'hint' },
                 symbols = {
                     error = symbols.error.icon,
@@ -680,9 +696,11 @@ map('n', '<esc><esc>', '<cmd>set hls!<cr>', { silent = true } )
 map('n', ',f',  '<cmd>Telescope find_files<cr>', {silent=true})
 map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
 map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
+map('n', '<leader>sm',  "<cmd>Telescope lsp_document_symbols<cr>", {silent=true})
 
 map("n", "<leader>xx",  "<cmd>TroubleToggle<cr>", {silent = true})
-map("n", "<leader>xw",  "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", {silent = true})
+map("n", "<leader>xr",  "<cmd>TroubleRefresh<cr>", {silent = true})
+map("n", "<leader>xw",  "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true})
 
 map("n", ",n", "<cmd>NvimTreeToggle<CR>", {silent = true})
 map("n", ",N", "<cmd>NvimTreeFindFile<CR>", {silent = true})
