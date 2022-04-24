@@ -9,11 +9,9 @@
 	defaultBranch = main
 
 [core]
-  #pager = less -q -R
-  #pager = delta --plus-color="#012800" --minus-color="#340001" --theme='base16'
-  editor = "nvim"
-  pager = delta --theme='gruvbox-dark'
-	excludesfile = ~/.gitignore
+	editor = "nvim"
+	pager = delta --theme='gruvbox-dark'
+	excludesfile = $XDG_CONFIG/git/ignore
 	preloadindex = true
 
 [color "diff"]
@@ -34,8 +32,6 @@
 	syntax-theme = gruvbox-dark
 	line-numbers = true
 	navigate = true
-  #plus-style = syntax "#145214"
-	#plus-emph-style = bold syntax "#175c2e"
 
 [interactive]
 	diffFilter = delta --color-only
