@@ -233,7 +233,6 @@ require('packer').startup(
         use { 'cespare/vim-toml', ft = {'toml'} }
         use { 'b4b4r07/vim-ltsv', ft = {'ltsv'} }
         use { 'hashivim/vim-terraform', ft = {'terraform'} }
-        use { 'wakatime/vim-wakatime' }
         use { 'fladson/vim-kitty', ft = {'kitty'} }
         use { 'simeji/winresizer' }
         use { 'chrisbra/Colorizer',
