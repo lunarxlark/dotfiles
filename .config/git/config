@@ -11,7 +11,7 @@
 [core]
 	editor = "nvim"
 	pager = delta --theme='gruvbox-dark'
-	excludesfile = $XDG_CONFIG/git/ignore
+  #excludesfile = $XDG_CONFIG/git/ignore
 	preloadindex = true
 
 [color "diff"]
