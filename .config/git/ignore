@@ -1,6 +1,7 @@
 .idea/*
 **/.netrwhist
 .config/fzf
+.config/configstore
 **/bk/
 .DS_Store
 **/plugged/
