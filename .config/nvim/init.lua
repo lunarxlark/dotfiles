@@ -73,11 +73,12 @@ vim.cmd [[
   augroup end
 ]]
 
+require('packer').init({compile_path = vim.fn.stdpath('data')..'/plugin/packer_compiled.lua'})
 require('packer').startup(
     function(use)
         use { 'wbthomason/packer.nvim' }
 
-        -- LSP
+        -- lsp
         use {
           'neovim/nvim-lspconfig',
           'williamboman/nvim-lsp-installer',
