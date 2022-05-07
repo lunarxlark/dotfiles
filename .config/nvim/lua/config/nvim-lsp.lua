@@ -14,6 +14,7 @@ require('nvim-lsp-installer').setup ({
     "rust_analyzer",
     "gopls",
     "intelephense",
+    "pyright",
     "sumneko_lua",
     "terraformls",
     "tsserver",
@@ -134,6 +135,12 @@ lspconfig.intelephense.setup{
       files = { maxSize = 6000000}
     }
   }
+}
+
+-- pyright
+lspconfig.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 -- terraformls
