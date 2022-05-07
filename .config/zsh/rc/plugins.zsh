@@ -33,10 +33,12 @@ export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
 zi ice lucid \
   from"gh-r" \
   as"command" \
+  bpick"*.tar.gz" \
   atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
   atpull"%atclone" \
   src"init.zsh"
 zi light starship/starship
+
 
 # fzf
 zi snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
