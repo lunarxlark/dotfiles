@@ -50,12 +50,12 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('n', '<leader>s', '<cmd>source $MYVIMRC<cr>', { silent = true})
-map('n', '<leader>S', '<cmd>source $MYGVIMRC<cr>', { silent = true})
+--map('n', '<leader>S', '<cmd>source $MYGVIMRC<cr>', { silent = true})
 map('n', '<leader>v', '<cmd>tabnew $MYVIMRC<cr>', { silent = true })
-map('n', '<leader>V', '<cmd>tabnew $MYGVIMRC<cr>', { silent = true})
-map('n', '<leader><tab>N', '<cmd>tabnew<cr>', { silent = true})
-map('n', '<leader><tab>n', '<cmd>tabn<cr>', { silent = true})
-map('n', '<leader><tab>p', '<cmd>tabp<cr>', { silent = true})
+--map('n', '<leader>V', '<cmd>tabnew $MYGVIMRC<cr>', { silent = true})
+--map('n', '<leader><tab>N', '<cmd>tabnew<cr>', { silent = true})
+--map('n', '<leader><tab>n', '<cmd>tabn<cr>', { silent = true})
+--map('n', '<leader><tab>p', '<cmd>tabp<cr>', { silent = true})
 map('n', '<leader>n', '<cmd>cnext<cr>', { silent = true})
 map('n', '<leader>p', '<cmd>cprevious<cr>', { silent = true})
 
