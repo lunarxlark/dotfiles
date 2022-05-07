@@ -50,12 +50,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('n', '<leader>s', '<cmd>source $MYVIMRC<cr>', { silent = true})
---map('n', '<leader>S', '<cmd>source $MYGVIMRC<cr>', { silent = true})
 map('n', '<leader>v', '<cmd>tabnew $MYVIMRC<cr>', { silent = true })
---map('n', '<leader>V', '<cmd>tabnew $MYGVIMRC<cr>', { silent = true})
---map('n', '<leader><tab>N', '<cmd>tabnew<cr>', { silent = true})
---map('n', '<leader><tab>n', '<cmd>tabn<cr>', { silent = true})
---map('n', '<leader><tab>p', '<cmd>tabp<cr>', { silent = true})
 map('n', '<leader>n', '<cmd>cnext<cr>', { silent = true})
 map('n', '<leader>p', '<cmd>cprevious<cr>', { silent = true})
 
@@ -92,4 +87,3 @@ map("n", "<F12>", ":lua require'dap'.step_out()<CR>", { silent = true})
 map("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true})
 map("n", "<leader>bc", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true})
 map("n", "<leader>l", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", { silent = true})
--- }}}
