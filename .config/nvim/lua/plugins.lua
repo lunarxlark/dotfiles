@@ -167,9 +167,17 @@ packer.startup(function(use)
     end
   }
 
+  -- motion
+  use { 'easymotion/vim-easymotion' }
+  use { 'rainbowhxch/accelerated-jk.nvim',
+    config = function()
+      vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
+      vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
+    end
+  }
+
   use { 'simeji/winresizer' }
   use { 'iberianpig/tig-explorer.vim' }
-  use { 'easymotion/vim-easymotion' }
   use { 'nicwest/vim-camelsnek' }
   use { 'mattn/emmet-vim' }
   use { 'thinca/vim-quickrun' }
