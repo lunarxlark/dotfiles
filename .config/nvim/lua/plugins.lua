@@ -171,8 +171,10 @@ packer.startup(function(use)
   use { 'easymotion/vim-easymotion' }
   use { 'rainbowhxch/accelerated-jk.nvim',
     config = function()
-      vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
-      vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
+      require('config.accelerated-jk')
+    end
+  }
+
   -- indent
   use { 'lukas-reineke/indent-blankline.nvim',
     config = function()
