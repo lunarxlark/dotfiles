@@ -77,7 +77,7 @@ packer.startup(function(use)
   }
 
   -- terminal
-  use { 'akinsho/toggleterm.nvim', opt = true,
+  use { 'akinsho/toggleterm.nvim',
     config = function()
       require('config.toggleterm')
     end
@@ -109,7 +109,7 @@ packer.startup(function(use)
     run = "./install.sh",
   }
 
-  use { 'mattn/vim-sonictemplate', opt = true,
+  use { 'mattn/vim-sonictemplate',
     setup = function()
       vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config')..'/template'
     end
@@ -132,7 +132,7 @@ packer.startup(function(use)
   use { 'leoluz/nvim-dap-go' }
 
   -- debug consoleでのansi escape code対策
-  use { 'chrisbra/Colorizer', opt = true,
+  use { 'chrisbra/Colorizer',
     setup = function ()
       vim.g.colorizer_auto_filetype = 'dap-repl'
       vim.g.colorizer_disable_bufleave = 1
@@ -149,7 +149,7 @@ packer.startup(function(use)
 
   -- test
   use {
-    "klen/nvim-test", opt =true,
+    "klen/nvim-test",
     config = function()
       require('config.nvim-test')
     end
@@ -175,8 +175,8 @@ packer.startup(function(use)
   }
 
   -- motion
-  use { 'easymotion/vim-easymotion' , opt = true }
-  use { 'rainbowhxch/accelerated-jk.nvim', opt = true,
+  use { 'easymotion/vim-easymotion' }
+  use { 'rainbowhxch/accelerated-jk.nvim',
     config = function()
       require('config.accelerated-jk')
     end
@@ -189,12 +189,12 @@ packer.startup(function(use)
     end
   }
 
-  use { 'simeji/winresizer' , opt = true }
-  use { 'iberianpig/tig-explorer.vim' , opt = true }
-  use { 'nicwest/vim-camelsnek' , opt = true }
-  use { 'mattn/emmet-vim' , opt = true }
+  use { 'simeji/winresizer' }
+  use { 'iberianpig/tig-explorer.vim' }
+  use { 'nicwest/vim-camelsnek' }
+  use { 'mattn/emmet-vim' }
   -- use { 'thinca/vim-quickrun' }
-  use { 'is0n/jaq-nvim', opt = true,
+  use { 'is0n/jaq-nvim',
     config = function ()
       require('config.jaq')
     end
