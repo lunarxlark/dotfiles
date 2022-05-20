@@ -19,6 +19,7 @@ require('nvim-lsp-installer').setup ({
     "terraformls",
     "tsserver",
     "yamlls",
+    "clangd",
   },
 })
 local lspconfig = require('lspconfig')
@@ -168,3 +169,8 @@ lspconfig.yamlls.setup {
   cmd = { lsp_installer_dir..'/yaml/node_modules/.bin/yaml-language-server', '--stdio'},
 }
 
+-- clangd
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
