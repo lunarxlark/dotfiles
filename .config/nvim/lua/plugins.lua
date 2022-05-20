@@ -76,6 +76,13 @@ packer.startup(function(use)
     end
   }
 
+  -- terminal
+  use { 'akinsho/toggleterm.nvim',
+    config = function()
+      require('config.toggleterm')
+    end
+  }
+
   -- statusline
   use { 'hoob3rt/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },

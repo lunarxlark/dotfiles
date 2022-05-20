@@ -1,1 +1,6 @@
-require('nvim-test').setup {}
+require('nvim-test').setup {
+  term = "toggleterm",
+  termOpts = {
+    direction = "float",
+  },
+}
