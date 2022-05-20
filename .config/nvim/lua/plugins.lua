@@ -141,9 +141,9 @@ packer.startup(function(use)
 
   -- comment out
   use {
-    'numToStr/Comment.nvim', opt = true,
+    'numToStr/Comment.nvim',
     config = function()
-      require('Comment').setup()
+      require('config.comment')
     end
   }
 
