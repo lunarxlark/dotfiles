@@ -186,7 +186,12 @@ packer.startup(function(use)
   use { 'iberianpig/tig-explorer.vim' }
   use { 'nicwest/vim-camelsnek' }
   use { 'mattn/emmet-vim' }
-  use { 'thinca/vim-quickrun' }
+  -- use { 'thinca/vim-quickrun' }
+  use { 'is0n/jaq-nvim',
+    config = function ()
+      require('config.jaq')
+    end
+  }
 
   -- file type
   use { 'mattn/vim-goimports', ft = {'go'} }
