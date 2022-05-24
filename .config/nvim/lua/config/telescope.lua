@@ -4,7 +4,7 @@ require('telescope').setup{
     defaults = {
         mappings = {
             i = {
-                ["<c-p>"] = actions_layout.toggle_preview,
+                ["<c-d>"] = actions_layout.toggle_preview,
                 ["<esc>"] = actions.close
             },
         },
