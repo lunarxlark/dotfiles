@@ -20,6 +20,7 @@ require('nvim-lsp-installer').setup ({
     "tsserver",
     "yamlls",
     "clangd",
+    "dockerls",
   },
 })
 local lspconfig = require('lspconfig')
@@ -171,6 +172,12 @@ lspconfig.yamlls.setup {
 
 -- clangd
 lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+-- dockerls
+lspconfig.dockerls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
