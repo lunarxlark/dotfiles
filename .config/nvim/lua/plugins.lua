@@ -139,11 +139,19 @@ packer.startup(function(use)
     end
   }
 
-  -- comment out
+  -- comment
   use {
     'numToStr/Comment.nvim',
     config = function()
       require('config.comment')
+    end
+  }
+
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require('config.todo-comments')
     end
   }
 
