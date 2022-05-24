@@ -2,6 +2,7 @@ require('jaq-nvim').setup {
   cmds = {
     external = {
       c = "gcc main.c && ./a.out",
+      go = "go run ./...",
     },
   },
 	ui = {
