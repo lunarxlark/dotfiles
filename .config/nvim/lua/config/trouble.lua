@@ -1,7 +1,7 @@
 require("trouble").setup{
-    position = "right",
+    position = "bottom",
     icon = true,
-    indent_lines = true,
+    indent_lines = false,
     fold_open = "",
     fold_closed = "",
     mode = "workspace_diagnostics",
