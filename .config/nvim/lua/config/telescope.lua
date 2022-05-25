@@ -17,6 +17,14 @@ require('telescope').setup{
       timeout = 1000,
       hide_on_startup = true
     }
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
   }
 }
 
