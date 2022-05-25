@@ -1,4 +1,4 @@
-memodir = "${XDG_CONFIG_HOME}/memo/_posts"
+memodir = "$XDG_CONFIG_HOME/memo/_posts"
 editor = "nvim"
 column = 20
 selectcmd = "fzf --height=30%"
