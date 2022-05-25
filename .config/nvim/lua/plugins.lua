@@ -68,7 +68,9 @@ packer.startup(function(use)
   use { 'nvim-telescope/telescope.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'nvim-telescope/telescope-github.nvim',
+      'nvim-telescope/telescope-ghq.nvim',
       'delphinus/telescope-memo.nvim',
     },
     config = function()
