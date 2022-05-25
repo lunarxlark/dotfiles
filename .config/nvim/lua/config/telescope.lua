@@ -8,7 +8,6 @@ require('telescope').setup{
         ["<esc>"] = actions.close
       },
     },
-    file_ignore_patterns = {'.git/*', 'node_modules/*', '.terraform/*'},
     color_devicons = true,
     sorting_strategy = 'ascending',
     layout_strategy = 'flex',
