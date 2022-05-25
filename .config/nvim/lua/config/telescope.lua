@@ -11,10 +11,14 @@ require('telescope').setup{
     color_devicons = true,
     sorting_strategy = 'ascending',
     layout_strategy = 'flex',
+    layout_config = {
+      width = 0.95,
+      height = 0.95,
+    },
     prompt_position = 'top',
     preview = {
       timeout = 1000,
-      hide_on_startup = true
+      hide_on_startup = false,
     }
   },
   extensions = {
@@ -23,7 +27,7 @@ require('telescope').setup{
       override_generic_sorter = true,
       override_file_sorter = true,
       case_mode = "smart_case",
-    }
+    },
   }
 }
 
