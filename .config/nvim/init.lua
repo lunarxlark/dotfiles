@@ -49,13 +49,12 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map('n', '<leader>s', '<cmd>source $MYVIMRC<cr>', { silent = true})
-map('n', '<leader>v', '<cmd>tabnew $MYVIMRC<cr>', { silent = true })
 map('n', '<leader>n', '<cmd>cnext<cr>', { silent = true})
 map('n', '<leader>p', '<cmd>cprevious<cr>', { silent = true})
 
 map('n', '<esc><esc>', '<cmd>set hls!<cr>', { silent = true } )
 
+map('n', '<leader>v', '<cmd>Telescope find_files cwd=~/.config/nvim<CR>', { silent = true })
 map('n', ',f',  '<cmd>Telescope find_files<cr>', {silent=true})
 map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
 map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
