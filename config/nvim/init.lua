@@ -54,7 +54,8 @@ map('n', '<leader>p', '<cmd>cprevious<cr>', { silent = true})
 
 map('n', '<esc><esc>', '<cmd>set hls!<cr>', { silent = true } )
 
-map('n', '<leader>v', '<cmd>Telescope find_files cwd=~/.config/nvim<CR>', { silent = true })
+map('n', '<leader>v', '<cmd>Telescope find_files cwd=$XDG_CONFIG_HOME/nvim<CR>', { silent = true })
+map('n', '<leader>d', '<cmd>Telescope find_files hidden=true cwd=$GHQ_ROOT/github.com/lunarxlark/dotfiles<CR>', { silent = true })
 map('n', ',f',  '<cmd>Telescope find_files<cr>', {silent=true})
 map('n', ',rg', '<cmd>Telescope live_grep<cr>', {silent=true})
 map('n', ',b',  '<cmd>Telescope buffers<cr>', {silent=true})
