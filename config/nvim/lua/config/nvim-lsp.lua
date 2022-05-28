@@ -93,11 +93,11 @@ lspconfig.gopls.setup {
   settings = {
     gopls = {
       analyses = {
-        unreachable = true,
-        unusedparams = true,
-        fullstruct = true,
+        fieldalignment = false,
         nilness = true,
-        unusedwrite = true
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
       },
       completeUnimported = true,
       hoverKind = 'SynopsisDocumentation',
