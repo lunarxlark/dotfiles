@@ -1,12 +1,7 @@
-#==============================================================#
-##          Completion                                        ##
-#==============================================================#
-
+#------------------------------------------------------------------------------#
+# Completions                                                                  #
+#------------------------------------------------------------------------------#
 setopt prompt_subst          # プロンプトに escape sequence (環境変数) を通す
-
-# see http://zsh.sourceforge.net/Doc/Release/Completion-System.html
-
-# :completion:function:completer:command:argument:tag
 
 # オプション補完で解説部分を表示
 zstyle ':completion:*' verbose yes
