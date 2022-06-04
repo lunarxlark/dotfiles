@@ -10,6 +10,6 @@ require('nvim-tree').setup {
     enable = true
   },
   renderer = {
-    highlight_opened_files = "all",
-  },
+    highlight_opened_files = "none",
+  }
 }
