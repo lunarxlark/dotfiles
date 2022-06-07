@@ -191,6 +191,7 @@ packer.startup(function(use)
       require('config.accelerated-jk')
     end
   }
+  use {'tpope/vim-surround'}
 
   -- indent
   use { 'lukas-reineke/indent-blankline.nvim',
