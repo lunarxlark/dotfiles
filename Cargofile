@@ -1,6 +1,6 @@
 #cat Cargofile| grep -v "^#" | xargs cargo install
-alacritty
 git-delta
 bat
 ripgrep
 fd-find
+stylua
