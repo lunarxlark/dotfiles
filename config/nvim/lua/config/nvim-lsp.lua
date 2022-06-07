@@ -83,38 +83,38 @@ lspconfig.sumneko_lua.setup({
 })
 
 -- gopls
-lspconfig.gopls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = { lsp_installer_dir .. "/gopls/gopls", "-remote=:37374", "-remote.logfile=/tmp/gopls.remote.log" },
-	flags = {
-		debounce_text_changes = 150,
-	},
-	settings = {
-		gopls = {
-			analyses = {
-				fieldalignment = false,
-				nilness = true,
-				unusedparams = true,
-				unusedwrite = true,
-				useany = true,
-			},
-			completeUnimported = true,
-			hoverKind = "SynopsisDocumentation",
-			staticcheck = true,
-			directoryFilters = { "-debug" },
-			matcher = "fuzzy",
-			usePlaceholders = true,
-			codelenses = {
-				gc_details = true,
-				generate = true,
-				test = true,
-				tidy = true,
-				vendor = false,
-			},
-		},
-	},
-})
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { lsp_installer_dir .. '/gopls/gopls', '-remote=:37374', '-remote.logfile=auto', '-rpc.trace'},
+  flags = {
+    debounce_text_changes = 150,
+  },
+  settings = {
+    gopls = {
+      analyses = {
+        fieldalignment = false,
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
+      },
+      completeUnimported = true,
+      hoverKind = 'SynopsisDocumentation',
+      staticcheck = true,
+      directoryFilters = {'-debug'},
+      matcher = 'fuzzy',
+      usePlaceholders = true,
+      codelenses = {
+        gc_details = true,
+        generate = true,
+        test = true,
+        tidy = true,
+        vendor = false,
+      },
+    }
+  }
+}
 
 -- intelephense
 lspconfig.intelephense.setup({
