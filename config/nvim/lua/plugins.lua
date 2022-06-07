@@ -168,9 +168,6 @@ packer.startup(function(use)
   -- file explorer
   use { 'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
-    setup = function()
-      vim.g.nvim_tree_highlight_opened_files = 1
-    end,
     config = function()
       require('config.nvim-tree')
     end

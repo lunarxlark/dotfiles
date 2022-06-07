@@ -8,5 +8,8 @@ require('nvim-tree').setup {
   update_cwd = false,
   diagnostics = {
     enable = true
+  },
+  renderer = {
+    highlight_opened_files = "none",
   }
 }

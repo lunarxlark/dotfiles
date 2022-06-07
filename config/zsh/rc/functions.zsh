@@ -12,7 +12,7 @@ ghq-fzf() {
 zle     -N   ghq-fzf
 bindkey '^G' ghq-fzf
 
-fd() {
+d() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
@@ -21,7 +21,7 @@ fd() {
 zle     -N   fd
 bindkey '^F' fd
 
-fe() {
+f() {
   local files
   IFS=$'\n' files=($(fzf --height=40% --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
