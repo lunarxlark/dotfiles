@@ -87,38 +87,38 @@ lspconfig.sumneko_lua.setup({
 })
 
 -- gopls
-lspconfig.gopls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { lsp_installer_dir .. '/gopls/gopls', '-remote=:37374', '-remote.logfile=auto', '-rpc.trace'},
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    gopls = {
-      analyses = {
-        fieldalignment = false,
-        nilness = true,
-        unusedparams = true,
-        unusedwrite = true,
-        useany = true,
-      },
-      completeUnimported = true,
-      hoverKind = 'SynopsisDocumentation',
-      staticcheck = true,
-      directoryFilters = {'-debug'},
-      matcher = 'fuzzy',
-      usePlaceholders = true,
-      codelenses = {
-        gc_details = true,
-        generate = true,
-        test = true,
-        tidy = true,
-        vendor = false,
-      },
-    }
-  }
-}
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { lsp_installer_dir .. "/gopls/gopls", "-remote=:37374", "-remote.logfile=auto", "-rpc.trace" },
+	flags = {
+		debounce_text_changes = 150,
+	},
+	settings = {
+		gopls = {
+			analyses = {
+				fieldalignment = false,
+				nilness = true,
+				unusedparams = true,
+				unusedwrite = true,
+				useany = true,
+			},
+			completeUnimported = true,
+			hoverKind = "SynopsisDocumentation",
+			staticcheck = true,
+			directoryFilters = { "-debug" },
+			matcher = "fuzzy",
+			usePlaceholders = true,
+			codelenses = {
+				gc_details = true,
+				generate = true,
+				test = true,
+				tidy = true,
+				vendor = false,
+			},
+		},
+	},
+})
 
 -- intelephense
 lspconfig.intelephense.setup({
@@ -221,7 +221,7 @@ lspconfig.tsserver.setup({
 lspconfig.yamlls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = { lsp_installer_dir .. "/yaml/node_modules/.bin/yaml-language-server", "--stdio" },
+	cmd = { lsp_installer_dir .. "/yamlls/node_modules/.bin/yaml-language-server", "--stdio" },
 })
 
 -- clangd
@@ -232,6 +232,13 @@ lspconfig.clangd.setup({
 
 -- dockerls
 lspconfig.dockerls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+-- sqls
+lspconfig.sqls.setup({
+	cmd = { lsp_installer_dir .. "/sqls/sqls", "--config", "~/.config/sqls/config.yaml" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 })

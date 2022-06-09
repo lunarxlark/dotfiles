@@ -57,7 +57,7 @@ packer.startup(function(use)
 		end,
 	})
 
-	use({ "nanotee/sqls.nvim"})
+	use({ "nanotee/sqls.nvim" })
 
 	-- treesitter
 	use({
@@ -197,14 +197,15 @@ packer.startup(function(use)
 		end,
 	})
 
-  -- motion
-  use { 'easymotion/vim-easymotion' }
-  use { 'rainbowhxch/accelerated-jk.nvim',
-    config = function()
-      require('config.accelerated-jk')
-    end
-  }
-  use {'tpope/vim-surround'}
+	-- motion
+	use({ "easymotion/vim-easymotion" })
+	use({
+		"rainbowhxch/accelerated-jk.nvim",
+		config = function()
+			require("config.accelerated-jk")
+		end,
+	})
+	use({ "tpope/vim-surround" })
 
 	-- indent
 	use({
