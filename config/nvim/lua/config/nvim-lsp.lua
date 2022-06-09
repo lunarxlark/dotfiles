@@ -21,6 +21,7 @@ require("nvim-lsp-installer").setup({
 		"yamlls",
 		"clangd",
 		"dockerls",
+		"sqls",
 	},
 })
 local lspconfig = require("lspconfig")
@@ -35,6 +36,9 @@ vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<C
 vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
 local on_attach = function(client, bufnr)
+	if client.name == "sqls" then
+		require("sqls").on_attach(client, bufnr)
+	end
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })

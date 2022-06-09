@@ -44,6 +44,7 @@ path=(
   $HOME/.local/bin
   $HOME/.local/go/bin
   $GOBIN
+  /usr/local/opt/libpq/bin
   $path
   )
 

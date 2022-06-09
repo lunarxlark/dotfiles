@@ -57,6 +57,8 @@ packer.startup(function(use)
 		end,
 	})
 
+	use({ "nanotee/sqls.nvim"})
+
 	-- treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
