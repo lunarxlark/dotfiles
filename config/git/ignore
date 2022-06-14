@@ -16,6 +16,7 @@ config/nvim/plugin
 config/rclone/*
 config/sqls/*
 config/tmux/plugins/*
+config/tmuxinator/*
 data/*
 .envrc
 .idea/*
