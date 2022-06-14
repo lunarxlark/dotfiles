@@ -39,6 +39,7 @@ dap.configurations.go = {
 		type = "go",
 		name = "Debug",
 		request = "launch",
+		mode = "auto",
 		program = "${workspaceFolder}/main.go",
 	},
 	{

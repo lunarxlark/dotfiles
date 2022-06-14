@@ -75,11 +75,16 @@ map("n", "<leader>T", "<cmd>TigOpenProjectRootDir<cr>")
 map("n", "<leader>Tc", "<cmd>TigOpenCurrentFile<cr>")
 map("n", "<leader>Tb", "<cmd>TigBlame<cr>")
 
-map("n", "<leader>tn", "<cmd>TestNearest<CR>", { silent = true })
-map("n", "<leader>tf", "<cmd>TestFile<CR>", { silent = true })
-map("n", "<leader>ts", "<cmd>TestSuite<CR>", { silent = true })
-map("n", "<leader>tl", "<cmd>TestLast<CR>", { silent = true })
-map("n", "<leader>tv", "<cmd>TestVisit<CR>", { silent = true })
+--map("n", "<leader>tn", "<cmd>TestNearest<CR>", { silent = true })
+--map("n", "<leader>tf", "<cmd>TestFile<CR>", { silent = true })
+--map("n", "<leader>ts", "<cmd>TestSuite<CR>", { silent = true })
+--map("n", "<leader>tl", "<cmd>TestLast<CR>", { silent = true })
+--map("n", "<leader>tv", "<cmd>TestVisit<CR>", { silent = true })
+map("n","<leader>tn", "<cmd>lua require'neotest'.run.run()<CR>", { silent = true })
+map("n","<leader>tf", "<cmd>lua require'neotest'.run.run(vim.fn.expand('%'))<CR>", { silent = true })
+map("n","<leader>tS", "<cmd>lua require'neotest'.summary.toggle()<CR>", { silent = true })
+map("n","<leader>to", "<cmd>lua require'neotest'.output.open({enter=true})<CR>", { silent = true })
+
 
 map("n", "<leader>D", ":lua require'dapui'.toggle()<CR>", { silent = true })
 map("n", "<leader><leader>df", ":lua require'dapui'.eval()<CR>", { silent = true })
@@ -102,3 +107,5 @@ map(
 )
 
 map("n", "<leader>jq", ":Jaq<CR>", { silent = true })
+
+map("n", ",ss", ":SymbolsOutline<CR>", { silent = true })
