@@ -5,7 +5,7 @@ ghq-fzf() {
   selected_dir=$(ghq list --vcs git --full-path | fzf --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
     if [ -t 1 ]; then
-      cd "${selected_dir}" || return
+      cd "${selected_dir}" && exa -l || return
     fi
   fi
 }
