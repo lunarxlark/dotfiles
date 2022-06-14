@@ -68,6 +68,9 @@ packer.startup(function(use)
 		run = ":TSUpdate",
 	})
 
+	-- outline
+	use({ "simrat39/symbols-outline.nvim" })
+
 	-- formatter
 	use({ "ckipp01/stylua-nvim", run = "cargo install stylua" })
 
@@ -177,6 +180,40 @@ packer.startup(function(use)
 		"klen/nvim-test",
 		config = function()
 			require("config.nvim-test")
+		end,
+	})
+
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+			"akinsho/neotest-go",
+			--"~/dev/src/github.com/lunarxlark/neotest-go",
+		},
+		config = function()
+			require("neotest").setup({
+        icons = {
+          running = "↻",
+        },
+				adapters = {
+					require("neotest-go"),
+				},
+				config = {
+					floating = {
+						border = "rounded",
+						max_height = 0.5,
+						max_width = 0.6,
+					},
+					strategies = {
+						integrated = {
+							width = 120,
+							height = 40,
+						},
+					},
+				},
+			})
 		end,
 	})
 
