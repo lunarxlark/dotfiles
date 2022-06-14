@@ -15,6 +15,7 @@ config/memo/_posts
 config/nvim/plugin
 config/rclone/*
 config/sqls/*
+config/tmux/plugins/*
 data/*
 .envrc
 .idea/*
