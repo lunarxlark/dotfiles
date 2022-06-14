@@ -2,6 +2,11 @@ set main-view = id date author:email-user commit-title:graph=yes,refs=yes
 set vertical-split = no
 set split-view-height = 80%
 
+bind generic <Ctrl-b> scroll-page-up
+bind generic <Ctrl-f> scroll-page-down
+bind generic g move-first-line
+bind generic G move-last-line
+
 # color
 #color area                 fgcolor bgcolor [attributes]
 color default               255     236
