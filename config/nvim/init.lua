@@ -1,4 +1,5 @@
 vim.opt.termguicolors = true
+vim.opt.cmdheight = 0
 -- #file
 vim.opt.number = true
 vim.opt.encoding = "utf-8" -- vimでの文字エンコーディング
