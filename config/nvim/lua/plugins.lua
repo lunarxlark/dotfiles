@@ -1,7 +1,14 @@
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local compile_path = vim.fn.stdpath("data") .. "/site/plugin/packer_compiled.lua"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
 	vim.cmd([[packadd packer.nvim]])
 end
 
@@ -177,43 +184,16 @@ packer.startup(function(use)
 
 	-- test
 	use({
-		"klen/nvim-test",
-		config = function()
-			require("config.nvim-test")
-		end,
-	})
-
-	use({
 		"nvim-neotest/neotest",
 		requires = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
-			"akinsho/neotest-go",
-			--"~/dev/src/github.com/lunarxlark/neotest-go",
+			"nvim-neotest/neotest-go",
+			"nvim-neotest/neotest-plenary",
 		},
 		config = function()
-			require("neotest").setup({
-        icons = {
-          running = "↻",
-        },
-				adapters = {
-					require("neotest-go"),
-				},
-				config = {
-					floating = {
-						border = "rounded",
-						max_height = 0.5,
-						max_width = 0.6,
-					},
-					strategies = {
-						integrated = {
-							width = 120,
-							height = 40,
-						},
-					},
-				},
-			})
+			require("config.neotest")
 		end,
 	})
 
