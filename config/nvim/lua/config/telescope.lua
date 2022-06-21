@@ -17,6 +17,7 @@ require("telescope").setup({
 			height = 0.95,
 		},
 		prompt_position = "top",
+		prompt_prefix = "🔍",
 		preview = {
 			timeout = 1000,
 			hide_on_startup = false,

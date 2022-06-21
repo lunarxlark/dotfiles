@@ -64,7 +64,7 @@ packer.startup(function(use)
 		end,
 	})
 
-	use({ "nanotee/sqls.nvim" })
+	use({ "nanotee/sqls.nvim", ft = { "sql" } })
 
 	-- treesitter
 	use({
@@ -79,7 +79,7 @@ packer.startup(function(use)
 	use({ "simrat39/symbols-outline.nvim" })
 
 	-- formatter
-	use({ "ckipp01/stylua-nvim", run = "cargo install stylua" })
+	use({ "ckipp01/stylua-nvim", run = "cargo install stylua", ft = { "lua" } })
 
 	-- fuzzy finder
 	use({
