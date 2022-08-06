@@ -11,6 +11,7 @@ config/fzf
 config/gh/lunarxlark.yml
 config/gh/token/*
 config/gh/hosts.yml
+config/htop/*
 config/memo/_posts
 config/nvim/plugin
 config/rclone/*
