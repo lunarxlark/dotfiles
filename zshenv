@@ -2,10 +2,10 @@
 # Environment variable                                                         #
 #------------------------------------------------------------------------------#
 export LANG=ja_JP.UTF-8
-if builtin command -v nvim > /dev/null 2>&1; then
-  export EDITOR=${EDITOR:-nvim}
+if command -v nvim > /dev/null 2>&1; then
+  export EDITOR='nvim'
 else
-  export EDITOR=${EDITOR:-vim}
+  export EDITOR='vim'
 fi
 
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"

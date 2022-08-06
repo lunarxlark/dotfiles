@@ -10,7 +10,7 @@
 
 [core]
 	editor = "nvim"
-	pager = delta --theme='gruvbox-dark'
+	pager = delta
 	preloadindex = true
 
 [color "diff"]

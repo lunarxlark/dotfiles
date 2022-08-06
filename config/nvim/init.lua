@@ -1,3 +1,4 @@
+vim.opt.mouse="nvi"
 vim.opt.termguicolors = true
 -- #file
 vim.opt.number = true
@@ -8,7 +9,7 @@ vim.opt.fileformats = "unix,mac,dos" -- バッファの改行コード指定
 vim.opt.showtabline = 0
 vim.cmd([[noswapfile]])
 vim.opt.clipboard = "unnamedplus" -- clipboardとの連携
-vim.opt.viminfo = "" -- viminfoファイルを作成しない
+--vim.opt.viminfo = "" -- viminfoファイルを作成しない
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 vim.opt.cursorline = true -- カーソル位置(行)の非表示

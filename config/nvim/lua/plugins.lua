@@ -12,12 +12,11 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.cmd([[packadd packer.nvim]])
 end
 
-vim.cmd([[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+vim.api.nvim_create_autocmd( "BufWritePost", {
+  group = vim.api.nvim_create_augroup("PackerCompile", {}),
+  pattern = "*/nvim/lua/**/*.lua",
+  command = "source <afile> | PackerCompile"
+})
 
 local ok, packer = pcall(require, "packer")
 if not ok then
@@ -26,6 +25,7 @@ end
 
 packer.init({
 	compile_path = compile_path,
+  auto_reload_compiled = true,
 	display = {
 		open_fn = function()
 			return require("packer.util").float({ border = "rounded" })
@@ -42,6 +42,14 @@ packer.startup(function(use)
 		"morhetz/gruvbox",
 		config = function()
 			require("config.gruvbox")
+		end,
+	})
+
+	-- startify
+	use({
+		"goolord/alpha-nvim",
+		config = function()
+			require("config.alpha")
 		end,
 	})
 
@@ -90,6 +98,7 @@ packer.startup(function(use)
 			"nvim-telescope/telescope-github.nvim",
 			"nvim-telescope/telescope-ghq.nvim",
 			"delphinus/telescope-memo.nvim",
+			"~/dev/src/github.com/lunarxlark/telescope-aws.nvim",
 		},
 		config = function()
 			require("config.telescope")
@@ -236,7 +245,6 @@ packer.startup(function(use)
 	use({ "iberianpig/tig-explorer.vim" })
 	use({ "nicwest/vim-camelsnek" })
 	use({ "mattn/emmet-vim" })
-	-- use { 'thinca/vim-quickrun' }
 	use({
 		"is0n/jaq-nvim",
 		config = function()
@@ -254,5 +262,4 @@ packer.startup(function(use)
 	use({ "cespare/vim-toml", ft = { "toml" } })
 	use({ "b4b4r07/vim-ltsv", ft = { "ltsv" } })
 	use({ "hashivim/vim-terraform", ft = { "terraform" } })
-	use({ "fladson/vim-kitty", ft = { "kitty" } })
 end)

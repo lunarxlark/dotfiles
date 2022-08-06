@@ -90,7 +90,8 @@ lspconfig.sumneko_lua.setup({
 lspconfig.gopls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = { lsp_installer_dir .. "/gopls/gopls", "-remote=:37374", "-remote.logfile=auto", "-rpc.trace" },
+	--cmd = { lsp_installer_dir .. "/gopls/gopls", "-remote=:37374", "-remote.logfile=auto", "-rpc.trace" },
+	cmd = { lsp_installer_dir .. "/gopls/gopls", "serve" },
 	flags = {
 		debounce_text_changes = 150,
 	},

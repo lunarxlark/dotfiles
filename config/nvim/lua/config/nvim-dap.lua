@@ -1,6 +1,7 @@
 local dap = require("dap")
 vim.fn.sign_define("DapBreakpoint", { text = "⛔", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "👉", texthl = "", linehl = "", numhl = "" })
+--dap.set_log_level("DEBUG")
 
 dap.adapters.go = function(callback, config)
 	local stdout = vim.loop.new_pipe(false)
@@ -47,7 +48,8 @@ dap.configurations.go = {
 		name = "Debug test", -- configuration for debugging test files
 		request = "launch",
 		mode = "test",
-		program = "${file}",
+		program = "${fileDirname}/...",
+		--program = "${file}",
 	},
 	-- works with go.mod packages and sub packages
 	{
