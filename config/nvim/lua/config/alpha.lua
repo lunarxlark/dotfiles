@@ -36,13 +36,13 @@ end
 local buttons = {
 	type = "group",
 	val = {
-    button("e", "   New file", "<cmd>ene <BAR> startinsert <CR>"),
-		button("f", "   Find file", "<cmd>Telescope find_files<CR>"),
-		button("f", "   Find word", "<cmd>Telescope live_grep<CR>"),
-		button("r", "   Recents", "<cmd>Telescope oldfiles<CR>"),
-		button("u", "   Update", "<cmd>PackerSync<CR>"),
-		button("c", "   Config", "<cmd>Telescope find_files search_dirs=$XDG_CONFIG_HOME/nvim<CR>"),
-		button("q", "   Quit", ":qa!<CR>"),
+    button("e", "📝   New File", "<cmd>ene <BAR> startinsert <CR>"),
+		button("f", "🔎   Find File", "<cmd>Telescope find_files<CR>"),
+		button("g", "🔭   Find Word", "<cmd>Telescope live_grep<CR>"),
+		button("r", "📋   Recents", "<cmd>Telescope oldfiles<CR>"),
+		button("u", "📦   Update", "<cmd>PackerSync<CR>"),
+		button("c", "🧰   Config", "<cmd>Telescope find_files search_dirs=$XDG_CONFIG_HOME/nvim<CR>"),
+		button("q", "🏠   Quit"," <cmd>qa!<CR>"),
 	},
 	opts = {
 		position = "center",
