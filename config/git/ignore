@@ -14,6 +14,7 @@ config/gh/hosts.yml
 config/memo/_posts
 config/nvim/plugin
 config/rclone/*
+config/raycast/*
 config/sqls/*
 config/tmux/plugins/*
 config/tmuxinator/*
