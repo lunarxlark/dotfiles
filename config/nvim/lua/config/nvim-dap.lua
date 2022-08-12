@@ -1,7 +1,7 @@
 local dap = require("dap")
 vim.fn.sign_define("DapBreakpoint", { text = "⛔", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "👉", texthl = "", linehl = "", numhl = "" })
---dap.set_log_level("DEBUG")
+--dap.set_log_level("TRACE")
 
 dap.adapters.go = function(callback, config)
 	local stdout = vim.loop.new_pipe(false)
@@ -37,26 +37,27 @@ end
 
 dap.configurations.go = {
 	{
+		name = "Debug main.go",
 		type = "go",
-		name = "Debug",
 		request = "launch",
 		mode = "auto",
-		program = "${workspaceFolder}/main.go",
-	},
-	{
-		type = "go",
-		name = "Debug test", -- configuration for debugging test files
-		request = "launch",
-		mode = "test",
-		program = "${fileDirname}/...",
-		--program = "${file}",
+		--program = "${workspaceFolder}/main.go",
+		program = "${workspaceRoot}/main.go",
 	},
 	-- works with go.mod packages and sub packages
 	{
+		name = "Debug test",
 		type = "go",
-		name = "Debug test (go.mod)",
 		request = "launch",
 		mode = "test",
 		program = "${file}",
+	},
+	{
+    -- configuration for debugging test files
+		name = "Debug in dir",
+		type = "go",
+		request = "launch",
+		mode = "test",
+		program = "${fileDirname}/...",
 	},
 }

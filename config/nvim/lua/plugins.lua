@@ -12,10 +12,10 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.cmd([[packadd packer.nvim]])
 end
 
-vim.api.nvim_create_autocmd( "BufWritePost", {
-  group = vim.api.nvim_create_augroup("PackerCompile", {}),
-  pattern = "*/nvim/lua/**/*.lua",
-  command = "source <afile> | PackerCompile"
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = vim.api.nvim_create_augroup("PackerCompile", {}),
+	pattern = "*/nvim/lua/**/*.lua",
+	command = "source <afile> | PackerCompile",
 })
 
 local ok, packer = pcall(require, "packer")
@@ -25,11 +25,8 @@ end
 
 packer.init({
 	compile_path = compile_path,
-  auto_reload_compiled = true,
 	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
+		open_fn = require("packer.util").float,
 	},
 })
 
@@ -207,13 +204,13 @@ packer.startup(function(use)
 	})
 
 	-- file explorer
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("config.nvim-tree")
-		end,
-	})
+	-- use({
+	-- 	"kyazdani42/nvim-tree.lua",
+	-- 	requires = { "kyazdani42/nvim-web-devicons" },
+	-- 	config = function()
+	-- 		require("config.nvim-tree")
+	-- 	end,
+	-- })
 
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -231,7 +228,7 @@ packer.startup(function(use)
 			require("config.accelerated-jk")
 		end,
 	})
-	use({ "tpope/vim-surround" })
+	--use({ "tpope/vim-surround" })
 
 	-- indent
 	use({
@@ -244,7 +241,7 @@ packer.startup(function(use)
 	use({ "simeji/winresizer" })
 	use({ "iberianpig/tig-explorer.vim" })
 	use({ "nicwest/vim-camelsnek" })
-	use({ "mattn/emmet-vim" })
+	--use({ "mattn/emmet-vim" })
 	use({
 		"is0n/jaq-nvim",
 		config = function()
