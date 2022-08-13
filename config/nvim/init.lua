@@ -16,10 +16,10 @@ vim.opt.cursorline = true -- カーソル位置(行)の非表示
 vim.opt.virtualedit = "block" -- visual-block時、行末を超えて選択可能にする
 vim.opt.list = true -- 不可視文字を表示
 vim.opt.listchars = {
-	tab = ">-",
-	trail = "-",
-	extends = ">",
-	precedes = "<",
+  tab = ">-",
+  trail = "-",
+  extends = ">",
+  precedes = "<",
 }
 --opt.fixendofline = false
 --opt.eol = false                                  -- ファイル末尾にeolを付けない
@@ -45,11 +45,11 @@ require("plugins")
 
 vim.g.mapleader = " "
 local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 map("n", "<leader>n", "<cmd>cnext<cr>", { silent = true })
