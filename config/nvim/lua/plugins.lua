@@ -83,9 +83,6 @@ packer.startup(function(use)
   -- outline
   use({ "simrat39/symbols-outline.nvim" })
 
-  -- formatter
-  use({ "ckipp01/stylua-nvim", run = "cargo install stylua", ft = { "lua" } })
-
   -- fuzzy finder
   use({
     "nvim-telescope/telescope.nvim",
@@ -129,19 +126,6 @@ packer.startup(function(use)
     },
     config = function()
       require("config.nvim-cmp")
-    end,
-  })
-
-  use({
-    "tzachar/cmp-tabnine",
-    requires = { "hrsh7th/nvim-cmp" },
-    run = "./install.sh",
-  })
-
-  use({
-    "mattn/vim-sonictemplate",
-    setup = function()
-      vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath("config") .. "/template"
     end,
   })
 
@@ -203,15 +187,6 @@ packer.startup(function(use)
     end,
   })
 
-  -- file explorer
-  -- use({
-  -- 	"kyazdani42/nvim-tree.lua",
-  -- 	requires = { "kyazdani42/nvim-web-devicons" },
-  -- 	config = function()
-  -- 		require("config.nvim-tree")
-  -- 	end,
-  -- })
-
   use({
     "lewis6991/gitsigns.nvim",
     requires = { "nvim-lua/plenary.nvim" },
@@ -228,7 +203,6 @@ packer.startup(function(use)
       require("config.accelerated-jk")
     end,
   })
-  --use({ "tpope/vim-surround" })
 
   -- indent
   use({
@@ -241,7 +215,6 @@ packer.startup(function(use)
   use({ "simeji/winresizer" })
   use({ "iberianpig/tig-explorer.vim" })
   use({ "nicwest/vim-camelsnek" })
-  --use({ "mattn/emmet-vim" })
   use({
     "is0n/jaq-nvim",
     config = function()
@@ -253,7 +226,6 @@ packer.startup(function(use)
   use({ "mattn/vim-goimports", ft = { "go" } })
   use({ "mattn/vim-gomod", ft = { "gomod" } })
   use({ "kyoh86/vim-go-coverage", ft = { "go" } })
-  use({ "thinca/vim-showtime", ft = { "markdown" } })
   use({ "mechatroner/rainbow_csv", ft = { "csv", "tsv" } })
   use({ "stephpy/vim-yaml", ft = { "yaml" } })
   use({ "cespare/vim-toml", ft = { "toml" } })
