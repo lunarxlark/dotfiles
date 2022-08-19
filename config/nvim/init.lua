@@ -22,7 +22,7 @@ vim.opt.listchars = {
   precedes = "<",
 }
 --opt.fixendofline = false
---opt.eol = false                                  -- ファイル末尾にeolを付けない
+--opt.eol = false -- ファイル末尾にeolを付けない
 vim.opt.foldmethod = "marker"
 vim.opt.write = true
 -- #tab
