@@ -1,0 +1,148 @@
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# Load starship theme
+# starship
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
+zinit ice lucid \
+  from"gh-r" \
+  as"command" \
+  bpick"*.tar.gz" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" \
+  src"init.zsh"
+zinit light starship/starship
+
+
+### binary
+# fzf
+zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
+zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+zinit ice \
+  as"program" \
+  from"gh-r"
+zinit light junegunn/fzf-bin
+
+
+# jq
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  mv"jq* -> jq" \
+  pick"**/jq" \
+  light-mode for @stedolan/jq
+
+
+# fd
+zinit wait'1' lucid blockf nocompletions \
+  from"gh-r" \
+  as'program' \
+  cp"fd-*/autocomplete/_fd -> _fd" \
+  pick'fd*/fd' \
+  atclone'chown -R $(id -nu):$(id -ng) .; zinit creinstall -q sharkdp/fd' \
+  atpull'%atclone' \
+  light-mode for @sharkdp/fd
+
+
+# exa
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick"**/exa" \
+  atload"alias l='exa -la --icons --time-style long-iso'" \
+  light-mode for @ogham/exa
+
+
+# ripgrep
+zinit wait'1' lucid blockf nocompletions \
+  from"gh-r" \
+  as'program' \
+  pick'ripgrep*/rg' \
+  atclone'chown -R $(id -nu):$(id -ng) .; zinit creinstall -q BurntSushi/ripgrep' \
+  atpull'%atclone' \
+  light-mode for @BurntSushi/ripgrep
+
+
+# bat
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  cp"bat/autocomplete/bat.zsh -> _bat" \
+  pick"bat*/bat" \
+  atload"export BAT_THEME='gruvbox-dark'; alias cat=bat" \
+  light-mode for @sharkdp/bat
+
+
+# direnv
+zinit wait'!1' lucid \
+  from"gh-r" \
+  as"program" \
+  mv"direnv* -> direnv" \
+  pick"direnv" \
+  atclone'./direnv hook zsh > zhook.zsh' \
+  atpull'%atclone' \
+  src'zhook.zsh' \
+  light-mode for @direnv/direnv
+
+
+# ghq
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick"ghq*/ghq" \
+  light-mode for @x-motemen/ghq
+
+
+# asdf
+zinit wait'1' lucid \
+  atinit"export \
+    ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/config \
+    ASDF_DATA_DIR=$XDG_DATA_HOME/asdf \
+    ASDF_DIR=$ZINIT[PLUGINS_DIR]/asdf-vm---asdf" \
+  pick"asdf.sh" \
+  light-mode for @asdf-vm/asdf
+
+
+# github
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick'**/gh' \
+  atclone"./**/gh completion -s zsh > $ZINIT[COMPLETIONS_DIR]/_gh" \
+  light-mode for @cli/cli
+
+
+# delta
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick"delta*/delta" \
+  light-mode for @dandavison/delta
+
+
+### completion
+zinit wait lucid blockf light-mode for \
+    @'zsh-users/zsh-autosuggestions' \
+    @'zsh-users/zsh-completions' \
+    @'zdharma-continuum/fast-syntax-highlighting'
+
+
+# zinit wait lucid is-snippet as"completion" for \
+#   atload"autoload bashcompinit; bashcompinit; complete -C '$(which aws_completer)' aws" \
+#     https://github.com/aws/aws-cli/blob/v2/bin/aws_zsh_completer.sh
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C $(which aws_completer) aws
