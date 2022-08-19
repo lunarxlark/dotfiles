@@ -26,12 +26,11 @@ require("nvim-lsp-installer").setup({
 })
 
 -- Setup language buffer auto-formatting sync
-vim.cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)]])
-vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]])
-vim.cmd([[autocmd BufWritePre *.php lua vim.lsp.buf.formatting_sync(nil, 1000)]])
-vim.cmd([[autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)]])
-vim.cmd([[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)]])
-vim.cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync(nil, 1000)]])
+vim.cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.format {async = true }]])
+vim.cmd([[autocmd BufWritePre *.php lua vim.lsp.buf.format { async = true ]])
+vim.cmd([[autocmd BufWritePre *.py lua vim.lsp.buf.format { async = true }]])
+vim.cmd([[autocmd BufWritePre *.lua lua vim.lsp.buf.format { async = true }]])
+vim.cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.format { async = true }]])
 
 local lspconfig = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
