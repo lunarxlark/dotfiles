@@ -1,16 +1,16 @@
 add_newline = false
 
 [character]
-success_symbol = "[>](bold red)[>](bold yellow)[>](bold cyan)"
+success_symbol = "[▶](bold red)[▶](bold yellow)[▶](bold cyan)"
 
 [directory]
 truncation_length = 1
 truncate_to_repo = true
-style = "cyan"
+style = "fg:#8ec07c"
 
 [aws]
 format = '\[[$symbol($profile)]($style)\]'
-style = "fg:208"
+style = "fg:#fe8019"
 symbol = " "
 
 [docker_context]
@@ -18,15 +18,15 @@ symbol = " "
 
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
-style = "purple"
+style = "fg:#fabd2f"
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
-style = "red"
+style = "fg:#fb4934"
 
 [golang]
 format = '\[[$symbol($version)]($style)\]'
-style = "blue"
+style = "fg:#83a598"
 symbol = " "
 
 [nodejs]
