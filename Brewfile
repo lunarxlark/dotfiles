@@ -8,31 +8,20 @@ brew 'coreutils'
 brew 'wget'
 brew 'curl'
 brew 'git'
-brew 'tree'
-brew 'macvim'
-brew 'alp'
-brew 'colordiff'
-brew 'ctags'
-brew 'shellcheck'
 
 # develop
 cask 'google-chrome'
 cask 'visual-studio-code'
 cask 'postman'
 cask 'docker'
-cask 'nvim'
-cask 'ninja'
+cask 'wezterm'
+cask 'dbeaver-community'
 
 # util
-cask 'alfred'
-cask 'keycastr'
-cask 'dropbox' # for sync alfred settings
+cask 'raycast'
+#cask 'keycastr'
 
 # communication
+cask 'Slack'
 cask 'discord'
 cask 'kindle'
-cask 'dbeaver-community'
-#cask 'qmk-toolbox'
-
-mas 'pocket', id: 568494494
-mas 'Slack', id: 803453959
