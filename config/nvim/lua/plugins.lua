@@ -81,7 +81,7 @@ packer.startup(function(use)
   })
 
   -- outline
-  use({ "simrat39/symbols-outline.nvim" })
+  --use({ "simrat39/symbols-outline.nvim" })
 
   -- fuzzy finder
   use({
