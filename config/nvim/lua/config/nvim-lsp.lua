@@ -1,4 +1,5 @@
 local lsp_installer_dir = vim.fn.stdpath("data") .. "/lsp_servers"
+vim.lsp.set_log_level("OFF")
 require("nvim-lsp-installer").setup({
   ui = {
     icons = {
