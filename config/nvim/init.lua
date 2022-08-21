@@ -80,15 +80,19 @@ map("n", "<leader>tf", "<cmd>lua require'neotest'.run.run(vim.fn.expand('%'))<CR
 map("n", "<leader>tS", "<cmd>lua require'neotest'.summary.toggle()<CR>", { silent = true })
 map("n", "<leader>to", "<cmd>lua require'neotest'.output.open({enter=true})<CR>", { silent = true })
 
-map("n", "<leader>D", ":lua require'dapui'.toggle()<CR>", { silent = true })
-map("n", "<leader><leader>df", ":lua require'dapui'.eval()<CR>", { silent = true })
-map("n", "<F5>", ":lua require'dap'.continue()<CR>", { silent = true })
-map("n", "<F10>", ":lua require'dap'.step_over()<CR>", { silent = true })
-map("n", "<F11>", ":lua require'dap'.step_into()<CR>", { silent = true })
-map("n", "<F12>", ":lua require'dap'.step_out()<CR>", { silent = true })
-map("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
-map("n", "<leader>td", ":lua require'dap-go'.debug_test()<CR>", { silent = true })
+map("n", "<leader>D", "<cmd>lua require'dapui'.toggle()<CR>", { silent = true })
+map("n", "<leader><leader>df", "<cmd>lua require'dapui'.eval()<CR>", { silent = true })
+map("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { silent = true })
+map("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { silent = true })
+map("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>", { silent = true })
+map("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>", { silent = true })
+map("n", "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
+map("n", "<leader>td", "<cmd>lua require'dap-go'.debug_test()<CR>", { silent = true })
 
-map("n", "<leader>jq", ":Jaq<CR>", { silent = true })
+map("n", "<leader>jq", "<cmd>Jaq<CR>", { silent = true })
 
-map("n", ",ss", ":SymbolsOutline<CR>", { silent = true })
+map("n", "<leader><leader>b",
+  "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",
+  { silent = true })
+map("n", "<leader><leader>a",
+  "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>", { silent = true })
