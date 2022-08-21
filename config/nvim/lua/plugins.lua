@@ -62,6 +62,13 @@ packer.startup(function(use)
   })
 
   use({
+    "simrat39/inlay-hints.nvim",
+    config = function()
+      require('inlay-hints').setup()
+    end,
+  })
+
+  use({
     "folke/trouble.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
     config = function()

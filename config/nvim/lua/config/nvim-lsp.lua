@@ -44,9 +44,6 @@ vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<C
 vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
 local on_attach = function(client, bufnr)
-  if client.name == "sqls" then
-    require("sqls").on_attach(client, bufnr)
-  end
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
@@ -96,9 +93,11 @@ lspconfig.sumneko_lua.setup({
 
 -- gopls
 lspconfig.gopls.setup({
-  on_attach = on_attach,
+  on_attach = function(c, b)
+    on_attach(c, b)
+    require('inlay-hints').on_attach(c, b)
+  end,
   capabilities = capabilities,
-  --cmd = { lsp_installer_dir .. "/gopls/gopls", "-remote=:37374", "-remote.logfile=auto", "-rpc.trace" },
   cmd = { lsp_installer_dir .. "/gopls/gopls", "serve" },
   flags = {
     debounce_text_changes = 150,
@@ -124,6 +123,15 @@ lspconfig.gopls.setup({
         test = true,
         tidy = true,
         vendor = false,
+      },
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
       },
     },
   },
@@ -250,7 +258,10 @@ lspconfig.dockerls.setup({
 -- sqls
 lspconfig.sqls.setup({
   cmd = { lsp_installer_dir .. "/sqls/sqls", "--config", "~/.config/sqls/config.yaml" },
-  on_attach = on_attach,
+  on_attach = function(c, b)
+    on_attach(c, b)
+    require('sqls').on_attach(c, b)
+  end,
   capabilities = capabilities,
   filetypes = { "sql" },
 })
