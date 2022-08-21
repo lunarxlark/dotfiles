@@ -13,11 +13,8 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.data}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 # zsh & zinit
-export ZDOTDIR=$HOME
-export ZHOMEDIR=$ZDOTDIR/.config/zsh
-export ZRCDIR=$ZHOMEDIR/rc
-export ZDATADIR=$XDG_DATA_HOME/zsh
-export ZI_HOME=$HOME/.zi
+export ZHOMEDIR=${XDG_CONFIG_HOME}/zsh
+
 
 # go
 export GO111MODULE=on
@@ -31,9 +28,6 @@ export GOCACHE=$GOPATH/go-build
 
 # ghq
 export GHQ_ROOT=$GOPATH/src
-
-# kitty
-export KITTY_CONFIG_DIRECTORY=$XDG_CONFIG_HOME/kitty
 
 # rustup
 . "$HOME/.cargo/env"
