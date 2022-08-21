@@ -231,6 +231,7 @@ lspconfig.yamlls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { lsp_installer_dir .. "/yamlls/node_modules/.bin/yaml-language-server", "--stdio" },
+  filetypes = { "yaml" },
 })
 
 -- clangd
@@ -243,6 +244,7 @@ lspconfig.clangd.setup({
 lspconfig.dockerls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  filetypes = { "dockerfile" },
 })
 
 -- sqls
@@ -250,4 +252,5 @@ lspconfig.sqls.setup({
   cmd = { lsp_installer_dir .. "/sqls/sqls", "--config", "~/.config/sqls/config.yaml" },
   on_attach = on_attach,
   capabilities = capabilities,
+  filetypes = { "sql" },
 })
