@@ -196,7 +196,10 @@ packer.startup(function(use)
   })
 
   -- motion
-  use({ "easymotion/vim-easymotion" })
+  use({ "phaazon/hop.nvim",
+    config = function()
+      require('hop').setup()
+    end })
   use({
     "rainbowhxch/accelerated-jk.nvim",
     config = function()
