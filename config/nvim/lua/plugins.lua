@@ -56,7 +56,7 @@ packer.startup(function(use)
     {
       "neovim/nvim-lspconfig",
       config = function()
-        require("config.nvim-lsp")
+        require("config.lsp")
       end,
     },
   })
