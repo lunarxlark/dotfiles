@@ -38,7 +38,6 @@ packer.startup(function(use)
   use({ "nvim-lua/plenary.nvim" })
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", })
 
-  use({ "morhetz/gruvbox" }) -- colorscheme
   use({ "hoob3rt/lualine.nvim" }) -- statusline
   use({ "goolord/alpha-nvim" }) -- startify
   use({ "lukas-reineke/indent-blankline.nvim" }) -- indent
@@ -92,4 +91,7 @@ packer.startup(function(use)
   use({ "nvim-telescope/telescope-ghq.nvim" })
   use({ "delphinus/telescope-memo.nvim" })
   use({ "~/dev/src/github.com/lunarxlark/telescope-aws.nvim" })
+
+  -- colorscheme
+  use({ "morhetz/gruvbox" })
 end)
