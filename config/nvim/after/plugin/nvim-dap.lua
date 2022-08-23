@@ -7,8 +7,6 @@ end
 vim.fn.sign_define("DapBreakpoint", { text = "🐞", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "👉", texthl = "", linehl = "", numhl = "" })
 
-require("dap.ext.vscode").load_launchjs()
-
 dap.adapters.go = function(callback, config)
   local stdout = vim.loop.new_pipe(false)
   local handle
@@ -66,6 +64,8 @@ dap.configurations.go = {
     program = "${fileDirname}/...",
   },
 }
+
+require("dap.ext.vscode").load_launchjs()
 
 vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { noremap = true, silent = true })

@@ -13,8 +13,6 @@ if not present then
   return
 end
 
-
-
 neotest.setup({
   icons = {
     running = "↻",

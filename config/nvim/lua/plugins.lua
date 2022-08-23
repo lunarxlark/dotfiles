@@ -30,7 +30,7 @@ packer.init({
   },
 })
 
-require("packer").startup(function(use)
+packer.startup(function(use)
   use({ "wbthomason/packer.nvim" }) -- plugin manager
 
   -- common
@@ -95,13 +95,4 @@ require("packer").startup(function(use)
   use({ "nvim-telescope/telescope-ghq.nvim" })
   use({ "delphinus/telescope-memo.nvim" })
   use({ "~/dev/src/github.com/lunarxlark/telescope-aws.nvim" })
-
-  -- debug consoleでのansi escape code対策
-  -- use({
-  --   "chrisbra/Colorizer",
-  --   setup = function()
-  --     vim.g.colorizer_auto_filetype = "dap-repl"
-  --     vim.g.colorizer_disable_bufleave = 1
-  --   end,
-  -- })
 end)
