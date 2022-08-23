@@ -76,9 +76,6 @@ packer.startup(function(use)
   use({ "nvim-neotest/neotest-go" })
   use({ "nvim-neotest/neotest-plenary" })
 
-  -- diagnostics
-  use({ "folke/trouble.nvim" })
-
   -- file type
   use({ "nanotee/sqls.nvim", ft = { "sql" } })
   use({ "kyoh86/vim-go-coverage", ft = { "go" } })
