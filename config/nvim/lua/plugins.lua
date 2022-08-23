@@ -1,3 +1,8 @@
+local present, packer = pcall(require, "packer")
+if not present then
+  return
+end
+
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local compile_path = vim.fn.stdpath("data") .. "/site/plugin/packer_compiled.lua"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -14,14 +19,9 @@ end
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup("PackerCompile", {}),
-  pattern = "*/nvim/lua/**/*.lua",
+  pattern = "*/nvim/**/*.lua",
   command = "source <afile> | PackerCompile",
 })
-
-local ok, packer = pcall(require, "packer")
-if not ok then
-  return
-end
 
 packer.init({
   compile_path = compile_path,
@@ -30,215 +30,78 @@ packer.init({
   },
 })
 
-packer.startup(function(use)
-  -- plugin manager
-  use({ "wbthomason/packer.nvim" })
+require("packer").startup(function(use)
+  use({ "wbthomason/packer.nvim" }) -- plugin manager
 
-  -- colorscheme
-  use({
-    "morhetz/gruvbox",
-    config = function()
-      require("config.gruvbox")
-    end,
-  })
+  -- common
+  use({ "kyazdani42/nvim-web-devicons" })
+  use({ "nvim-lua/plenary.nvim" })
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", })
 
-  -- startify
-  use({
-    "goolord/alpha-nvim",
-    config = function()
-      require("config.alpha")
-    end,
-  })
+  use({ "morhetz/gruvbox" }) -- colorscheme
+  use({ "hoob3rt/lualine.nvim" }) -- statusline
+  use({ "goolord/alpha-nvim" }) -- startify
+  use({ "lukas-reineke/indent-blankline.nvim" }) -- indent
+  use({ "lewis6991/gitsigns.nvim" })
+  use({ "iberianpig/tig-explorer.vim" }) -- git
+  use({ "akinsho/toggleterm.nvim" }) -- terminal
+  use({ "is0n/jaq-nvim" }) -- run task
+  use({ "phaazon/hop.nvim" }) -- motion
+  use({ "rainbowhxch/accelerated-jk.nvim" }) -- motion
+  use({ "numToStr/Comment.nvim" }) -- comment
+  use({ "folke/todo-comments.nvim" }) -- comment
+  use({ "simeji/winresizer" }) -- resize
+  use({ "nicwest/vim-camelsnek" }) -- camel<->snek
 
   -- lsp
-  use({
-    "williamboman/nvim-lsp-installer",
-    {
-      "neovim/nvim-lspconfig",
-      config = function()
-        require("config.lsp")
-      end,
-    },
-  })
-
-  use({
-    "simrat39/inlay-hints.nvim",
-    config = function()
-      require('inlay-hints').setup()
-    end,
-  })
-
-  use({
-    "folke/trouble.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require("config.trouble")
-    end,
-  })
-
-  use({ "nanotee/sqls.nvim", ft = { "sql" } })
-
-  -- treesitter
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("config.nvim-treesitter")
-    end,
-    run = ":TSUpdate",
-  })
-
-  -- outline
-  --use({ "simrat39/symbols-outline.nvim" })
-
-  -- fuzzy finder
-  use({
-    "nvim-telescope/telescope.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-      "nvim-telescope/telescope-github.nvim",
-      "nvim-telescope/telescope-ghq.nvim",
-      "delphinus/telescope-memo.nvim",
-      "~/dev/src/github.com/lunarxlark/telescope-aws.nvim",
-    },
-    config = function()
-      require("config.telescope")
-    end,
-  })
-
-  -- terminal
-  use({
-    "akinsho/toggleterm.nvim",
-    config = function()
-      require("config.toggleterm")
-    end,
-  })
-
-  -- statusline
-  use({
-    "hoob3rt/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require("config.lualine")
-    end,
-  })
+  use({ "williamboman/nvim-lsp-installer" })
+  use({ "neovim/nvim-lspconfig" })
+  use({ "SmiteshP/nvim-navic" })
+  use({ "simrat39/inlay-hints.nvim" })
 
   -- completion
-  use({
-    "hrsh7th/nvim-cmp",
-    requires = {
-      "hrsh7th/vim-vsnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "onsails/lspkind-nvim",
-    },
-    config = function()
-      require("config.nvim-cmp")
-    end,
-  })
+  use({ "hrsh7th/nvim-cmp" })
+  use({ "hrsh7th/vim-vsnip" })
+  use({ "hrsh7th/cmp-nvim-lsp" })
+  use({ "onsails/lspkind-nvim" })
 
   -- dap
-  use({
-    "mfussenegger/nvim-dap",
-    config = function()
-      require("config.nvim-dap")
-    end,
-  })
-
-  use({
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require("config.nvim-dap-ui")
-    end,
-    after = "nvim-dap",
-  })
-
+  use({ "mfussenegger/nvim-dap" })
+  use({ "rcarriga/nvim-dap-ui" })
   use({ "leoluz/nvim-dap-go" })
 
-  -- debug consoleでのansi escape code対策
-  use({
-    "chrisbra/Colorizer",
-    setup = function()
-      vim.g.colorizer_auto_filetype = "dap-repl"
-      vim.g.colorizer_disable_bufleave = 1
-    end,
-  })
-
-  -- comment
-  use({
-    "numToStr/Comment.nvim",
-    config = function()
-      require("config.comment")
-    end,
-  })
-
-  use({
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("config.todo-comments")
-    end,
-  })
-
   -- test
-  use({
-    "nvim-neotest/neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-neotest/neotest-go",
-      "nvim-neotest/neotest-plenary",
-    },
-    config = function()
-      require("config.neotest")
-    end,
-  })
+  use({ "nvim-neotest/neotest" })
+  use({ "antoinemadec/FixCursorHold.nvim" })
+  use({ "nvim-neotest/neotest-go" })
+  use({ "nvim-neotest/neotest-plenary" })
 
-  use({
-    "lewis6991/gitsigns.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("config.gitsigns")
-    end,
-  })
-
-  -- motion
-  use({ "phaazon/hop.nvim",
-    config = function()
-      require('hop').setup()
-    end })
-  use({
-    "rainbowhxch/accelerated-jk.nvim",
-    config = function()
-      require("config.accelerated-jk")
-    end,
-  })
-
-  -- indent
-  use({
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("config.indent-blankline")
-    end,
-  })
-
-  use({ "simeji/winresizer" })
-  use({ "iberianpig/tig-explorer.vim" })
-  use({ "nicwest/vim-camelsnek" })
-  use({
-    "is0n/jaq-nvim",
-    config = function()
-      require("config.jaq")
-    end,
-  })
+  -- diagnostics
+  use({ "folke/trouble.nvim" })
 
   -- file type
-  use({ "mattn/vim-goimports", ft = { "go" } })
-  use({ "mattn/vim-gomod", ft = { "gomod" } })
+  use({ "nanotee/sqls.nvim", ft = { "sql" } })
   use({ "kyoh86/vim-go-coverage", ft = { "go" } })
   use({ "mechatroner/rainbow_csv", ft = { "csv", "tsv" } })
   use({ "stephpy/vim-yaml", ft = { "yaml" } })
   use({ "cespare/vim-toml", ft = { "toml" } })
   use({ "b4b4r07/vim-ltsv", ft = { "ltsv" } })
   use({ "hashivim/vim-terraform", ft = { "terraform" } })
+
+  -- fuzzy finder
+  use({ "nvim-telescope/telescope.nvim" })
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use({ "nvim-telescope/telescope-github.nvim" })
+  use({ "nvim-telescope/telescope-ghq.nvim" })
+  use({ "delphinus/telescope-memo.nvim" })
+  use({ "~/dev/src/github.com/lunarxlark/telescope-aws.nvim" })
+
+  -- debug consoleでのansi escape code対策
+  -- use({
+  --   "chrisbra/Colorizer",
+  --   setup = function()
+  --     vim.g.colorizer_auto_filetype = "dap-repl"
+  --     vim.g.colorizer_disable_bufleave = 1
+  --   end,
+  -- })
 end)

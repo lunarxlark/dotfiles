@@ -1,3 +1,14 @@
+local present, lualine = pcall(require, "lualine")
+if not present then
+  return
+end
+
+local present, navic = pcall(require, "nvim-navic")
+if not present then
+  return
+end
+
+
 local symbols = {
   error = { icon = " ", fg = "#fb4934" },
   warn = { icon = " ", fg = "#fe8019" },
@@ -6,7 +17,7 @@ local symbols = {
   success = { icon = "﫠" },
 }
 
-require("lualine").setup({
+lualine.setup({
   options = {
     icons_enabled = true,
     theme = "gruvbox",
@@ -52,6 +63,7 @@ require("lualine").setup({
         update_in_insert = false,
         always_visible = true,
       },
+      { navic.get_location, cond = navic.is_available },
     },
     lualine_x = {},
     lualine_y = {

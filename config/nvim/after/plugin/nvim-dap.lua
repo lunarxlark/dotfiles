@@ -1,7 +1,13 @@
-local dap = require("dap")
-vim.fn.sign_define("DapBreakpoint", { text = "⛔", texthl = "", linehl = "", numhl = "" })
-vim.fn.sign_define("DapStopped", { text = "👉", texthl = "", linehl = "", numhl = "" })
+local present, dap = pcall(require, "dap")
+if not present then
+  return
+end
+
 --dap.set_log_level("TRACE")
+vim.fn.sign_define("DapBreakpoint", { text = "🐞", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "👉", texthl = "", linehl = "", numhl = "" })
+
+require("dap.ext.vscode").load_launchjs()
 
 dap.adapters.go = function(callback, config)
   local stdout = vim.loop.new_pipe(false)
@@ -60,3 +66,10 @@ dap.configurations.go = {
     program = "${fileDirname}/...",
   },
 }
+
+vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true,
+  silent = true })
