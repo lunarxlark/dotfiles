@@ -37,6 +37,17 @@ zinit ice \
 zinit light junegunn/fzf-bin
 
 
+# zoxide
+zinit wait"2" lucid \
+  from"gh-r" \
+  as"program" \
+  pick"zoxide-*/zoxide -> zoxide" \
+  cp"zoxide-*/completions/_zoxide -> _zoxide" \
+  atclone"./zoxide init zsh > init.zsh" \
+  atpull"%atclone" src"init.zsh" \
+  light-mode for @ajeetdsouza/zoxide
+
+
 # jq
 zinit wait'1' lucid \
   from"gh-r" \
