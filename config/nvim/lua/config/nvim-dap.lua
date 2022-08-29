@@ -1,5 +1,5 @@
-local present, dap = pcall(require, "dap")
-if not present then
+local called, dap = pcall(require, "dap")
+if not called then
   return
 end
 
@@ -67,9 +67,9 @@ dap.configurations.go = {
 
 require("dap.ext.vscode").load_launchjs()
 
-vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true,
-  silent = true })
+local nmap = require("util.keymap").nmap
+nmap("<F5>", "<cmd>lua require'dap'.continue()<CR>")
+nmap("<F10>", "<cmd>lua require'dap'.step_over()<CR>")
+nmap("<F11>", "<cmd>lua require'dap'.step_into()<CR>")
+nmap("<F12>", "<cmd>lua require'dap'.step_out()<CR>")
+nmap("<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")

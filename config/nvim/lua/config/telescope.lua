@@ -1,5 +1,5 @@
-local present, telescope = pcall(require, "telescope")
-if not present then
+local called, telescope = pcall(require, "telescope")
+if not called then
   return
 end
 
@@ -44,12 +44,9 @@ telescope.load_extension("ghq")
 telescope.load_extension("memo")
 telescope.load_extension("aws")
 
-
-vim.api.nvim_set_keymap("n", "<leader>v", "<cmd>Telescope find_files cwd=$XDG_CONFIG_HOME/nvim<CR>",
-  { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>Telescope find_files cwd=$GHQ_ROOT/github.com/lunarxlark/dotfiles<CR>",
-  { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", ",f", "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", ",rg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", ",b", "<cmd>Telescope buffers<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>sm", "<cmd>Telescope lsp_document_symbols<cr>", { noremap = true, silent = true })
+local nmap = require("util.keymap").nmap
+nmap("<leader>v", "<cmd>Telescope find_files cwd=$XDG_CONFIG_HOME/nvim<CR>")
+nmap(",f", "<cmd>Telescope find_files<cr>")
+nmap(",rg", "<cmd>Telescope live_grep<cr>")
+nmap(",b", "<cmd>Telescope buffers<cr>")
+nmap(",sm", "<cmd>Telescope lsp_document_symbols<cr>")

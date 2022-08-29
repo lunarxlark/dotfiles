@@ -26,4 +26,5 @@ jaq.setup({
   },
 })
 
-vim.api.nvim_set_keymap("n", "<leader>jq", "<cmd>Jaq<CR>", { noremap=true,silent = true })
+local nmap = require("util.keymap").nmap
+nmap("<leader>jq", "<cmd>Jaq<CR>")

@@ -1,5 +1,5 @@
-local present, todo = pcall(require, "todo-comments")
-if not present then
+local called, todo = pcall(require, "todo-comments")
+if not called then
   return
 end
 

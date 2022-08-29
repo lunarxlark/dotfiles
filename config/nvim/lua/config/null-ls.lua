@@ -1,5 +1,5 @@
-local ok, nullls = pcall(require, "null-ls")
-if not ok then
+local called, nullls = pcall(require, "null-ls")
+if not called then
   return
 end
 

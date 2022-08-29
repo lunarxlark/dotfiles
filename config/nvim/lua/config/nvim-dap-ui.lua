@@ -1,11 +1,11 @@
-local present, dapui = pcall(require, "dapui")
-if not present then
+local called, dapui = pcall(require, "dapui")
+if not called then
   return
 end
 
-vim.api.nvim_set_keymap("n", "<leader>D", "<cmd>lua require'dapui'.toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><leader>df", "<cmd>lua require'dapui'.eval()<CR>",
-  { noremap = true, silent = true })
+local nmap = require("util.keymap").nmap
+nmap("<leader>D", "<cmd>lua require'dapui'.toggle()<CR>")
+nmap("<leader><leader>df", "<cmd>lua require'dapui'.eval()<CR>")
 
 local dap = require("dap")
 dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -18,7 +18,6 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
-
 dapui.setup({
   layouts = {
     {
@@ -30,12 +29,13 @@ dapui.setup({
       },
       size = 40,
       position = "right",
-    }, {
+    },
+    {
       elements = {
         "repl",
       },
       size = 0.3,
       position = "bottom",
-    }
-  }
+    },
+  },
 })

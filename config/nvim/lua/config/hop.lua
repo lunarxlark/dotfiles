@@ -5,9 +5,6 @@ end
 
 hop.setup()
 
-vim.api.nvim_set_keymap("n", "<leader><leader>b",
-  "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",
-  { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><leader>a",
-  "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",
-  { noremap = true, silent = true })
+local nmap = require("util.keymap").nmap
+nmap("<leader><leader>b", "<cmd>HopWordBC<CR>")
+nmap("<leader><leader>a", "<cmd>HopWordAC<CR>")

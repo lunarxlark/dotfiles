@@ -1,5 +1,5 @@
-local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not ok then
+local called, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not called then
   return
 end
 

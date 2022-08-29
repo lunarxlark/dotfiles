@@ -1,5 +1,5 @@
-local present, lspconfig = pcall(require, "lspconfig")
-if not present then
+local called, lspconfig = pcall(require, "lspconfig")
+if not called then
   return
 end
 
@@ -11,37 +11,39 @@ vim.cmd([[autocmd BufWritePre *.py lua vim.lsp.buf.format]])
 --vim.cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.format]])
 --vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.format]])
 
-local lsp_installer_dir = vim.fn.stdpath("data") .. "/lsp_servers"
+local mason_pkg_dir = vim.fn.stdpath("data") .. "/mason/packages"
+local mason_bin_dir = vim.fn.stdpath("data") .. "/mason/bin"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>ss", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>sd", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+local nmap = require("util.keymap").nmap
+nmap("<leader>ss", "<cmd>lua vim.diagnostic.open_float()<CR>")
+nmap("<leader>sd", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+nmap("<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+nmap("<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>cl", "<cmd>lua vim.lsp.codelens.get()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>df", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>im", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>Sm", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rf", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ty", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ho", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+
+  local bnmap = require("util.keymap").bnmap
+  nmap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  bnmap(bufnr, "<leader>cl", "<cmd>lua vim.lsp.codelens.get()<CR>")
+  bnmap(bufnr, "<leader>df", "<cmd>lua vim.lsp.buf.definition()<CR>")
+  bnmap(bufnr, "<leader>im", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+  bnmap(bufnr, "<leader>Sm", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+  bnmap(bufnr, "<leader>rf", "<cmd>lua vim.lsp.buf.references()<CR>")
+  bnmap(bufnr, "<leader>ty", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+  bnmap(bufnr, "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  bnmap(bufnr, "<leader>ho", "<cmd>lua vim.lsp.buf.hover()<CR>")
 end
 
 -- sumneko
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-local sumneko_root_path = lsp_installer_dir .. "/sumneko_lua/extension/server/bin/"
+local sumneko_root_path = mason_pkg_dir .. "/lua-language-server/extension/server/bin"
 lspconfig.sumneko_lua.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -78,7 +80,7 @@ lspconfig.gopls.setup({
     require("inlay-hints").on_attach(c, b)
   end,
   capabilities = capabilities,
-  cmd = { lsp_installer_dir .. "/gopls/gopls", "serve" },
+  cmd = { mason_bin_dir .. "/gopls", "serve" },
   flags = {
     debounce_text_changes = 150,
   },
@@ -200,7 +202,7 @@ lspconfig.pyright.setup({
 lspconfig.terraformls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { lsp_installer_dir .. "/terraformls/terraform-ls", "serve" },
+  cmd = { mason_bin_dir .. "/terraform-ls", "serve" },
   filetypes = { "terraform" },
   flags = {
     debounce_text_changes = 150,
@@ -211,14 +213,14 @@ lspconfig.terraformls.setup({
 lspconfig.tsserver.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { lsp_installer_dir .. "/tsserver/node_modules/.bin/typescript-language-server", "--stdio" },
+  cmd = { mason_bin_dir .. "/typescript-language-server", "--stdio" },
 })
 
 -- yamlls
 lspconfig.yamlls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { lsp_installer_dir .. "/yamlls/node_modules/.bin/yaml-language-server", "--stdio" },
+  cmd = { mason_bin_dir .. "/yaml-language-server", "--stdio" },
   filetypes = { "yaml" },
 })
 
@@ -237,7 +239,7 @@ lspconfig.dockerls.setup({
 
 -- sqls
 lspconfig.sqls.setup({
-  cmd = { lsp_installer_dir .. "/sqls/sqls", "--config", "~/.config/sqls/config.yaml" },
+  cmd = { mason_bin_dir .. "/sqls", "--config", vim.fn.stdpath("config") .. "/sqls/config.yaml" },
   on_attach = function(c, b)
     on_attach(c, b)
     require("sqls").on_attach(c, b)

@@ -1,13 +1,12 @@
-local present, lualine = pcall(require, "lualine")
-if not present then
+local called1, lualine = pcall(require, "lualine")
+if not called1 then
   return
 end
 
-local present, navic = pcall(require, "nvim-navic")
-if not present then
+local called2, navic = pcall(require, "nvim-navic")
+if not called2 then
   return
 end
-
 
 local symbols = {
   error = { icon = " ", fg = "#fb4934" },
@@ -26,7 +25,7 @@ lualine.setup({
     disabled_filetypes = {
       statusline = { "dap-repl", "dapui_stacks", "dapui_watches", "dapui_scopes", "dapui_breakpoints" },
       winbar = { "dap-repl", "dapui_stacks", "dapui_watches", "dapui_scopes", "dapui_breakpoints" },
-    }
+    },
   },
   sections = {
     lualine_a = { "mode" },

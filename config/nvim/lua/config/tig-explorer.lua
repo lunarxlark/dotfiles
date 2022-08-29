@@ -1,8 +1,9 @@
-local present, _ = pcall(require, "tig-explorer")
-if not present then
+local called, _ = pcall(require, "tig-explorer")
+if not called then
   return
 end
 
-vim.api.nvim_set_keymap("n", "<leader>T", "<cmd>TigOpenProjectRootDir<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>Tc", "<cmd>TigOpenCurrentFile<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>Tb", "<cmd>TigBlame<cr>", { noremap = true, silent = true })
+local nmap = require("util.keymap").nmap
+nmap("<leader>T", "<cmd>TigOpenProjectRootDir<cr>")
+nmap("<leader>Tc", "<cmd>TigOpenCurrentFile<cr>")
+nmap("<leader>Tb", "<cmd>TigBlame<cr>")

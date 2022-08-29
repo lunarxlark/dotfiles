@@ -1,8 +1,3 @@
-local present, packer = pcall(require, "packer")
-if not present then
-  return
-end
-
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local compile_path = vim.fn.stdpath("data") .. "/site/plugin/packer_compiled.lua"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -23,18 +18,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   command = "source <afile> | PackerCompile",
 })
 
-packer.init({
+require("packer").init({
   compile_path = compile_path,
   display = {
     open_fn = require("packer.util").float,
   },
 })
 
-local load = function(opt)
-  require("config." .. opt)
-end
-
-packer.startup(function(use)
+local load = require("util.packer").load
+require("packer").startup(function(use)
   -- plugin manager
   use({ "wbthomason/packer.nvim" })
 
@@ -42,6 +34,18 @@ packer.startup(function(use)
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = load("nvim-treesitter") })
+
+  -- completion
+  use({
+    "hrsh7th/nvim-cmp",
+    requires = {
+      { "hrsh7th/cmp-buffer" },
+      "hrsh7th/cmp-nvim-lsp",
+      { "hrsh7th/cmp-nvim-lsp-signature-help" },
+      { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+    },
+    config = load("nvim-cmp"),
+  })
 
   -- lsp
   use({ "williamboman/mason.nvim", config = load("mason") })
@@ -65,11 +69,6 @@ packer.startup(function(use)
   -- formatter
   use({ "jose-elias-alvarez/null-ls.nvim", config = load("null-ls") })
 
-  -- completion
-  use({ "hrsh7th/nvim-cmp", config = load("nvim-cmp") })
-  use({ "hrsh7th/cmp-nvim-lsp" })
-  use({ "onsails/lspkind-nvim" })
-
   -- dap
   use({ "mfussenegger/nvim-dap", config = load("nvim-dap") })
   use({ "rcarriga/nvim-dap-ui", config = load("nvim-dap-ui") })
@@ -77,8 +76,8 @@ packer.startup(function(use)
 
   -- test
   use({ "nvim-neotest/neotest", requires = { "antoinemadec/FixCursorHold.nvim" }, config = load("neotest") })
-  use({ "nvim-neotest/neotest-go" })
-  use({ "nvim-neotest/neotest-plenary" })
+  use({ "nvim-neotest/neotest-go", ft = { "go" } })
+  use({ "nvim-neotest/neotest-plenary", ft = { "lua" } })
 
   -- visual
   use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify

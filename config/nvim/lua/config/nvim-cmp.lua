@@ -1,5 +1,5 @@
-local present, cmp = pcall(require, "cmp")
-if not present then
+local called, cmp = pcall(require, "cmp")
+if not called then
   return
 end
 
@@ -13,19 +13,17 @@ cmp.setup({
         path = "[Path]",
         buffer = "[Buf]",
         nvim_lsp = "[LSP]",
-        vsnip = "[Vsnip]",
-        cmp_tabnine = "[Tabnine]",
+        -- vsnip = "[Vsnip]",
       })[entry.source.name]
-      vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
       vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
       return vim_item
     end,
   },
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     vim.fn["vsnip#anonymous"](args.body)
+  --   end,
+  -- },
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
@@ -39,7 +37,7 @@ cmp.setup({
     { name = "path" },
     { name = "buffer" },
     { name = "nvim_lsp" },
-    { name = "vnip" },
-    { name = "cmp_tabnine" },
+    -- { name = "vnip" },
+    -- { name = "cmp_tabnine" },
   },
 })

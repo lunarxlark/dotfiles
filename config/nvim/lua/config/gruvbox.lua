@@ -1,5 +1,5 @@
-local ok, gruvbox = pcall(require, "gruvbox")
-if not ok then
+local called, gruvbox = pcall(require, "gruvbox")
+if not called then
   return
 end
 
