@@ -30,50 +30,87 @@ packer.init({
   },
 })
 
+local load = function(opt)
+  require("config." .. opt)
+end
+
 packer.startup(function(use)
-  use({ "wbthomason/packer.nvim" }) -- plugin manager
+  -- plugin manager
+  use({ "wbthomason/packer.nvim" })
 
   -- common
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-lua/plenary.nvim" })
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", })
-
-  use({ "hoob3rt/lualine.nvim" }) -- statusline
-  use({ "goolord/alpha-nvim" }) -- startify
-  use({ "lukas-reineke/indent-blankline.nvim" }) -- indent
-  use({ "lewis6991/gitsigns.nvim" })
-  use({ "iberianpig/tig-explorer.vim" }) -- git
-  use({ "akinsho/toggleterm.nvim" }) -- terminal
-  use({ "is0n/jaq-nvim" }) -- run task
-  use({ "phaazon/hop.nvim" }) -- motion
-  use({ "rainbowhxch/accelerated-jk.nvim" }) -- motion
-  use({ "numToStr/Comment.nvim" }) -- comment
-  use({ "folke/todo-comments.nvim" }) -- comment
-  use({ "simeji/winresizer" }) -- resize
-  use({ "nicwest/vim-camelsnek" }) -- camel<->snek
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = load("nvim-treesitter") })
 
   -- lsp
-  use({ "williamboman/nvim-lsp-installer" })
-  use({ "neovim/nvim-lspconfig" })
-  use({ "SmiteshP/nvim-navic" })
-  use({ "simrat39/inlay-hints.nvim" })
+  use({ "williamboman/mason.nvim", config = load("mason") })
+  use({ "williamboman/mason-lspconfig.nvim", config = load("mason-lspconfig") })
+  use({ "neovim/nvim-lspconfig", config = load("nvim-lspconfig") })
+  use({ "simrat39/inlay-hints.nvim", config = load("inlay-hints") })
+
+  -- fuzzy finder
+  use({
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      "nvim-telescope/telescope-github.nvim",
+      "nvim-telescope/telescope-ghq.nvim",
+      "delphinus/telescope-memo.nvim",
+      "~/dev/src/github.com/lunarxlark/telescope-aws.nvim",
+    },
+    config = load("telescope"),
+  })
+
+  -- formatter
+  use({ "jose-elias-alvarez/null-ls.nvim", config = load("null-ls") })
 
   -- completion
-  use({ "hrsh7th/nvim-cmp" })
-  use({ "hrsh7th/vim-vsnip" })
+  use({ "hrsh7th/nvim-cmp", config = load("nvim-cmp") })
   use({ "hrsh7th/cmp-nvim-lsp" })
   use({ "onsails/lspkind-nvim" })
 
   -- dap
-  use({ "mfussenegger/nvim-dap" })
-  use({ "rcarriga/nvim-dap-ui" })
-  use({ "leoluz/nvim-dap-go" })
+  use({ "mfussenegger/nvim-dap", config = load("nvim-dap") })
+  use({ "rcarriga/nvim-dap-ui", config = load("nvim-dap-ui") })
+  use({ "leoluz/nvim-dap-go", ft = { "go" } })
 
   -- test
-  use({ "nvim-neotest/neotest" })
-  use({ "antoinemadec/FixCursorHold.nvim" })
+  use({ "nvim-neotest/neotest", requires = { "antoinemadec/FixCursorHold.nvim" }, config = load("neotest") })
   use({ "nvim-neotest/neotest-go" })
   use({ "nvim-neotest/neotest-plenary" })
+
+  -- visual
+  use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify
+  use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
+  use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
+
+  -- terminal
+  use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
+
+  -- run task
+  use({ "is0n/jaq-nvim", config = load("jaq") })
+
+  -- motion
+  use({ "phaazon/hop.nvim", config = load("hop") })
+  use({ "rainbowhxch/accelerated-jk.nvim", config = load("accelerated-jk") })
+
+  -- comment
+  use({ "numToStr/Comment.nvim", config = load("Comment") })
+  use({ "B4mbus/todo-comments.nvim", config = load("todo-comments") })
+
+  -- window resize
+  use({ "simeji/winresizer" })
+
+  -- camel<->snek
+  use({ "nicwest/vim-camelsnek" })
+
+  -- statusline
+  use({ "hoob3rt/lualine.nvim", config = load("lualine") })
+  use({ "SmiteshP/nvim-navic" })
+
+  -- git
+  use({ "iberianpig/tig-explorer.vim", config = load("tig-explorer") })
 
   -- file type
   use({ "nanotee/sqls.nvim", ft = { "sql" } })
@@ -84,14 +121,6 @@ packer.startup(function(use)
   use({ "b4b4r07/vim-ltsv", ft = { "ltsv" } })
   use({ "hashivim/vim-terraform", ft = { "terraform" } })
 
-  -- fuzzy finder
-  use({ "nvim-telescope/telescope.nvim" })
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-  use({ "nvim-telescope/telescope-github.nvim" })
-  use({ "nvim-telescope/telescope-ghq.nvim" })
-  use({ "delphinus/telescope-memo.nvim" })
-  use({ "~/dev/src/github.com/lunarxlark/telescope-aws.nvim" })
-
   -- colorscheme
-  use({ "morhetz/gruvbox" })
+  use({ "ellisonleao/gruvbox.nvim", config = load("gruvbox") })
 end)
