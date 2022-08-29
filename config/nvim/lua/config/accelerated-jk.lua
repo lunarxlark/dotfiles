@@ -7,6 +7,7 @@ vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
 vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
 
 accele.setup({
-  mode = 'time_driven',
-  acceleration_table = { 2, 3, 5, 7, 10 },
+  mode = "time_driven",
+  accelation_limit = 350,
+  acceleration_table = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
 })
