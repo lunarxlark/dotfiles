@@ -14,13 +14,6 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 vim.opt.cursorline = true -- カーソル位置(行)の非表示
 vim.opt.virtualedit = "block" -- visual-block時、行末を超えて選択可能にする
-vim.opt.list = true -- 不可視文字を表示
-vim.opt.listchars = {
-  tab = ">-",
-  trail = "-",
-  extends = ">",
-  precedes = "<",
-}
 --opt.fixendofline = false
 --opt.eol = false -- ファイル末尾にeolを付けない
 vim.opt.foldmethod = "marker"
