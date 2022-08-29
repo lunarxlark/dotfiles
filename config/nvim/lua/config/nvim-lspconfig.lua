@@ -4,11 +4,12 @@ if not present then
 end
 
 -- Setup language buffer auto-formatting sync
-vim.cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.format { async = true }]])
-vim.cmd([[autocmd BufWritePre *.php lua vim.lsp.buf.format { async = true ]])
-vim.cmd([[autocmd BufWritePre *.py lua vim.lsp.buf.format { async = true }]])
-vim.cmd([[autocmd BufWritePre *.lua lua vim.lsp.buf.format { async = true }]])
-vim.cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.format { async = true }]])
+vim.cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.format ]])
+vim.cmd([[autocmd BufWritePre *.php lua vim.lsp.buf.format]])
+vim.cmd([[autocmd BufWritePre *.py lua vim.lsp.buf.format]])
+--vim.cmd([[autocmd BufWritePre *.lua lua vim.lsp.buf.format]])
+--vim.cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.format]])
+--vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.format]])
 
 local lsp_installer_dir = vim.fn.stdpath("data") .. "/lsp_servers"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -74,7 +75,7 @@ lspconfig.gopls.setup({
   on_attach = function(c, b)
     on_attach(c, b)
     require("nvim-navic").attach(c, b)
-    require('inlay-hints').on_attach(c, b)
+    require("inlay-hints").on_attach(c, b)
   end,
   capabilities = capabilities,
   cmd = { lsp_installer_dir .. "/gopls/gopls", "serve" },
@@ -239,7 +240,7 @@ lspconfig.sqls.setup({
   cmd = { lsp_installer_dir .. "/sqls/sqls", "--config", "~/.config/sqls/config.yaml" },
   on_attach = function(c, b)
     on_attach(c, b)
-    require('sqls').on_attach(c, b)
+    require("sqls").on_attach(c, b)
   end,
   capabilities = capabilities,
   filetypes = { "sql" },
