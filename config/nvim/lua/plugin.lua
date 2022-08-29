@@ -88,7 +88,7 @@ require("packer").startup(function(use)
   use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
 
   -- run task
-  use({ "is0n/jaq-nvim", config = load("jaq") })
+  use({ "is0n/jaq-nvim", config = load("jaq"), cmd = "Jaq" })
 
   -- motion
   use({ "phaazon/hop.nvim", config = load("hop") })
@@ -99,7 +99,7 @@ require("packer").startup(function(use)
   use({ "B4mbus/todo-comments.nvim", config = load("todo-comments") })
 
   -- window resize
-  use({ "simeji/winresizer" })
+  use({ "simeji/winresizer", cmd = "WinResizerStartResize" })
 
   -- camel<->snek
   use({ "nicwest/vim-camelsnek" })
