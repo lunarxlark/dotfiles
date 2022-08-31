@@ -30,22 +30,27 @@ require("packer").startup(function(use)
   -- plugin manager
   use({ "wbthomason/packer.nvim" })
 
+  use({ "lewis6991/impatient.nvim" })
+
   -- common
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = load("nvim-treesitter") })
+  use({ "antoinemadec/FixCursorHold.nvim" })
 
   -- completion
+  use({ "L3MON4D3/LuaSnip" })
   use({
     "hrsh7th/nvim-cmp",
     requires = {
-      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       "hrsh7th/cmp-nvim-lsp",
-      { "hrsh7th/cmp-nvim-lsp-signature-help" },
-      { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+      { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
     },
     config = load("nvim-cmp"),
   })
+  use({ "saadparwaiz1/cmp_luasnip" })
 
   -- lsp
   use({ "williamboman/mason.nvim", config = load("mason") })
@@ -75,14 +80,15 @@ require("packer").startup(function(use)
   use({ "leoluz/nvim-dap-go", ft = { "go" } })
 
   -- test
-  use({ "nvim-neotest/neotest", requires = { "antoinemadec/FixCursorHold.nvim" }, config = load("neotest") })
-  use({ "nvim-neotest/neotest-go", ft = { "go" } })
-  use({ "nvim-neotest/neotest-plenary", ft = { "lua" } })
+  use({ "nvim-neotest/neotest", config = load("neotest") })
+  use({ "nvim-neotest/neotest-go", tag = "2ad3c27" })
+  use({ "nvim-neotest/neotest-plenary" })
 
   -- visual
   use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify
   use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
   use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
+  use({ "stevearc/dressing.nvim", config = load("dressing") })
 
   -- terminal
   use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
