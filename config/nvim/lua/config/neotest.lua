@@ -15,8 +15,6 @@ end
 
 vim.cmd([[
   hi! link NeotestAdapterName GruvboxRedBold
-  hi! link NeotestExpandMarker GruvboxGray
-  hi! link NeotestIndent GruvboxGray
 
   hi! link NeotestDir GruvboxAquaBold
   hi! link NeotestFile GruvboxAqua
