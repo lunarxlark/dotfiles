@@ -13,6 +13,23 @@ if not called3 then
   return
 end
 
+vim.cmd([[
+  hi! link NeotestAdapterName GruvboxRedBold
+  hi! link NeotestExpandMarker GruvboxGray
+  hi! link NeotestIndent GruvboxGray
+
+  hi! link NeotestDir GruvboxAquaBold
+  hi! link NeotestFile GruvboxAqua
+  hi! link NeotestTarget GruvboxBlue
+  hi! link NeotestTest GruvboxBlue
+  hi! link NeotestNamespace GruvboxBlue
+
+  hi! link NeotestPassed GruvboxGreen
+  hi! link NeotestFailed GruvboxRed
+  hi! link NeotestRunning GruvboxOrange
+  hi! link NeotestSkipped GruvboxYello
+]])
+
 neotest.setup({
   icons = {
     running = "↻",
