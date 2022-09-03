@@ -25,7 +25,7 @@ vim.cmd([[
   hi! link NeotestPassed GruvboxGreen
   hi! link NeotestFailed GruvboxRed
   hi! link NeotestRunning GruvboxOrange
-  hi! link NeotestSkipped GruvboxYello
+  hi! link NeotestSkipped GruvboxYellow
 ]])
 
 neotest.setup({
