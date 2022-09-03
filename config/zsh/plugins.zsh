@@ -38,6 +38,7 @@ zinit light junegunn/fzf-bin
 
 
 # zoxide
+zinit wait"0" lucid \
   from"gh-r" \
   as"program" \
   pick"zoxide-*/zoxide -> zoxide" \
@@ -57,7 +58,7 @@ zinit wait'1' lucid \
 
 
 # fd
-zinit wait'1' lucid blockf nocompletions \
+zinit wait'0' lucid blockf nocompletions \
   from"gh-r" \
   as'program' \
   cp"fd-*/autocomplete/_fd -> _fd" \
@@ -68,7 +69,7 @@ zinit wait'1' lucid blockf nocompletions \
 
 
 # exa
-zinit wait'1' lucid \
+zinit wait'0' lucid \
   from"gh-r" \
   as"program" \
   pick"**/exa" \
@@ -97,7 +98,7 @@ zinit wait'1' lucid \
 
 
 # direnv
-zinit wait'!1' lucid \
+zinit wait'0' lucid \
   from"gh-r" \
   as"program" \
   mv"direnv* -> direnv" \
@@ -109,7 +110,7 @@ zinit wait'!1' lucid \
 
 
 # ghq
-zinit wait'1' lucid \
+zinit wait'0' lucid \
   from"gh-r" \
   as"program" \
   pick"ghq*/ghq" \

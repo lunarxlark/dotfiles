@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------#
 # Base                                                                         #
 #------------------------------------------------------------------------------#
-HISTFILE=$ZDATADIR/zsh_history
+HISTFILE=${XDG_DATA_HOME}/zsh/zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTORY_IGNORE="(ls|ll|cd|pwd|zsh|exit|..)"
