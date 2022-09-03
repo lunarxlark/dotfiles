@@ -1,42 +1,45 @@
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local compile_path = vim.fn.stdpath("data") .. "/site/plugin/packer_compiled.lua"
+local install_packer_cmd = { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
+  vim.fn.system(install_packer_cmd)
   vim.cmd([[packadd packer.nvim]])
+end
+
+local called, packer = pcall(require, "packer")
+if not called then
+  return
 end
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup("PackerCompile", {}),
-  pattern = "*/nvim/**/*.lua",
+  pattern = vim.fn.stdpath("config") .. "/lua/**/*.lua",
   command = "source <afile> | PackerCompile",
 })
 
-require("packer").init({
+packer.init({
   compile_path = compile_path,
   display = {
     open_fn = require("packer.util").float,
   },
 })
 
-local load = require("util.packer").load
-require("packer").startup(function(use)
+packer.startup(function(use)
+  local load = require("util.packer").load
+
+  -- speed up loading
+  use({ "lewis6991/impatient.nvim" })
+
   -- plugin manager
   use({ "wbthomason/packer.nvim" })
-
-  use({ "lewis6991/impatient.nvim" })
 
   -- common
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = load("nvim-treesitter") })
   use({ "antoinemadec/FixCursorHold.nvim" })
+  use({ "SmiteshP/nvim-navic" })
+  use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
 
   -- completion
   use({ "L3MON4D3/LuaSnip" })
@@ -71,7 +74,7 @@ require("packer").startup(function(use)
     config = load("telescope"),
   })
 
-  -- formatter
+  -- formatter, diagnostics
   use({ "jose-elias-alvarez/null-ls.nvim", config = load("null-ls") })
 
   -- dap
@@ -81,17 +84,15 @@ require("packer").startup(function(use)
 
   -- test
   use({ "nvim-neotest/neotest", config = load("neotest") })
-  use({ "nvim-neotest/neotest-go", tag = "2ad3c27" })
+  use({ "nvim-neotest/neotest-go" })
   use({ "nvim-neotest/neotest-plenary" })
+  use({ "haydenmeade/neotest-jest" })
 
   -- visual
   use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify
   use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
   use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
   use({ "stevearc/dressing.nvim", config = load("dressing") })
-
-  -- terminal
-  use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
 
   -- run task
   use({ "is0n/jaq-nvim", config = load("jaq"), cmd = "Jaq" })
@@ -112,7 +113,6 @@ require("packer").startup(function(use)
 
   -- statusline
   use({ "hoob3rt/lualine.nvim", config = load("lualine") })
-  use({ "SmiteshP/nvim-navic" })
 
   -- git
   use({ "iberianpig/tig-explorer.vim", config = load("tig-explorer") })
@@ -121,11 +121,11 @@ require("packer").startup(function(use)
   use({ "nanotee/sqls.nvim", ft = { "sql" } })
   use({ "kyoh86/vim-go-coverage", ft = { "go" } })
   use({ "mechatroner/rainbow_csv", ft = { "csv", "tsv" } })
-  use({ "stephpy/vim-yaml", ft = { "yaml" } })
-  use({ "cespare/vim-toml", ft = { "toml" } })
-  use({ "b4b4r07/vim-ltsv", ft = { "ltsv" } })
-  use({ "hashivim/vim-terraform", ft = { "terraform" } })
+  use({ "moznion/vim-ltsv", ft = { "ltsv" } })
 
   -- colorscheme
   use({ "ellisonleao/gruvbox.nvim", config = load("gruvbox") })
+
+  -- test
+  use({ "~/dev/src/github.com/lunarxlark/test.nvim" })
 end)
