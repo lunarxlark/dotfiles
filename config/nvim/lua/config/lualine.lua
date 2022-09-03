@@ -36,17 +36,6 @@ lualine.setup({
     },
     lualine_c = {
       {
-        "diff",
-        colored = true,
-        diff_color = {
-          added = { "DiffAdd" },
-          modified = { "DiffChange" },
-          removed = { "DiffDelete" },
-        },
-        symbols = { added = "+", modified = "~", removed = "-" },
-        source = nil,
-      },
-      {
         "diagnostics",
         sources = { "nvim_diagnostic" },
         sections = { "error", "warn", "info", "hint" },
@@ -68,7 +57,19 @@ lualine.setup({
       },
       { navic.get_location, cond = navic.is_available },
     },
-    lualine_x = {},
+    lualine_x = {
+      {
+        "diff",
+        colored = true,
+        diff_color = {
+          added = { "DiffAdd" },
+          modified = { "DiffChange" },
+          removed = { "DiffDelete" },
+        },
+        symbols = { added = "+", modified = "~", removed = "-" },
+        source = nil,
+      },
+    },
     lualine_y = {
       {
         "fileformat",
