@@ -45,7 +45,10 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 local sumneko_root_path = mason_pkg_dir .. "/lua-language-server/extension/server/bin"
 lspconfig.sumneko_lua.setup({
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
+  end,
   capabilities = capabilities,
   cmd = { sumneko_root_path .. "/lua-language-server", "-E", sumneko_root_path .. "/main.lua" },
   flags = {
@@ -74,10 +77,10 @@ lspconfig.sumneko_lua.setup({
 
 -- gopls
 lspconfig.gopls.setup({
-  on_attach = function(c, b)
-    on_attach(c, b)
-    require("nvim-navic").attach(c, b)
-    require("inlay-hints").on_attach(c, b)
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
+    require("inlay-hints").on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   cmd = { mason_bin_dir .. "/gopls", "serve" },
@@ -95,7 +98,7 @@ lspconfig.gopls.setup({
       },
       completeUnimported = true,
       hoverKind = "SynopsisDocumentation",
-      staticcheck = true,
+      --staticcheck = true, -- replace to golangci-lint by null-ls
       directoryFilters = { "-debug" },
       matcher = "fuzzy",
       usePlaceholders = true,
