@@ -13,6 +13,11 @@ if not called3 then
   return
 end
 
+local called4, neotest_jest = pcall(require, "neotest-jest")
+if not called4 then
+  return
+end
+
 vim.cmd([[
   hi! link NeotestAdapterName GruvboxRedBold
 
@@ -35,6 +40,14 @@ neotest.setup({
   adapters = {
     neotest_plenary,
     neotest_go,
+    neotest_jest({
+      jestCommand = "npm test --",
+      jestConfigFile = "jest.config.js",
+      env = { CI = true },
+      cwd = function()
+        return vim.fn.getcwd()
+      end,
+    }),
   },
   config = {
     floating = {
