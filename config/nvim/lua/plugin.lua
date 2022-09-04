@@ -90,6 +90,7 @@ packer.startup(function(use)
 
   -- visual
   use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify
+  use({ "rcarriga/nvim-notify", config = load("nvim-notify") })
   use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
   use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
   use({ "stevearc/dressing.nvim", config = load("dressing") })
