@@ -3,14 +3,6 @@ if not called then
   return
 end
 
--- Setup language buffer auto-formatting sync
-vim.cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.format ]])
-vim.cmd([[autocmd BufWritePre *.php lua vim.lsp.buf.format]])
-vim.cmd([[autocmd BufWritePre *.py lua vim.lsp.buf.format]])
---vim.cmd([[autocmd BufWritePre *.lua lua vim.lsp.buf.format]])
---vim.cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.format]])
---vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.format]])
-
 local mason_pkg_dir = vim.fn.stdpath("data") .. "/mason/packages"
 local mason_bin_dir = vim.fn.stdpath("data") .. "/mason/bin"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
