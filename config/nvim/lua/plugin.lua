@@ -57,6 +57,7 @@ packer.startup(function(use)
   use({ "saadparwaiz1/cmp_luasnip" })
 
   -- lsp
+  use({ "folke/lua-dev.nvim" })
   use({ "williamboman/mason.nvim", config = load("mason") })
   use({ "williamboman/mason-lspconfig.nvim", config = load("mason-lspconfig") })
   use({ "neovim/nvim-lspconfig", config = load("nvim-lspconfig") })

@@ -4,6 +4,12 @@ if not lspconfig_ok then
   return
 end
 
+local luadev_ok, luadev = pcall(require, "lua-dev")
+if not luadev_ok then
+  vim.notify("'lua-dev' not found", "warn")
+  return
+end
+
 local mason_pkg_dir = vim.fn.stdpath("data") .. "/mason/packages"
 local mason_bin_dir = vim.fn.stdpath("data") .. "/mason/bin"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -37,36 +43,41 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 local sumneko_root_path = mason_pkg_dir .. "/lua-language-server/extension/server/bin"
-lspconfig.sumneko_lua.setup({
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    require("nvim-navic").attach(client, bufnr)
-  end,
-  capabilities = capabilities,
-  cmd = { sumneko_root_path .. "/lua-language-server", "-E", sumneko_root_path .. "/main.lua" },
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    Lua = {
-      runtime = {
-        version = "LuaJIT",
-        path = runtime_path,
-      },
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        checkThirdParty = false,
-        preloadFileSize = 600,
-        maxPreload = 3200,
-      },
-      telemetry = {
-        enable = false,
+
+local luadev_settings = luadev.setup({
+  lspconfig = {
+    cmd = { sumneko_root_path .. "/lua-language-server", "-E", sumneko_root_path .. "/main.lua" },
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      require("nvim-navic").attach(client, bufnr)
+    end,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT",
+          path = runtime_path,
+        },
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          checkThirdParty = false,
+          preloadFileSize = 600,
+          maxPreload = 3200,
+        },
+        telemetry = {
+          enable = false,
+        },
       },
     },
   },
 })
+
+lspconfig.sumneko_lua.setup(luadev_settings)
 
 -- gopls
 lspconfig.gopls.setup({
