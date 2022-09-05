@@ -10,24 +10,35 @@ if not luadev_ok then
   return
 end
 
+local cmp_lsp_ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_lsp_ok then
+  vim.notify("'cmp_nvim_lsp' not found", "warn")
+  return
+end
+
+local navic_ok, navic = pcall(require, "nvim-navic")
+if not navic_ok then
+  vim.notify("'navic' not found", "warn")
+  return
+end
+
 local mason_pkg_dir = vim.fn.stdpath("data") .. "/mason/packages"
 local mason_bin_dir = vim.fn.stdpath("data") .. "/mason/bin"
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local nmap = require("util.keymap").nmap
-nmap("<leader>ss", "<cmd>lua vim.diagnostic.open_float()<CR>")
-nmap("<leader>sd", "<cmd>lua vim.diagnostic.setloclist()<CR>")
-nmap("<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-nmap("<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
+  local nmap = require("util.keymap").nmap
+  nmap("<leader>ss", "<cmd>lua vim.diagnostic.open_float()<CR>")
+  nmap("<leader>sd", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+  nmap("<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+  nmap("<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+
   local bnmap = require("util.keymap").bnmap
-  nmap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  bnmap(bufnr, "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
   bnmap(bufnr, "<leader>cl", "<cmd>lua vim.lsp.codelens.get()<CR>")
   bnmap(bufnr, "<leader>df", "<cmd>lua vim.lsp.buf.definition()<CR>")
   bnmap(bufnr, "<leader>im", "<cmd>lua vim.lsp.buf.implementation()<CR>")
@@ -36,6 +47,8 @@ local on_attach = function(client, bufnr)
   bnmap(bufnr, "<leader>ty", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
   bnmap(bufnr, "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   bnmap(bufnr, "<leader>ho", "<cmd>lua vim.lsp.buf.hover()<CR>")
+
+  navic.attach(client, bufnr)
 end
 
 -- sumneko
@@ -48,10 +61,7 @@ local luadev_settings = luadev.setup({
   lspconfig = {
     cmd = { sumneko_root_path .. "/lua-language-server", "-E", sumneko_root_path .. "/main.lua" },
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      require("nvim-navic").attach(client, bufnr)
-    end,
+    on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
     },
