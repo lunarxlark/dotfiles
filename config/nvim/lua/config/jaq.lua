@@ -1,5 +1,6 @@
-local present, jaq = pcall(require, "jaq-nvim")
-if not present then
+local jaq_ok, jaq = pcall(require, "jaq-nvim")
+if not jaq_ok then
+  vim.notify("'jaq-nvim' not found", "warn")
   return
 end
 

@@ -1,9 +1,10 @@
-local called, _ = pcall(require, "nvim-treesitter.configs")
-if not called then
+local ts_config_ok, ts_config = pcall(require, "nvim-treesitter.configs")
+if not ts_config_ok then
+  vim.notify("'nvim-treesitter.configs' not found", "warn")
   return
 end
 
-require("nvim-treesitter.configs").setup({
+ts_config.setup({
   ensure_installed = {
     "comment",
     "bash",

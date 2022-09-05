@@ -1,5 +1,6 @@
-local present, hop = pcall(require, "hop")
-if not present then
+local hop_ok, hop = pcall(require, "hop")
+if not hop_ok then
+  vim.notify("'hop' not found", "warn")
   return
 end
 

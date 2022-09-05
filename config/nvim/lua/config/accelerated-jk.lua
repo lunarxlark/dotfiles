@@ -1,9 +1,10 @@
-local present, accele = pcall(require, "accelerated-jk")
-if not present then
+local accelerated_ok, accelerated = pcall(require, "accelerated-jk")
+if not accelerated_ok then
+  vim.notify("'accelerated-jk' not found", "warn")
   return
 end
 
-accele.setup({
+accelerated.setup({
   mode = "time_driven",
   accelation_limit = 350,
   acceleration_table = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },

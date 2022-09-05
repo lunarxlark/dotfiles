@@ -1,10 +1,12 @@
-local called1, lualine = pcall(require, "lualine")
-if not called1 then
+local lualine_ok, lualine = pcall(require, "lualine")
+if not lualine_ok then
+  vim.notify("'lualine' not found", "warn")
   return
 end
 
-local called2, navic = pcall(require, "nvim-navic")
-if not called2 then
+local navic_ok, navic = pcall(require, "nvim-navic")
+if not navic_ok then
+  vim.notify("'nvim-navic' not found", "warn")
   return
 end
 

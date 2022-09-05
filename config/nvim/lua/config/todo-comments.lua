@@ -1,5 +1,6 @@
-local called, todo = pcall(require, "todo-comments")
-if not called then
+local todo_ok, todo = pcall(require, "todo-comments")
+if not todo_ok then
+  vim.notify("'todo-comments' not found", "warn")
   return
 end
 

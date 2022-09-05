@@ -1,5 +1,6 @@
-local called, mason = pcall(require, "mason")
-if not called then
+local mason_ok, mason = pcall(require, "mason")
+if not mason_ok then
+  vim.notify("'mason' not found", "warn")
   return
 end
 

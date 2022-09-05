@@ -8,6 +8,7 @@ end
 
 local called, packer = pcall(require, "packer")
 if not called then
+  vim.notify("'packer' not found", "warn")
   return
 end
 
@@ -116,7 +117,11 @@ packer.startup(function(use)
   use({ "hoob3rt/lualine.nvim", config = load("lualine") })
 
   -- git
-  use({ "iberianpig/tig-explorer.vim", config = load("tig-explorer") })
+  use({
+    "iberianpig/tig-explorer.vim",
+    requires = { "rbgrouleff/bclose.vim" },
+    config = load("tig-explorer"),
+  })
 
   -- file type
   use({ "nanotee/sqls.nvim", ft = { "sql" } })

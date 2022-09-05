@@ -1,32 +1,34 @@
-local called1, neotest = pcall(require, "neotest")
-if not called1 then
+local neotest_ok, neotest = pcall(require, "neotest")
+if not neotest_ok then
+  vim.notify("'neotest' not found", "warnn")
   return
 end
 
-local called2, neotest_plenary = pcall(require, "neotest-plenary")
-if not called2 then
+local neotest_plenary_ok, neotest_plenary = pcall(require, "neotest-plenary")
+if not neotest_plenary_ok then
+  vim.notify("'neotest-plenary' not found", "warnn")
   return
 end
 
-local called3, neotest_go = pcall(require, "neotest-go")
-if not called3 then
+local neotest_go_ok, neotest_go = pcall(require, "neotest-go")
+if not neotest_go_ok then
+  vim.notify("'neotest-go' not found", "warnn")
   return
 end
 
-local called4, neotest_jest = pcall(require, "neotest-jest")
-if not called4 then
+local neotest_jest_ok, neotest_jest = pcall(require, "neotest-jest")
+if not neotest_jest_ok then
+  vim.notify("'neotest-jest' not found", "warnn")
   return
 end
 
 vim.cmd([[
   hi! link NeotestAdapterName GruvboxRedBold
-
   hi! link NeotestDir GruvboxAquaBold
   hi! link NeotestFile GruvboxAqua
   hi! link NeotestTarget GruvboxBlue
   hi! link NeotestTest GruvboxBlue
   hi! link NeotestNamespace GruvboxBlue
-
   hi! link NeotestPassed GruvboxGreen
   hi! link NeotestFailed GruvboxRed
   hi! link NeotestRunning GruvboxOrange

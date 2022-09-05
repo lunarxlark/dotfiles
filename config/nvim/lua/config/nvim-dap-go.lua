@@ -1,5 +1,6 @@
-local present, dapgo = pcall(require, "dap-go")
-if not present then
+local dap_go_ok, dapgo = pcall(require, "dap-go")
+if not dap_go_ok then
+  vim.notify("'dap-go' not found", "warn")
   return
 end
 

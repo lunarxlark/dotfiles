@@ -1,5 +1,6 @@
-local called, dap = pcall(require, "dap")
-if not called then
+local dap_ok, dap = pcall(require, "dap")
+if not dap_ok then
+  vim.notify("'dap' not found", "warn")
   return
 end
 

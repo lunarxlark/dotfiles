@@ -1,5 +1,6 @@
-local present, alpha = pcall(require, "alpha")
-if not present then
+local alpha_ok, alpha = pcall(require, "alpha")
+if not alpha_ok then
+  vim.notify("'alpha' not found", "warn")
   return
 end
 

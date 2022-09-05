@@ -1,5 +1,6 @@
-local called, gruvbox = pcall(require, "gruvbox")
-if not called then
+local gruvbox_ok, gruvbox = pcall(require, "gruvbox")
+if not gruvbox_ok then
+  vim.notify("gruvbox' not found", "warn")
   return
 end
 

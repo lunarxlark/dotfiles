@@ -1,5 +1,6 @@
-local present, indent_blankline = pcall(require, "indent_blankline")
-if not present then
+local ib_ok, indent_blankline = pcall(require, "indent_blankline")
+if not ib_ok then
+  vim.notify("'indent_blankline' not found", "warn")
   return
 end
 
