@@ -97,6 +97,7 @@ packer.startup(function(use)
   use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
   use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
   use({ "stevearc/dressing.nvim", config = load("dressing") })
+  use({ "norcalli/nvim-colorizer.lua" })
 
   -- run task
   use({ "is0n/jaq-nvim", config = load("jaq"), cmd = "Jaq" })
@@ -114,6 +115,8 @@ packer.startup(function(use)
 
   -- camel<->snek
   use({ "nicwest/vim-camelsnek" })
+
+  use({ "windwp/nvim-ts-autotag", config = load("nvim-ts-autotag") })
 
   -- statusline
   use({ "hoob3rt/lualine.nvim", config = load("lualine") })
