@@ -49,6 +49,7 @@ packer.startup(function(use)
     requires = {
       { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
       { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
     },
