@@ -131,7 +131,7 @@ zinit wait'1' lucid \
 zinit wait'1' lucid \
   from"gh-r" \
   as"program" \
-  pick'**/gh' \
+  pick'gh_**/bin/gh' \
   atclone"./**/gh completion -s zsh > $ZINIT[COMPLETIONS_DIR]/_gh" \
   light-mode for @cli/cli
 
