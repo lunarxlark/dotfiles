@@ -26,12 +26,25 @@ nullls.setup({
     -- go
     nullls.builtins.formatting.goimports,
     nullls.builtins.diagnostics.golangci_lint.with({
+      diagnostics_format = "[#{s}] #{m}",
       args = { "run", "--out-format=json", "$DIRNAME", "--path-prefix", "$ROOT" },
     }),
     -- terraform
     nullls.builtins.formatting.terraform_fmt,
     -- js,ts
-    -- formatting.prettier,
-    -- formatting.eslint,
+    nullls.builtins.diagnostics.eslint.with({
+      diagnostics_format = "[#{s}] #{m}",
+    }),
+    -- nullls.builtins.formatting.prettierd,
+    -- nullls.builtins.code_actions.eslint,
+    -- nullls.builtins.diagnostics.eslint_d.with({
+    --   diagnostics_format = "[#{s}] #{m}",
+    -- }),
+    -- nullls.builtins.formatting.eslint_d,
+    -- yaml
+    --nullls.builtins.diagnostics.yamllint,
+    --nullls.builtins.formatting.yamlfmt,
+    -- github actions
+    nullls.builtins.diagnostics.actionlint,
   },
 })
