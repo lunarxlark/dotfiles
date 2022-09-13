@@ -9,6 +9,7 @@ jaq.setup({
     external = {
       c = "gcc main.c && ./a.out",
       go = "go run ./...",
+      javascript = "node %",
     },
   },
   ui = {
