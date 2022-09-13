@@ -122,6 +122,7 @@ packer.startup(function(use)
   use({ "hoob3rt/lualine.nvim", config = load("lualine") })
 
   -- git
+  use({ "dinhhuy258/git.nvim", config = load("git") })
   use({
     "iberianpig/tig-explorer.vim",
     requires = { "rbgrouleff/bclose.vim" },
