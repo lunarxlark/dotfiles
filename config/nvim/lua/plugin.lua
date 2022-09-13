@@ -108,7 +108,7 @@ packer.startup(function(use)
 
   -- comment
   use({ "numToStr/Comment.nvim", config = load("Comment") })
-  use({ "B4mbus/todo-comments.nvim", config = load("todo-comments") })
+  use({ "folke/todo-comments.nvim", config = load("todo-comments") })
 
   -- window resize
   use({ "simeji/winresizer", cmd = "WinResizerStartResize" })
