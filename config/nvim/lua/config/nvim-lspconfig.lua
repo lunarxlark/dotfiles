@@ -114,7 +114,7 @@ lspconfig.gopls.setup({
       },
       completeUnimported = true,
       hoverKind = "SynopsisDocumentation",
-      --staticcheck = true, -- replace to golangci-lint by null-ls
+      staticcheck = false, -- replace to golangci-lint by null-ls
       directoryFilters = { "-debug" },
       matcher = "fuzzy",
       usePlaceholders = true,
@@ -258,7 +258,7 @@ lspconfig.dockerls.setup({
 
 -- sqls
 lspconfig.sqls.setup({
-  cmd = { mason_bin_dir .. "/sqls", "--config", vim.fn.stdpath("config") .. "/sqls/config.yaml" },
+  cmd = { mason_bin_dir .. "/sqls", "--config", vim.fn.stdpath("data") .. "/sqls/config.yaml" },
   on_attach = function(c, b)
     on_attach(c, b)
     require("sqls").on_attach(c, b)
