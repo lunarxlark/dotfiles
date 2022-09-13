@@ -48,7 +48,9 @@ local on_attach = function(client, bufnr)
   bnmap(bufnr, "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   bnmap(bufnr, "<leader>ho", "<cmd>lua vim.lsp.buf.hover()<CR>")
 
-  navic.attach(client, bufnr)
+  if client.supports_method("textDocument/documentSymbol") then
+    navic.attach(client, bufnr)
+  end
 end
 
 -- sumneko
