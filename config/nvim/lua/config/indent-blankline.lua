@@ -12,15 +12,19 @@ vim.opt.listchars = {
   precedes = "<",
 }
 
+vim.cmd([[highlight IndentBlanklineIndent1 guibg=#282828 gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent2 guibg=#3c3836 gui=nocombine]])
 indent_blankline.setup({
   char = "",
   char_highlight_list = {
-    "GruvboxBg2",
-    "GruvboxBg3",
+    "IndentBlanklineIndent1",
+    "IndentBlanklineIndent2",
   },
-  space_char_blankline = " ",
   space_char_highlight_list = {
-    "GruvboxBg2",
-    "GruvboxBg3",
+    "IndentBlanklineIndent1",
+    "IndentBlanklineIndent2",
   },
+  show_trailing_blankline_indent = false,
+  show_current_context = true,
+  show_current_context_start = true,
 })
