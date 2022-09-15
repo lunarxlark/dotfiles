@@ -1,3 +1,4 @@
+vim.lsp.set_log_level(vim.log.levels.OFF)
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_ok then
   vim.notify("'lspconfig' not found", "warn")
