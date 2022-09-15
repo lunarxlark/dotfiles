@@ -18,6 +18,7 @@ vim.opt.virtualedit = "block" -- visual-block時、行末を超えて選択可�
 --opt.eol = false -- ファイル末尾にeolを付けない
 vim.opt.foldmethod = "marker"
 vim.opt.write = true
+vim.cmd[[set nowrap]]
 -- #tab
 vim.opt.smarttab = true -- 行頭の余白内で<Tab>を入力すると、'shiftwidth'分をインデントする
 vim.opt.autoindent = true -- 自動インデント
