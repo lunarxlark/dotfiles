@@ -16,7 +16,7 @@ telescope.setup({
         ["<esc>"] = actions.close,
         ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
         ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
-        ["<cr>"] = custom_actions.fzf_multi_select,
+        -- ["<cr>"] = custom_actions.fzf_multi_select,
       },
     },
     color_devicons = true,
