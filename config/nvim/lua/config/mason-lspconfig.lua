@@ -9,7 +9,8 @@ mason_lspconfig.setup({
   ensure_installed = {
     "rust_analyzer",
     "gopls",
-    "delve",
+    -- TODO:mason doesn't support delve.
+    --"delve",
     "intelephense",
     "pyright",
     "sumneko_lua",
