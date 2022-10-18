@@ -58,39 +58,30 @@ end
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-local sumneko_root_path = mason_pkg_dir .. "/lua-language-server/extension/server/bin"
 
-local neodev_settings = neodev.setup({
-  lspconfig = {
-    cmd = { sumneko_root_path .. "/lua-language-server", "-E", sumneko_root_path .. "/main.lua" },
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    settings = {
-      Lua = {
-        runtime = {
-          version = "LuaJIT",
-          path = runtime_path,
-        },
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          checkThirdParty = false,
-          preloadFileSize = 600,
-          maxPreload = 3200,
-        },
-        telemetry = {
-          enable = false,
-        },
+lspconfig.sumneko_lua.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        checkThirdParty = false,
+        preloadFileSize = 600,
+        maxPreload = 3200,
+      },
+      telemetry = {
+        enable = false,
       },
     },
   },
 })
-
-lspconfig.sumneko_lua.setup(neodev_settings)
 
 -- gopls
 lspconfig.gopls.setup({

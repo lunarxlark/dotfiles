@@ -41,6 +41,7 @@ packer.startup(function(use)
   use({ "antoinemadec/FixCursorHold.nvim" })
   use({ "SmiteshP/nvim-navic" })
   use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
+  use({ "folke/neodev.nvim", config = load("neodev") })
 
   -- completion
   use({ "L3MON4D3/LuaSnip" })
@@ -58,7 +59,6 @@ packer.startup(function(use)
   use({ "saadparwaiz1/cmp_luasnip" })
 
   -- lsp
-  use({ "folke/neodev.nvim", config = load("neodev") })
   use({ "williamboman/mason.nvim", config = load("mason") })
   use({ "williamboman/mason-lspconfig.nvim", config = load("mason-lspconfig") })
   use({ "neovim/nvim-lspconfig", config = load("nvim-lspconfig") })
