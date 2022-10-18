@@ -5,9 +5,9 @@ if not lspconfig_ok then
   return
 end
 
-local luadev_ok, luadev = pcall(require, "lua-dev")
-if not luadev_ok then
-  vim.notify("'lua-dev' not found", "warn")
+local neodev_ok, neodev = pcall(require, "neodev")
+if not neodev_ok then
+  vim.notify("'neodev' not found", "warn")
   return
 end
 
@@ -60,7 +60,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 local sumneko_root_path = mason_pkg_dir .. "/lua-language-server/extension/server/bin"
 
-local luadev_settings = luadev.setup({
+local neodev_settings = neodev.setup({
   lspconfig = {
     cmd = { sumneko_root_path .. "/lua-language-server", "-E", sumneko_root_path .. "/main.lua" },
     capabilities = capabilities,
@@ -90,7 +90,7 @@ local luadev_settings = luadev.setup({
   },
 })
 
-lspconfig.sumneko_lua.setup(luadev_settings)
+lspconfig.sumneko_lua.setup(neodev_settings)
 
 -- gopls
 lspconfig.gopls.setup({
