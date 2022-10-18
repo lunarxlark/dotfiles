@@ -5,7 +5,7 @@ if not notify_ok then
 end
 
 notify.setup({
-  top_down = false,
+  top_down = true,
   background_colour = "#282828",
 })
 
