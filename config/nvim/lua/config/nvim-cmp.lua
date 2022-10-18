@@ -5,6 +5,9 @@ if not cmp_ok then
 end
 
 cmp.setup({
+  view = {
+    entries = "native",
+  },
   completion = {
     completeopt = "menu,menuone,noinsert",
   },
@@ -37,7 +40,14 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    { name = "buffer" },
+    {
+      name = "buffer",
+      option = {
+        get_bufnrs = function()
+          return { vim.api.nvim_get_current_buf() }
+        end,
+      },
+    },
     { name = "path" },
     { name = "path" },
   },
