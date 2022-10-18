@@ -48,6 +48,7 @@ telescope.load_extension("gh")
 telescope.load_extension("ghq")
 telescope.load_extension("memo")
 telescope.load_extension("notify")
+telescope.load_extension("noice")
 telescope.load_extension("aws")
 
 local nmap = require("util.keymap").nmap

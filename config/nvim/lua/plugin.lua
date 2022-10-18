@@ -98,6 +98,17 @@ packer.startup(function(use)
   use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
   use({ "stevearc/dressing.nvim", config = load("dressing") })
   use({ "norcalli/nvim-colorizer.lua" })
+  use({
+    "folke/noice.nvim",
+    event = "VimEnter",
+    config = function()
+      require("noice").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  })
 
   -- run task
   use({ "is0n/jaq-nvim", config = load("jaq") })
