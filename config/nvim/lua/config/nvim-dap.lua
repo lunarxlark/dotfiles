@@ -45,7 +45,7 @@ dap.configurations.go = {
     name = "Debug main.go",
     type = "go",
     request = "launch",
-    mode = "auto",
+    --mode = "auto",
     program = "${workspaceFolder}/main.go",
   },
   -- works with go.mod packages and sub packages
