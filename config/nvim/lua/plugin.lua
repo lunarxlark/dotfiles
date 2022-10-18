@@ -43,6 +43,25 @@ packer.startup(function(use)
   use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
   use({ "folke/neodev.nvim", config = load("neodev") })
 
+  -- visual
+  use({ "rcarriga/nvim-notify", config = load("nvim-notify") })
+  use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify
+  use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
+  use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
+  --use({ "stevearc/dressing.nvim", config = load("dressing") })
+  use({ "norcalli/nvim-colorizer.lua" })
+  use({
+    "folke/noice.nvim",
+    event = "VimEnter",
+    config = function()
+      require("noice").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  })
+
   -- completion
   use({ "L3MON4D3/LuaSnip" })
   use({
@@ -90,25 +109,6 @@ packer.startup(function(use)
   use({ "nvim-neotest/neotest-go" })
   use({ "nvim-neotest/neotest-plenary" })
   use({ "haydenmeade/neotest-jest" })
-
-  -- visual
-  use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify
-  use({ "rcarriga/nvim-notify", config = load("nvim-notify") })
-  use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
-  use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
-  use({ "stevearc/dressing.nvim", config = load("dressing") })
-  use({ "norcalli/nvim-colorizer.lua" })
-  use({
-    "folke/noice.nvim",
-    event = "VimEnter",
-    config = function()
-      require("noice").setup()
-    end,
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-  })
 
   -- run task
   use({ "is0n/jaq-nvim", config = load("jaq") })
