@@ -1,24 +1,24 @@
 local neotest_ok, neotest = pcall(require, "neotest")
 if not neotest_ok then
-  vim.notify("'neotest' not found", "warnn")
+  vim.notify("'neotest' not found", "warn")
   return
 end
 
 local neotest_plenary_ok, neotest_plenary = pcall(require, "neotest-plenary")
 if not neotest_plenary_ok then
-  vim.notify("'neotest-plenary' not found", "warnn")
+  vim.notify("'neotest-plenary' not found", "warn")
   return
 end
 
 local neotest_go_ok, neotest_go = pcall(require, "neotest-go")
 if not neotest_go_ok then
-  vim.notify("'neotest-go' not found", "warnn")
+  vim.notify("'neotest-go' not found", "warn")
   return
 end
 
 local neotest_jest_ok, neotest_jest = pcall(require, "neotest-jest")
 if not neotest_jest_ok then
-  vim.notify("'neotest-jest' not found", "warnn")
+  vim.notify("'neotest-jest' not found", "warn")
   return
 end
 
