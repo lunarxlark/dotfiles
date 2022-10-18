@@ -100,7 +100,7 @@ packer.startup(function(use)
   use({ "norcalli/nvim-colorizer.lua" })
 
   -- run task
-  use({ "is0n/jaq-nvim", config = load("jaq"), cmd = "Jaq" })
+  use({ "is0n/jaq-nvim", config = load("jaq") })
 
   -- motion
   use({ "phaazon/hop.nvim", config = load("hop") })
