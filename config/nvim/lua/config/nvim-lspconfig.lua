@@ -26,7 +26,7 @@ end
 local mason_pkg_dir = vim.fn.stdpath("data") .. "/mason/packages"
 local mason_bin_dir = vim.fn.stdpath("data") .. "/mason/bin"
 
-local capabilities = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_lsp.default_capabilities()
 
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
