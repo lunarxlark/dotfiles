@@ -6,7 +6,6 @@ end
 
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
-local action_state = require("telescope.actions.state")
 
 telescope.setup({
   defaults = {
@@ -16,15 +15,17 @@ telescope.setup({
         ["<esc>"] = actions.close,
         ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
         ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
-        -- ["<cr>"] = custom_actions.fzf_multi_select,
       },
     },
     color_devicons = true,
     sorting_strategy = "ascending",
-    layout_strategy = "flex",
+    layout_strategy = "horizontal",
     layout_config = {
-      width = 0.95,
-      height = 0.95,
+      horizontal = {
+        width = 0.95,
+        height = 0.95,
+        preview_width = 0.60,
+      },
     },
     prompt_position = "top",
     prompt_prefix = "🔍",
@@ -34,6 +35,7 @@ telescope.setup({
     },
   },
   extensions = {
+    file_browser = {},
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -43,6 +45,7 @@ telescope.setup({
   },
 })
 
+telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
 telescope.load_extension("gh")
 telescope.load_extension("ghq")
@@ -53,6 +56,7 @@ telescope.load_extension("aws")
 local nmap = require("util.keymap").nmap
 nmap("<leader>v", "<cmd>Telescope find_files cwd=$XDG_CONFIG_HOME/nvim<CR>")
 nmap(",f", "<cmd>Telescope find_files<cr>")
+nmap(",fb", "<cmd>Telescope find_browser<cr>")
 nmap(",rg", "<cmd>Telescope live_grep<cr>")
 nmap(",b", "<cmd>Telescope buffers<cr>")
 nmap(",sm", "<cmd>Telescope lsp_document_symbols<cr>")

@@ -30,7 +30,7 @@ local capabilities = cmp_lsp.default_capabilities()
 
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+  --vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
   local nmap = require("util.keymap").nmap
   nmap("<leader>ss", "<cmd>lua vim.diagnostic.open_float()<CR>")

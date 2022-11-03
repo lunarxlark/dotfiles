@@ -33,6 +33,7 @@ export PATH=~/Library/Python/3.7/bin:$PATH
 path=(
   $HOME/.local/bin
   $HOME/.local/go/bin
+  $HOME/.local/gsutil
   $GOBIN
   /usr/local/opt/libpq/bin
   $path
