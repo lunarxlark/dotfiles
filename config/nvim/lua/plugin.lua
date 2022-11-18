@@ -53,9 +53,7 @@ packer.startup(function(use)
   use({
     "folke/noice.nvim",
     event = "VimEnter",
-    config = function()
-      require("noice").setup()
-    end,
+    config = load("noice"),
     requires = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -63,7 +61,7 @@ packer.startup(function(use)
   })
 
   -- completion
-  use({ "L3MON4D3/LuaSnip" })
+  use({ "L3MON4D3/LuaSnip", config = load("luasnip") })
   use({
     "hrsh7th/nvim-cmp",
     requires = {
@@ -151,5 +149,5 @@ packer.startup(function(use)
   use({ "ellisonleao/gruvbox.nvim", config = load("gruvbox") })
 
   -- test
-  use({ "~/dev/src/github.com/lunarxlark/test.nvim" })
+  --use({ "~/dev/src/github.com/lunarxlark/test.nvim" })
 end)

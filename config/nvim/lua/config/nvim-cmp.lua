@@ -5,9 +5,6 @@ if not cmp_ok then
 end
 
 cmp.setup({
-  view = {
-    entries = "native",
-  },
   completion = {
     completeopt = "menu,menuone,noinsert",
   },

@@ -10,6 +10,7 @@ jaq.setup({
       c = "gcc main.c && ./a.out",
       go = "go run ./...",
       javascript = "node %",
+      php = "php %",
     },
   },
   ui = {

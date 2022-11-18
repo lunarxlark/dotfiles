@@ -31,6 +31,7 @@ export GHQ_ROOT=$GOPATH/src
 export PATH=~/Library/Python/3.7/bin:$PATH
 
 path=(
+  /opt/homebrew/bin
   $HOME/.local/bin
   $HOME/.local/go/bin
   $HOME/.local/gsutil

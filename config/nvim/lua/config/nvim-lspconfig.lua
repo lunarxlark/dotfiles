@@ -5,12 +5,6 @@ if not lspconfig_ok then
   return
 end
 
-local neodev_ok, neodev = pcall(require, "neodev")
-if not neodev_ok then
-  vim.notify("'neodev' not found", "warn")
-  return
-end
-
 local cmp_lsp_ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_lsp_ok then
   vim.notify("'cmp_nvim_lsp' not found", "warn")
@@ -88,7 +82,6 @@ lspconfig.gopls.setup({
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
-    require("inlay-hints").on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   cmd = { mason_bin_dir .. "/gopls", "serve" },
@@ -116,15 +109,6 @@ lspconfig.gopls.setup({
         test = true,
         tidy = true,
         vendor = false,
-      },
-      hints = {
-        --assignVariableTypes = true,
-        --compositeLiteralFields = true,
-        --compositeLiteralTypes = true,
-        constantValues = true,
-        --functionTypeParameters = true,
-        --parameterNames = true,
-        --rangeVariableTypes = true,
       },
     },
   },
