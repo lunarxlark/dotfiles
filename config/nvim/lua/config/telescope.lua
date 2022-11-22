@@ -35,7 +35,6 @@ telescope.setup({
     },
   },
   extensions = {
-    file_browser = {},
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -45,7 +44,6 @@ telescope.setup({
   },
 })
 
-telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
 telescope.load_extension("gh")
 telescope.load_extension("ghq")
