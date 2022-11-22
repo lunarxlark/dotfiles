@@ -31,10 +31,11 @@ zinit light starship/starship
 # fzf
 zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
-zinit ice \
+zinit wait"0" lucid \
+  from"gh-r" \
   as"program" \
-  from"gh-r"
-zinit light junegunn/fzf-bin
+  pick"fzf-*/fzf -> fzf" \
+  light-mode for @junegunn/fzf
 
 
 # zoxide
