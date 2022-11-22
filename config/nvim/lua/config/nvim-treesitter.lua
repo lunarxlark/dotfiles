@@ -23,6 +23,7 @@ ts_config.setup({
     "python",
     "regex",
     "markdown",
+    "markdown_inline",
     "sql",
     "tsx",
     "javascript",
