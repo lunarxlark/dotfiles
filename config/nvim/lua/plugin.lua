@@ -48,7 +48,7 @@ packer.startup(function(use)
   use({ "goolord/alpha-nvim", config = load("alpha") }) -- startify
   use({ "lukas-reineke/indent-blankline.nvim", config = load("indent-blankline") }) -- indent
   use({ "lewis6991/gitsigns.nvim", config = load("gitsigns") }) -- git symbol
-  --use({ "stevearc/dressing.nvim", config = load("dressing") })
+  use({ "stevearc/dressing.nvim", config = load("dressing") })
   use({ "norcalli/nvim-colorizer.lua" })
   use({
     "folke/noice.nvim",
