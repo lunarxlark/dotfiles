@@ -238,10 +238,10 @@ lspconfig.dockerls.setup({
 -- sqls
 lspconfig.sqls.setup({
   cmd = { mason_bin_dir .. "/sqls", "--config", vim.fn.stdpath("data") .. "/sqls/config.yaml" },
+  root_dir = lspconfig.util.find_git_ancestor,
   on_attach = function(c, b)
     on_attach(c, b)
     require("sqls").on_attach(c, b)
   end,
   capabilities = capabilities,
-  filetypes = { "sql" },
 })
