@@ -11,10 +11,10 @@ telescope.setup({
   defaults = {
     mappings = {
       i = {
-        ["<c-y>"] = actions_layout.toggle_preview,
+        ["<C-y>"] = actions_layout.toggle_preview,
         ["<esc>"] = actions.close,
-        ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
-        ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
+        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<C-l>"] = actions.smart_send_to_loclist + actions.open_loclist,
       },
     },
     color_devicons = true,
