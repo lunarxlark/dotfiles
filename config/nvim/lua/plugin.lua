@@ -31,17 +31,17 @@ packer.startup(function(use)
   -- speed up loading
   use({ "lewis6991/impatient.nvim" })
 
-  -- plugin manager
-  use({ "wbthomason/packer.nvim" })
+  -- -- plugin manager
+  -- use({ "wbthomason/packer.nvim" })
 
   -- common
-  use({ "kyazdani42/nvim-web-devicons" })
-  use({ "nvim-lua/plenary.nvim" })
+  -- use({ "kyazdani42/nvim-web-devicons" })
+  -- use({ "nvim-lua/plenary.nvim" })
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = load("nvim-treesitter") })
-  use({ "antoinemadec/FixCursorHold.nvim" })
-  use({ "SmiteshP/nvim-navic" })
+  -- use({ "antoinemadec/FixCursorHold.nvim" })
+  -- use({ "SmiteshP/nvim-navic" })
   use({ "akinsho/toggleterm.nvim", config = load("toggleterm") })
-  use({ "folke/neodev.nvim", config = load("neodev") })
+  -- use({ "folke/neodev.nvim", config = load("neodev") })
 
   -- visual
   use({ "rcarriga/nvim-notify", config = load("nvim-notify") })
@@ -131,7 +131,7 @@ packer.startup(function(use)
   use({ "hoob3rt/lualine.nvim", config = load("lualine") })
 
   -- git
-  use({ "dinhhuy258/git.nvim", config = load("git") })
+  -- use({ "dinhhuy258/git.nvim", config = load("git") })
   use({
     "iberianpig/tig-explorer.vim",
     requires = { "rbgrouleff/bclose.vim" },
