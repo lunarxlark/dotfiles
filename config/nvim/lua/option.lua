@@ -35,9 +35,8 @@ vim.opt.smartcase = true -- 大文字で検索されたら大文字/小文字を
 -- #json
 vim.opt.conceallevel = 0 -- ダブルクォーテーションを表示
 
-local nmap = require("util.keymap").nmap
-nmap("<leader>cn", "<cmd>cnext<cr>")
-nmap("<leader>cp", "<cmd>cprevious<cr>")
-nmap("<esc><esc>", "<cmd>set hls!<cr>")
-nmap("<C-[>", "<cmd>lne<cr>")
-nmap("<C-]>", "<cmd>lpr<cr>")
+vim.keymap.set("n", "<leader>cn", "<cmd>cnext<cr>", { silent = true })
+vim.keymap.set("n", "<leader>cp", "<cmd>cprevious<cr>", { silent = true })
+vim.keymap.set("n", "<esc><esc>", "<cmd>set hls!<cr>", { silent = true })
+vim.keymap.set("n", "<C-[>", "<cmd>lne<cr>", { silent = true })
+vim.keymap.set("n", "<C-]>", "<cmd>lpr<cr>", { silent = true })

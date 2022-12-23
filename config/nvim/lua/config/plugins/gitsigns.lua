@@ -12,8 +12,10 @@ function M.config()
 end
 
 function M.init()
-  vim.keymap.set("n", "<leader>gb", function() require("gitsigns").blame_line{full=true} end, {desc = "git blame"})
-  vim.keymap.set("n", "<leader>gd", require("gitsigns").diffthis, {desc = "git diff"})
+  vim.keymap.set("n", "<leader>gb", function()
+    require("gitsigns").blame_line({ full = true })
+  end, { desc = "git blame" })
+  vim.keymap.set("n", "<leader>gd", require("gitsigns").diffthis, { desc = "git diff" })
 end
 
 return M

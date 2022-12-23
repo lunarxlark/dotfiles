@@ -14,7 +14,7 @@ function M.config()
 end
 
 function M.init()
-  vim.keymap.set("n", ",t", "<cmd>TodoTelescope<CR>", {desc = "Search through all project todos with Telescope"})
+  vim.keymap.set("n", ",t", "<cmd>TodoTelescope<CR>", { desc = "Search through all project todos with Telescope" })
 
   vim.keymap.set("n", "]t", function()
     require("todo-comments").jump_next()

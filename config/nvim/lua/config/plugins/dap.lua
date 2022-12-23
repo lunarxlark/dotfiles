@@ -4,7 +4,7 @@ local M = {
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "leoluz/nvim-dap-go",
-  }
+  },
 }
 
 function M.config()
@@ -110,11 +110,16 @@ function M.init()
   vim.fn.sign_define("DapBreakpoint", { text = "🐞", texthl = "", linehl = "", numhl = "" })
   vim.fn.sign_define("DapStopped", { text = "👉", texthl = "", linehl = "", numhl = "" })
 
-  vim.keymap.set("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { desc = "continue (dap)" } )
-  vim.keymap.set("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { desc = "step over (dap)" } )
-  vim.keymap.set("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>", { desc = "step into (dap)" } )
-  vim.keymap.set("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>", { desc = "step out (dap)" } )
-  vim.keymap.set("n", "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "toggle breakpoint (dap)" } )
+  vim.keymap.set("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { desc = "continue (dap)" })
+  vim.keymap.set("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>", { desc = "step over (dap)" })
+  vim.keymap.set("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>", { desc = "step into (dap)" })
+  vim.keymap.set("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>", { desc = "step out (dap)" })
+  vim.keymap.set(
+    "n",
+    "<leader>b",
+    "<cmd>lua require'dap'.toggle_breakpoint()<CR>",
+    { desc = "toggle breakpoint (dap)" }
+  )
 
   vim.keymap.set("n", "<leader>D", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "toggle dap ui" })
   vim.keymap.set("n", "<leader><leader>df", "<cmd>lua require'dapui'.eval()<CR>", { desc = "show eval (dap)" })
