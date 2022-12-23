@@ -35,7 +35,7 @@ function M.config()
       "vim",
       "yaml",
     },
-    sync_install = true,
+    sync_install = false,
     highlight = {
       enable = true,
     },
