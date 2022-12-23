@@ -1,7 +1,7 @@
 local M = {
   "williamboman/mason-lspconfig.nvim",
   dependencies = {
-      "williamboman/mason.nvim",
+    "williamboman/mason.nvim",
   },
 }
 

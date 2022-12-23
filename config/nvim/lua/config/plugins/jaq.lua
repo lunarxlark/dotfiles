@@ -30,7 +30,7 @@ function M.config()
 end
 
 function M.init()
-  vim.keymap.set("n", "<leader>jq", "<cmd>Jaq<CR>", {desc = "run jaq" })
+  vim.keymap.set("n", "<leader>jq", "<cmd>Jaq<CR>", { desc = "run jaq" })
 end
 
 return M

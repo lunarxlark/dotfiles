@@ -3,10 +3,10 @@ local M = {
   cmd = { "Telescope" },
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-telescope/telescope-github.nvim",
-      "nvim-telescope/telescope-ghq.nvim",
-      "delphinus/telescope-memo.nvim",
-      "lunarxlark/telescope-aws.nvim",
+    "nvim-telescope/telescope-github.nvim",
+    "nvim-telescope/telescope-ghq.nvim",
+    "delphinus/telescope-memo.nvim",
+    "lunarxlark/telescope-aws.nvim",
   },
 }
 
@@ -61,13 +61,12 @@ function M.config()
 end
 
 function M.init()
-  local nmap = require("util.keymap").nmap
-  nmap("<leader>v", "<cmd>Telescope find_files cwd=$XDG_CONFIG_HOME/nvim<CR>")
-  nmap(",f", "<cmd>Telescope find_files<cr>")
-  nmap(",fb", "<cmd>Telescope find_browser<cr>")
-  nmap(",rg", "<cmd>Telescope live_grep<cr>")
-  nmap(",b", "<cmd>Telescope buffers<cr>")
-  nmap(",sm", "<cmd>Telescope lsp_document_symbols<cr>")
+  vim.keymap.set("n", "<leader>v", "<cmd>Telescope find_files cwd=$XDG_CONFIG_HOME/nvim<CR>", { silent = true })
+  vim.keymap.set("n", ",f", "<cmd>Telescope find_files<cr>", { silent = true })
+  vim.keymap.set("n", ",fb", "<cmd>Telescope find_browser<cr>", { silent = true })
+  vim.keymap.set("n", ",rg", "<cmd>Telescope live_grep<cr>", { silent = true })
+  vim.keymap.set("n", ",b", "<cmd>Telescope buffers<cr>", { silent = true })
+  vim.keymap.set("n", ",sm", "<cmd>Telescope lsp_document_symbols<cr>", { silent = true })
 end
 
 return M
