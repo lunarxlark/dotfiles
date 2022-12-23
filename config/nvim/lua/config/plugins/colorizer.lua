@@ -6,6 +6,7 @@ return {
       "css",
       "tsx",
       "javascript",
+      "lua",
     })
   end,
 }
