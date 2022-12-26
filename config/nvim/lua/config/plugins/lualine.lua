@@ -4,6 +4,7 @@ local M = {
 }
 
 local symbols = {
+
   error = { icon = " ", fg = "#fb4934" },
   warn = { icon = " ", fg = "#fe8019" },
   info = { icon = " ", fg = "#83a598" },
@@ -29,8 +30,28 @@ function M.config()
         { "branch", icon = "" },
         -- { 'filetype', colored = true, icon_only = true },
         { "filename", file_status = true },
+        { "encoding" },
+        {
+          "fileformat",
+          symbols = {
+            unix = "",
+            dos = "",
+            mac = "",
+          },
+        },
       },
       lualine_c = {
+        {
+          "diff",
+          colored = true,
+          diff_color = {
+            added = "GitSignsAdd",
+            modified = "GitSignsChange",
+            removed = "GitSignsDelete",
+          },
+          symbols = { added = "+", modified = "~", removed = "-" },
+          source = nil,
+        },
         {
           "diagnostics",
           sources = { "nvim_diagnostic" },
@@ -53,34 +74,9 @@ function M.config()
         },
         { require("nvim-navic").get_location, cond = require("nvim-navic").is_available },
       },
-      lualine_x = {
-        {
-          "diff",
-          colored = true,
-          diff_color = {
-            added = { "DiffAdd" },
-            modified = { "DiffChange" },
-            removed = { "DiffDelete" },
-          },
-          symbols = { added = "+", modified = "~", removed = "-" },
-          source = nil,
-        },
-      },
-      lualine_y = {
-        {
-          "fileformat",
-          symbols = {
-            unix = "",
-            dos = "",
-            mac = "",
-          },
-        },
-        "encoding",
-      },
-      lualine_z = {
-        { "progress" },
-        { "location" },
-      },
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
     },
     extensions = { "quickfix", "toggleterm" },
   })
