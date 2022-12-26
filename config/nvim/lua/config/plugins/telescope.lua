@@ -6,6 +6,7 @@ local M = {
     "nvim-telescope/telescope-github.nvim",
     "nvim-telescope/telescope-ghq.nvim",
     "delphinus/telescope-memo.nvim",
+    "xiyaowong/telescope-emoji.nvim",
     "lunarxlark/telescope-aws.nvim",
   },
 }
@@ -52,11 +53,12 @@ function M.config()
     },
   })
 
+  telescope.load_extension("notify")
   telescope.load_extension("fzf")
   telescope.load_extension("gh")
   telescope.load_extension("ghq")
   telescope.load_extension("memo")
-  telescope.load_extension("notify")
+  telescope.load_extension("emoji")
   telescope.load_extension("aws")
 end
 
