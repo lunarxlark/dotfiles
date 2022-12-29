@@ -14,7 +14,6 @@ function M.config()
   local lspconfig = require("lspconfig")
 
   local on_attach = function(client, bufnr)
-    --vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     require("config.plugins.lsp.keys").setup(client, bufnr)
     require("config.plugins.lsp.format").setup(client, bufnr)
     if client.name == "sqls" then
