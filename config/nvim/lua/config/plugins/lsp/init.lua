@@ -9,6 +9,8 @@ local M = {
 function M.config()
   vim.lsp.set_log_level(vim.log.levels.OFF)
 
+  require("neodev").setup()
+
   local lspconfig = require("lspconfig")
 
   local on_attach = function(client, bufnr)
