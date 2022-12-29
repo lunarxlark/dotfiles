@@ -1,8 +1,8 @@
 return {
+  "folke/neodev.nvim",
   "kyazdani42/nvim-web-devicons",
   "nvim-lua/plenary.nvim",
   "MunifTanjim/nui.nvim",
-  "folke/neodev.nvim",
   "SmiteshP/nvim-navic",
   "antoinemadec/FixCursorHold.nvim",
 
