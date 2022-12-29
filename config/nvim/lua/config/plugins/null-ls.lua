@@ -18,15 +18,11 @@ function M.setup(options)
       -- terraform
       nls.builtins.formatting.terraform_fmt,
       -- js,ts
-      nls.builtins.diagnostics.eslint.with({
+      nls.builtins.formatting.prettier,
+      nls.builtins.diagnostics.eslint_d.with({
         diagnostics_format = "[#{s}] #{m}",
       }),
-      -- nls.builtins.formatting.prettierd,
-      -- nls.builtins.code_actions.eslint,
-      -- nls.builtins.diagnostics.eslint_d.with({
-      --   diagnostics_format = "[#{s}] #{m}",
-      -- }),
-      -- nls.builtins.formatting.eslint_d,
+      nls.builtins.formatting.eslint_d,
       -- yaml
       -- nls.builtins.diagnostics.yamllint,
       -- nls.builtins.formatting.yamlfmt,
