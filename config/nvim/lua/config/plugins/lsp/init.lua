@@ -61,7 +61,7 @@ function M.config()
     end
   end
 
-  require("config.plugins.null-ls").setup(options)
+  require("config.plugins.null-ls").config(options)
 end
 
 return M
