@@ -14,8 +14,8 @@ function M.config()
   local lspconfig = require("lspconfig")
 
   local on_attach = function(client, bufnr)
-    require("config.plugins.lsp.keys").setup(client, bufnr)
-    require("config.plugins.lsp.format").setup(client, bufnr)
+    require("plugins.lsp.keys").setup(client, bufnr)
+    require("plugins.lsp.format").setup(client, bufnr)
     if client.name == "sqls" then
       require("sqls").on_attach(client, bufnr)
     end
@@ -61,7 +61,7 @@ function M.config()
     end
   end
 
-  require("config.plugins.null-ls").config(options)
+  require("plugins.null-ls").config(options)
 end
 
 return M
