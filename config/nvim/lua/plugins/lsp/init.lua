@@ -45,7 +45,7 @@ function M.config()
   }
 
   local load = function(server)
-    local found, option = pcall(require, "config.plugins.lsp.servers."..server)
+    local found, option = pcall(require, "config.plugins.lsp.servers." .. server)
     if found then
       return option
     end
@@ -61,7 +61,7 @@ function M.config()
     end
   end
 
-  require("plugins.null-ls").config(options)
+  require("plugins.null-ls").setup(options)
 end
 
 return M
