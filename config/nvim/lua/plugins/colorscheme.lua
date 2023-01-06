@@ -1,5 +1,13 @@
 return {
   { "svrana/neosolarized.nvim" },
+  {
+    "catppuccin/nvim",
+    config = function()
+      require("catppuccin").setup({
+        flavor = "macchiato",
+      })
+    end,
+  },
   { "EdenEast/nightfox.nvim" },
   {
     "ellisonleao/gruvbox.nvim",
