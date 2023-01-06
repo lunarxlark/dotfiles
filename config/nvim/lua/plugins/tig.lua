@@ -1,6 +1,7 @@
 return {
   "iberianpig/tig-explorer.vim",
 
+  cmd = { "TigOpenProjectRootDir", "TigBlame" },
   dependencies = {
     "rbgrouleff/bclose.vim",
   },
