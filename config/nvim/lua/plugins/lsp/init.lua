@@ -4,6 +4,7 @@ local M = {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "folke/neodev.nvim",
+    { "nanotee/sqls.nvim", ft = "sql" },
   },
 }
 
