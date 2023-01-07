@@ -10,10 +10,6 @@ function M.config()
       theme = "gruvbox",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
-      disabled_filetypes = {
-        statusline = { "dap-repl", "dapui_stacks", "dapui_watches", "dapui_scopes", "dapui_breakpoints" },
-        winbar = { "dap-repl", "dapui_stacks", "dapui_watches", "dapui_scopes", "dapui_breakpoints" },
-      },
     },
     sections = {
       lualine_a = { "mode" },
