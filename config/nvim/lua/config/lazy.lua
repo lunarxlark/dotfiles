@@ -29,6 +29,9 @@ require("lazy").setup({
 
     { import = "plugins" },
   },
+  dev = {
+    path = "~/dev/src/github.com/lunarxlark",
+  },
   install = { colorscheme = { "gruvbox" } },
   performance = {
     cache = {
