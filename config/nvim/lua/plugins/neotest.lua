@@ -7,7 +7,6 @@ return {
     { "haydenmeade/neotest-jest", ft = { "ts", "tsx" } },
   },
   keys = {
-
     { "<leader>tn", "<cmd>lua require'neotest'.run.run()<CR>", { desc = "run test" } },
     {
       "<leader>tf",
@@ -33,8 +32,7 @@ return {
     hi! link NeotestFailed GruvboxRed
     hi! link NeotestRunning GruvboxOrange
     hi! link NeotestSkipped GruvboxYellow
-  ]])
-
+    ]])
     require("neotest").setup({
       icons = {
         running = "↻",
@@ -51,17 +49,16 @@ return {
           end,
         }),
       },
-      config = {
-        floating = {
-          border = "rounded",
-          max_height = 0.5,
-          max_width = 0.6,
-        },
-        strategies = {
-          integrated = {
-            width = 120,
-            height = 40,
-          },
+      highlights = {},
+      floating = {
+        border = "rounded",
+        max_height = 0.5,
+        max_width = 0.6,
+      },
+      strategies = {
+        integrated = {
+          width = 120,
+          height = 40,
         },
       },
     })
