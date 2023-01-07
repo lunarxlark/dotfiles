@@ -1,21 +1,17 @@
-local M = {
+return {
   "lewis6991/gitsigns.nvim",
+
+  event = "BufReadPre",
+  keys = {
+    { "<leader>gb", '<cmd>lua require("gitsigns").blame_line({ full = true })<cr>', { desc = "git blame" } },
+    { "<leader>gd", "<cmd>Gitsigns diffthis<cr>", { desc = "git diff" } },
+  },
+  config = function()
+    require("gitsigns").setup({
+      signcolumn = true,
+      numhl = true,
+      linehl = true,
+      word_diff = true,
+    })
+  end,
 }
-
-function M.config()
-  require("gitsigns").setup({
-    signcolumn = true,
-    numhl = true,
-    linehl = false,
-    word_diff = false,
-  })
-end
-
-function M.init()
-  vim.keymap.set("n", "<leader>gb", function()
-    require("gitsigns").blame_line({ full = true })
-  end, { desc = "git blame" })
-  vim.keymap.set("n", "<leader>gd", require("gitsigns").diffthis, { desc = "git diff" })
-end
-
-return M
