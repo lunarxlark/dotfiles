@@ -8,10 +8,12 @@ return {
       })
     end,
   },
-  { "EdenEast/nightfox.nvim" },
   {
-    "ellisonleao/gruvbox.nvim",
-    lazy = false,
+    "EdenEast/nightfox.nvim",
+    config = function()
+      require("nightfox").setup({})
+    end,
+  },
     config = function()
       require("gruvbox").setup({
         italic = false,
