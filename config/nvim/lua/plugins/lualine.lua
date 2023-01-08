@@ -7,7 +7,8 @@ function M.config()
   require("lualine").setup({
     options = {
       icons_enabled = true,
-      theme = "gruvbox",
+      --theme = "gruvbox",
+      theme = "auto",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
       disabled_filetypes = {
@@ -36,7 +37,7 @@ function M.config()
       lualine_y = {},
       lualine_z = {},
     },
-    extensions = { "quickfix", "toggleterm" },
+    extensions = { "quickfix", "toggleterm", "nvim-dap-ui" },
   })
 end
 
