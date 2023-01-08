@@ -20,7 +20,7 @@ require("lazy").setup({
     "antoinemadec/FixCursorHold.nvim",
 
     -- lsp
-    "nanotee/sqls.nvim",
+    --"nanotee/sqls.nvim",
     { "stevearc/dressing.nvim", event = "VeryLazy" },
 
     "simeji/winresizer",
