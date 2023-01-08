@@ -10,7 +10,7 @@ return {
     "saadparwaiz1/cmp_luasnip",
   },
   event = "InsertEnter",
-  config = function()
+  opts = function()
     local cmp = require("cmp")
     cmp.setup({
       completion = {

@@ -3,7 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dev = false,
     build = ":TSUpdate",
-    config = function()
+    opts = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "comment",
@@ -51,7 +51,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-context",
-    config = function()
+    opts = function()
       require("treesitter-context").setup()
     end,
   },

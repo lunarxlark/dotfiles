@@ -10,7 +10,7 @@ return {
     { "<C-w>|", "<cmd>WindowsMaximizeHorizontally<cr>" },
     { "<C-w>=", "<cmd>WindowsEqualize<cr>" },
   },
-  config = function()
+  opts = function()
     vim.o.winwidth = 10
     vim.o.winminwidth = 10
     vim.o.equalalways = false

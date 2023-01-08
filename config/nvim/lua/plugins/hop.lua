@@ -10,7 +10,7 @@ return {
     { "<leader>c", "<cmd>HopWordCurrentLineAC<CR>", { desc = "search word in current line (forward)" } },
     { "<leader>C", "<cmd>HopWordCurrentLineBC<CR>", { desc = "search word in current line (forward)" } },
   },
-  config = function()
+  opts = function()
     require("hop").setup()
   end,
 }
