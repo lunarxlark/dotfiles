@@ -34,9 +34,3 @@ vim.opt.ignorecase = true -- 大文字/小文字の区別しない
 vim.opt.smartcase = true -- 大文字で検索されたら大文字/小文字を区別する
 -- #json
 vim.opt.conceallevel = 0 -- ダブルクォーテーションを表示
-
-vim.keymap.set("n", "<leader>cn", "<cmd>cnext<cr>", { silent = true })
-vim.keymap.set("n", "<leader>cp", "<cmd>cprevious<cr>", { silent = true })
-vim.keymap.set("n", "<esc><esc>", "<cmd>set hls!<cr>", { silent = true })
-vim.keymap.set("n", "<C-[>", "<cmd>lne<cr>", { silent = true })
-vim.keymap.set("n", "<C-]>", "<cmd>lpr<cr>", { silent = true })
