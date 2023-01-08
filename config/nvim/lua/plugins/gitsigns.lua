@@ -10,8 +10,8 @@ return {
     require("gitsigns").setup({
       signcolumn = true,
       numhl = true,
-      linehl = false,
-      word_diff = true,
+      linehl = true,
+      word_diff = false,
     })
   end,
 }
