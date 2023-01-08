@@ -1,5 +1,4 @@
 return {
-  { "svrana/neosolarized.nvim" },
   {
     "catppuccin/nvim",
     config = function()
