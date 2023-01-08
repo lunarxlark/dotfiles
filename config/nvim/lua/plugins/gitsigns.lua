@@ -6,7 +6,7 @@ return {
     { "<leader>gb", '<cmd>lua require("gitsigns").blame_line({ full = true })<cr>', { desc = "git blame" } },
     { "<leader>gd", "<cmd>Gitsigns diffthis<cr>", { desc = "git diff" } },
   },
-  opts = function()
+  config = function()
     require("gitsigns").setup({
       signcolumn = true,
       numhl = true,

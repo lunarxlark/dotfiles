@@ -2,7 +2,7 @@ return {
   "numToStr/Comment.nvim",
 
   event = "BufReadPost",
-  opts = function()
+  config = function()
     require("Comment").setup()
   end,
 }

@@ -20,7 +20,7 @@ return {
       { desc = "open test result" },
     },
   },
-  opts = function()
+  config = function()
     vim.cmd([[
     hi! link NeotestAdapterName GruvboxRedBold
     hi! link NeotestDir GruvboxAquaBold
