@@ -7,6 +7,8 @@ function M.setup(options)
   nls.setup({
     on_attach = options.on_attach,
     sources = {
+      -- git
+      nls.builtins.code_actions.gitsigns,
       -- lua
       nls.builtins.formatting.stylua,
       -- go
