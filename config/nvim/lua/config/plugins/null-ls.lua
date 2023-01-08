@@ -2,7 +2,7 @@ local M = {
   "jose-elias-alvarez/null-ls.nvim",
 }
 
-function M.setup(options)
+function M.config(options)
   local nls = require("null-ls")
   nls.setup({
     on_attach = options.on_attach,
