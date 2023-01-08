@@ -11,7 +11,8 @@ return {
   {
     "EdenEast/nightfox.nvim",
     config = function()
-      require("nightfox").setup({})
+      require("nightfox").setup()
+      require("nightfox").load()
     end,
   },
     config = function()
