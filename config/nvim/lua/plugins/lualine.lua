@@ -7,7 +7,7 @@ function M.config()
   require("lualine").setup({
     options = {
       icons_enabled = true,
-      theme = "nordfox",
+      theme = "gruvfox",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
     },

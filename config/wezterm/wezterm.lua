@@ -13,7 +13,7 @@ wezterm.on("update-right-status", function(window, pane)
 end)
 
 return {
-	color_scheme = "nordfox",
+	color_scheme = "gruvfox",
 	font = wezterm.font("MesloLGM Nerd Font", { weight = "Regular", stretch = "Normal", style = "Normal" }),
 	font_size = 14.0,
 	adjust_window_size_when_changing_font_size = false,

@@ -32,7 +32,7 @@ require("lazy").setup({
   dev = {
     path = "~/dev/src/github.com/lunarxlark",
   },
-  install = { colorscheme = { "gruvbox" } },
+  install = { colorscheme = { "gruvfox" } },
   diff = {
     cmd = "diffview.nvim",
   },
