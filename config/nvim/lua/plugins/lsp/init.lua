@@ -11,7 +11,9 @@ return {
   config = function()
     vim.lsp.set_log_level(vim.log.levels.OFF)
 
-    require("neodev").setup()
+    require("neodev").setup({
+      library = { plugins = { "neotest" }, types = true },
+    })
 
     local lspconfig = require("lspconfig")
 
