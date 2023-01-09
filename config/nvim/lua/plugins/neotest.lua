@@ -21,18 +21,6 @@ return {
     },
   },
   config = function()
-    -- vim.cmd([[
-    -- hi! link NeotestAdapterName GruvboxRedBold
-    -- hi! link NeotestDir GruvboxAquaBold
-    -- hi! link NeotestFile GruvboxAqua
-    -- hi! link NeotestTarget GruvboxBlue
-    -- hi! link NeotestTest GruvboxBlue
-    -- hi! link NeotestNamespace GruvboxBlue
-    -- hi! link NeotestPassed GruvboxGreen
-    -- hi! link NeotestFailed GruvboxRed
-    -- hi! link NeotestRunning GruvboxOrange
-    -- hi! link NeotestSkipped GruvboxYellow
-    -- ]])
     require("neotest").setup({
       icons = {
         running = "↻",
