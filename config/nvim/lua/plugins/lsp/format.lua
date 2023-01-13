@@ -11,6 +11,10 @@ function M.setup(client, bufnr)
     enable = not (client.name == "null-ls")
   end
 
+  if ft == "sql" then
+    enable = false
+  end
+
   if client.name == "tsserver" then
     enable = false
   end

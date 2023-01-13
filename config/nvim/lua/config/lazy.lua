@@ -13,7 +13,7 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "SmiteshP/nvim-navic",
