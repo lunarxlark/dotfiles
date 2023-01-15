@@ -31,28 +31,28 @@ function M.setup(client, bufnr)
     bufnr,
     "n",
     "<leader>im",
-    "<cmd>lua vim.lsp.buf.implementation()<CR>",
+    "<cmd>FzfLua lsp_implementations<CR>",
     { noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
     bufnr,
     "n",
     "<leader>Sm",
-    "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
+    "<cmd>FzfLua lsp_workspace_symbol<CR>",
     { noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
     bufnr,
     "n",
     "<leader>rf",
-    "<cmd>lua vim.lsp.buf.references()<CR>",
+    "<cmd>FzfLua lsp_references<CR>",
     { noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
     bufnr,
     "n",
     "<leader>ty",
-    "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+    "<cmd>FzfLua lsp_typedefs<CR>",
     { noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
