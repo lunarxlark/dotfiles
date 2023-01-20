@@ -1,10 +1,9 @@
 return {
   "akinsho/toggleterm.nvim",
 
-  cmd = "ToggleTerm",
   config = function()
     require("toggleterm").setup({
-      open_mapping = [[<c-\>]],
+      open_mapping = [[;;]],
       direction = "float",
       float_opts = {
         border = "curved",
