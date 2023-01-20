@@ -4,6 +4,7 @@ return {
   dependencies = {
     { "junegunn/fzf", build = "./install --bin" },
   },
+  event = "VimEnter",
   keys = {
     { "<leader>v", "<cmd>FzfLua files cwd=$XDG_CONFIG_HOME/nvim<cr>" },
     { ",f", "<cmd>FzfLua files<cr>" },
