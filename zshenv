@@ -32,6 +32,7 @@ export PATH=~/Library/Python/3.7/bin:$PATH
 
 path=(
   /opt/homebrew/bin
+  $XDG_DATA_HOME/nvim/mason/bin
   $HOME/.local/bin
   $HOME/.local/go/bin
   $HOME/.local/gsutil
