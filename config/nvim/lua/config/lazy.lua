@@ -11,6 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
+vim.api.nvim_set_keymap("n", "<leader>ls", "<cmd>Lazy sync<cr>", { desc = "lazy sync" })
+vim.api.nvim_set_keymap("n", "<leader>lp", "<cmd>Lazy profile<cr>", { desc = "lazy profile" })
+
 require("lazy").setup({
   spec = {
     "nvim-tree/nvim-web-devicons",
@@ -18,14 +21,6 @@ require("lazy").setup({
     "MunifTanjim/nui.nvim",
     "SmiteshP/nvim-navic",
     "antoinemadec/FixCursorHold.nvim",
-
-    -- lsp
-    { "stevearc/dressing.nvim", event = "VeryLazy" },
-
-    "simeji/winresizer",
-    "kyoh86/vim-go-coverage",
-    { "mechatroner/rainbow_csv", ft = { "csv", "tsv" } },
-    { "moznion/vim-ltsv", ft = "ltsv" },
 
     { import = "plugins" },
   },
@@ -50,6 +45,8 @@ require("lazy").setup({
         "tohtml",
         "tutor",
         "zipPlugin",
+        "editorconfig",
+        "spellfile",
       },
     },
   },

@@ -4,6 +4,7 @@ return {
     "williamboman/mason.nvim",
   },
 
+  event = "BufReadPost",
   config = function()
     require("mason-lspconfig").setup({
       automatic_installation = true,
@@ -14,7 +15,7 @@ return {
         --"delve",
         "intelephense",
         "pyright",
-        "sumneko_lua",
+        "lua_ls",
         "terraformls",
         "tsserver",
         "yamlls",
