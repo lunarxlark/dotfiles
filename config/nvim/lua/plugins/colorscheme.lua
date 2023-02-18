@@ -1,9 +1,9 @@
 return {
   {
-    "lunarxlark/nightfox.nvim",
+    "lunarxlark/futurefunk.nvim",
+    dev = true,
     config = function()
-      require("nightfox").setup()
-      vim.cmd([[colorscheme gruvfox]])
+      vim.cmd([[colorscheme futurefunk]])
     end,
   },
 }

@@ -73,7 +73,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-	color_scheme = "gruvfox",
+	--color_scheme = "gruvfox",
+	color_scheme = "futurepunk",
 	leader = { key = "t", mods = "CTRL", timeout_milliseconds = 1000 },
 	font = wezterm.font("MesloLGM Nerd Font", { weight = "Regular", stretch = "Normal", style = "Normal" }),
 	font_size = 14.0,
