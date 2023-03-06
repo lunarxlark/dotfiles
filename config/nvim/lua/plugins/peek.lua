@@ -17,6 +17,8 @@ return {
     },
   },
   config = function()
-    require("peek").setup()
+    require("peek").setup({
+      app = "browser",
+    })
   end,
 }
