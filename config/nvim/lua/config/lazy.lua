@@ -20,7 +20,6 @@ require("lazy").setup({
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "SmiteshP/nvim-navic",
-    "antoinemadec/FixCursorHold.nvim",
 
     { import = "plugins" },
   },
