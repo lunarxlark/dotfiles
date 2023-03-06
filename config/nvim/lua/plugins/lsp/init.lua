@@ -1,13 +1,51 @@
 return {
+
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    config = function()
+      require("mason").setup({
+        install_root_dir = vim.fn.stdpath("data") .. "/mason",
+      })
+    end,
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+    },
+    event = "BufReadPost",
+    config = function()
+      require("mason-lspconfig").setup({
+        automatic_installation = true,
+        ensure_installed = {
+          "rust_analyzer",
+          "gopls",
+          -- TODO:mason doesn't support delve.
+          --"delve",
+          "intelephense",
+          "pyright",
+          "lua_ls",
+          "terraformls",
+          "tsserver",
+          "yamlls",
+          "clangd",
+          "dockerls",
+          "sqls",
+        },
+      })
+    end,
+  },
+
   {
     "neovim/nvim-lspconfig",
-
-    event = "BufReadPre",
     dependencies = {
       "folke/neodev.nvim",
       "hrsh7th/cmp-nvim-lsp",
       { "nanotee/sqls.nvim", ft = "sql" },
     },
+    event = "BufReadPre",
 
     config = function()
       vim.lsp.set_log_level(vim.log.levels.OFF)
