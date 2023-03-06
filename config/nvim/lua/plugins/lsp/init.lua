@@ -46,16 +46,13 @@ return {
       { "nanotee/sqls.nvim", ft = "sql" },
     },
     event = "BufReadPre",
-
     config = function()
       vim.lsp.set_log_level(vim.log.levels.OFF)
-
       require("neodev").setup({
         library = { plugins = { "neotest" }, types = true },
       })
 
       local lspconfig = require("lspconfig")
-
       local on_attach = function(client, bufnr)
         require("plugins.lsp.keys").setup(client, bufnr)
         require("plugins.lsp.format").setup(client, bufnr)
@@ -65,7 +62,6 @@ return {
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
       local options = {
         on_attach = on_attach,
         capabilities = capabilities,
