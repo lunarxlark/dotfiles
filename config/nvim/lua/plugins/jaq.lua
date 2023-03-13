@@ -1,6 +1,5 @@
 return {
   "is0n/jaq-nvim",
-
   keys = {
     { "<leader>jq", "<cmd>Jaq<CR>", { desc = "run jaq" } },
   },
@@ -15,8 +14,8 @@ return {
         },
       },
       ui = {
-        startinsert = false, -- Start in insert mode
-        wincmd = false, -- Switch back to current file. after using Jaq
+        startinsert = false,  -- Start in insert mode
+        wincmd = false,       -- Switch back to current file. after using Jaq
         float = {
           border = "rounded", -- Floating window border (see ':h nvim_open_win')
           height = 0.8,

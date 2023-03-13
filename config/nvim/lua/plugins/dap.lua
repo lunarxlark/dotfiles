@@ -1,6 +1,5 @@
 return {
   "mfussenegger/nvim-dap",
-
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "leoluz/nvim-dap-go",
@@ -106,12 +105,12 @@ return {
     })
   end,
   keys = {
-    { "<F5>", "<cmd>DapContinue<CR>", { desc = "continue (dap)" } },
-    { "<F10>", "<cmd>DapStepOver<CR>", { desc = "step over (dap)" } },
-    { "<F11>", "<cmd>DapStepInto<CR>", { desc = "step into (dap)" } },
-    { "<F12>", "<cmd>DapStepOut()<CR>", { desc = "step out (dap)" } },
-    { "<leader>b", "<cmd>DapToggleBreakpoint<CR>", { desc = "toggle breakpoint (dap)" } },
-    { "<leader>D", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "toggle dap ui" } },
-    { "<leader><leader>df", "<cmd>lua require'dapui'.eval()<CR>", { desc = "show eval (dap)" } },
+    { "<F5>",               "<cmd>DapContinue<CR>",                 { desc = "continue (dap)" } },
+    { "<F10>",              "<cmd>DapStepOver<CR>",                 { desc = "step over (dap)" } },
+    { "<F11>",              "<cmd>DapStepInto<CR>",                 { desc = "step into (dap)" } },
+    { "<F12>",              "<cmd>DapStepOut()<CR>",                { desc = "step out (dap)" } },
+    { "<leader>b",          "<cmd>DapToggleBreakpoint<CR>",         { desc = "toggle breakpoint (dap)" } },
+    { "<leader>D",          "<cmd>lua require'dapui'.toggle()<CR>", { desc = "toggle dap ui" } },
+    { "<leader><leader>df", "<cmd>lua require'dapui'.eval()<CR>",   { desc = "show eval (dap)" } },
   },
 }

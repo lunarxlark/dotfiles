@@ -1,13 +1,12 @@
 return {
   "nvim-neotest/neotest",
-
   dependencies = {
-    { "nvim-neotest/neotest-go", ft = "go" },
+    { "nvim-neotest/neotest-go",      ft = "go" },
     { "nvim-neotest/neotest-plenary", ft = { "lua" } },
-    { "haydenmeade/neotest-jest", ft = { "ts", "tsx" } },
+    { "haydenmeade/neotest-jest",     ft = { "ts", "tsx" } },
   },
   keys = {
-    { "<leader>tn", "<cmd>lua require'neotest'.run.run()<CR>", { desc = "run test" } },
+    { "<leader>tn", "<cmd>lua require'neotest'.run.run()<CR>",        { desc = "run test" } },
     {
       "<leader>tf",
       "<cmd>lua require'neotest'.run.run(vim.fn.expand('%'))<CR>",

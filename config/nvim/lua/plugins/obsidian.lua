@@ -1,7 +1,6 @@
 return {
   "epwalsh/obsidian.nvim",
-
-  cmd = {"ObsidianNew", "ObsidianSearch"},
+  cmd = { "ObsidianNew", "ObsidianSearch" },
   config = function()
     require("obsidian").setup({
       dir = vim.fn.expand("$HOME/dev/src/github.com/lunarxlark/obsidian"),
