@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup(client, bufnr)
+function M.on_attach(client, bufnr)
   vim.keymap.set("n", "<leader>ss", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "lsp diagnostics" })
   vim.keymap.set("n", "<leader>sd", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = "lsp diagnostics in loclist" })
   vim.keymap.set("n", "<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "lsp diagnostics goto prev" })

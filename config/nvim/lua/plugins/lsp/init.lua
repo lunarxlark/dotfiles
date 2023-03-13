@@ -1,5 +1,4 @@
 return {
-
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
@@ -21,12 +20,13 @@ return {
         automatic_installation = true,
         ensure_installed = {
           "rust_analyzer",
+          "lua_ls",
           "gopls",
           -- TODO:mason doesn't support delve.
           --"delve",
+          "marksman",
           "intelephense",
           "pyright",
-          "lua_ls",
           "terraformls",
           "tsserver",
           "yamlls",
@@ -54,10 +54,11 @@ return {
 
       local lspconfig = require("lspconfig")
       local on_attach = function(client, bufnr)
-        require("plugins.lsp.keys").setup(client, bufnr)
-        require("plugins.lsp.format").setup(client, bufnr)
+        require("plugins.lsp.keys").on_attach(client, bufnr)
         if client.name == "sqls" then
           require("sqls").on_attach(client, bufnr)
+        else
+          require("plugins.lsp.format").on_attach(client, bufnr)
         end
       end
 
@@ -81,6 +82,7 @@ return {
         "dockerls",
         "sqls",
         "tsserver",
+        "marksman",
       }
 
       local load = function(server)
@@ -99,15 +101,46 @@ return {
           lspconfig[server].setup(opts)
         end
       end
-
-      require("plugins.null-ls").setup(options)
     end,
   },
 
   {
-    {
-      "stevearc/dressing.nvim",
-      event = "BufReadPre",
-    },
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "BufReadPost",
+    config = function()
+      local nls = require("null-ls")
+      return {
+        sources = {
+          -- git
+          nls.builtins.code_actions.gitsigns,
+          -- lua
+          nls.builtins.formatting.stylua,
+          -- go
+          nls.builtins.formatting.goimports,
+          nls.builtins.diagnostics.golangci_lint.with({
+            diagnostics_format = "[#{s}] #{m}",
+            args = { "run", "--out-format=json", "$DIRNAME", "--path-prefix", "$ROOT" },
+          }),
+          -- terraform
+          nls.builtins.formatting.terraform_fmt,
+          -- js,ts
+          nls.builtins.formatting.prettier,
+          nls.builtins.diagnostics.eslint_d.with({
+            diagnostics_format = "[#{s}] #{m}",
+          }),
+          nls.builtins.formatting.eslint_d,
+          -- yaml
+          -- nls.builtins.diagnostics.yamllint,
+          -- nls.builtins.formatting.yamlfmt,
+          -- github actions
+          nls.builtins.diagnostics.actionlint,
+        },
+      }
+    end,
+  },
+
+  {
+    "stevearc/dressing.nvim",
+    event = "BufReadPre",
   },
 }

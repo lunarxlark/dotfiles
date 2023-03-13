@@ -1,34 +1,43 @@
 local M = {}
 
-function M.setup(client, bufnr)
-  local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
-  local nls = require("plugins.null-ls")
+M.autoformat = true
 
-  local enable = false
-  if nls.has_formatter(ft) then
-    enable = client.name == "null-ls"
-  else
-    enable = not (client.name == "null-ls")
+function M.format()
+  local buf = vim.api.nvim_get_current_buf()
+  if M.autoformat == false then
+    return
+  end
+  local ft = vim.bo[buf].filetype
+  local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+  vim.lsp.buf.format({
+    bufnr = buf,
+    filter = function(client)
+      if have_nls then
+        return client.name == "null-ls"
+      else
+        return client.name ~= "null-ls"
+      end
+    end,
+  })
+end
+
+function M.on_attach(client, buf)
+  if
+      client.config
+      and client.config.capabilities
+      and client.config.capabilities.documentFormattingProvider == false
+  then
+    return
   end
 
-  if ft == "sql" then
-    enable = false
-  end
-
-  if client.name == "tsserver" then
-    enable = false
-  end
-
-  client.server_capabilities.documentFormattingProvider = enable
-  -- format on save
-  if client.server_capabilities.documentFormattingProvider then
-    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  if client.supports_method("textDocument/formatting") then
     vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
+      group = vim.api.nvim_create_augroup("LspFormat." .. buf, {}),
+      buffer = buf,
       callback = function()
-        vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 5000 })
+        if M.autoformat then
+          M.format()
+        end
       end,
     })
   end
