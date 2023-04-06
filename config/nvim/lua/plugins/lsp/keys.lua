@@ -37,8 +37,15 @@ function M.on_attach(client, bufnr)
   vim.api.nvim_buf_set_keymap(
     bufnr,
     "n",
+    "<leader>sm",
+    "<cmd>FzfLua lsp_document_symbols<CR>",
+    { noremap = true, silent = true }
+  )
+  vim.api.nvim_buf_set_keymap(
+    bufnr,
+    "n",
     "<leader>Sm",
-    "<cmd>FzfLua lsp_workspace_symbol<CR>",
+    "<cmd>FzfLua lsp_workspace_symbols<CR>",
     { noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
