@@ -9,6 +9,7 @@ return {
     { ",f",        "<cmd>FzfLua files<cr>" },
     { ",r",        "<cmd>FzfLua oldfiles<cr>" },
     { ",g",        "<cmd>FzfLua live_grep<cr>" },
+    { ",G",        "<cmd>FzfLua lgrep_curbuf<cr>" },
     { ",b",        "<cmd>FzfLua buffers<cr>" },
   },
   config = function()
