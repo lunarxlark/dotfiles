@@ -35,3 +35,4 @@ vim.opt.smartcase = true      -- 大文字で検索されたら大文字/小文�
 -- #json
 vim.opt.conceallevel = 0      -- ダブルクォーテーションを表示
 
+vim.opt.iskeyword:remove({"_"}) -- '-'を単語の区切りにしない
