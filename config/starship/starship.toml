@@ -29,6 +29,19 @@ format = '\[[$symbol($version)]($style)\]'
 style = "fg:#83a598"
 symbol = " "
 
+[gradle]
+format = '\[[$symbol($version)]($style)\]'
+version_format = "v${raw}"
+symbol = '🅶'
+detect_folders = ["gradle"]
+style = "bold bright-cyan"
+
+[java]
+format = '\[[${symbol}(${version})]($style)\]'
+
+[kotlin]
+format = '\[[$symbol($version)]($style)\]'
+
 [nodejs]
 format = '\[[$symbol($version)]($style)\]'
 
