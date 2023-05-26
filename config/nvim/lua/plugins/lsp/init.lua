@@ -109,7 +109,7 @@ return {
     event = "BufReadPost",
     config = function()
       local nls = require("null-ls")
-      return {
+      nls.setup({
         sources = {
           -- git
           nls.builtins.code_actions.gitsigns,
@@ -135,7 +135,7 @@ return {
           -- github actions
           nls.builtins.diagnostics.actionlint,
         },
-      }
+      })
     end,
   },
 
