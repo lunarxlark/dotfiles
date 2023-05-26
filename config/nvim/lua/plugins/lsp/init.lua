@@ -119,7 +119,7 @@ return {
           nls.builtins.formatting.goimports,
           nls.builtins.diagnostics.golangci_lint.with({
             diagnostics_format = "[#{s}] #{m}",
-            args = { "run", "--out-format=json", "$DIRNAME", "--path-prefix", "$ROOT" },
+            -- args = { "run", "--out-format=json", "$DIRNAME", "--path-prefix", "$ROOT" },
           }),
           -- terraform
           nls.builtins.formatting.terraform_fmt,
