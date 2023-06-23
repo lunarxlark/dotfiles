@@ -33,6 +33,7 @@ return {
           "clangd",
           "dockerls",
           "sqls",
+          "jsonls",
         },
       })
     end,
@@ -75,6 +76,7 @@ return {
         "lua_ls",
         "gopls",
         "intelephense",
+        "jsonls",
         "pyright",
         "terraformls",
         "yamlls",
