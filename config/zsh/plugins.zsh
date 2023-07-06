@@ -55,7 +55,7 @@ zinit wait'1' lucid \
   as"program" \
   mv"jq* -> jq" \
   pick"**/jq" \
-  light-mode for @stedolan/jq
+  light-mode for @jqlang/jq
 
 
 # fd
@@ -143,6 +143,14 @@ zinit wait'1' lucid \
   as"program" \
   pick"delta*/delta" \
   light-mode for @dandavison/delta
+
+
+# lazgit
+zinit wait'1' lucid \
+  from"gh-r" \
+  as"program" \
+  pick'lazygit_**/lazygit' \
+  light-mode for @jesseduffield/lazygit
 
 
 ### completion
