@@ -26,10 +26,7 @@ require("lazy").setup({
   dev = {
     path = "~/dev/src/github.com/lunarxlark",
   },
-  install = { colorscheme = { "gruvfox" } },
-  diff = {
-    cmd = "diffview.nvim",
-  },
+  install = { colorscheme = { "habamax" } },
   performance = {
     cache = {
       enabled = true,
