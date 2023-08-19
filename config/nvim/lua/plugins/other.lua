@@ -1,9 +1,5 @@
 return {
   {
-    "simeji/winresizer",
-    event = "BufReadPost",
-  },
-  {
     "kyoh86/vim-go-coverage",
     ft = { "go" },
   },

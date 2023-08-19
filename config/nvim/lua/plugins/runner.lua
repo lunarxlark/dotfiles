@@ -11,11 +11,12 @@ return {
           go = "go run ./...",
           javascript = "node %",
           php = "php %",
+          kotlin = "gradle run",
         },
       },
       ui = {
-        startinsert = false,  -- Start in insert mode
-        wincmd = false,       -- Switch back to current file. after using Jaq
+        startinsert = false, -- Start in insert mode
+        wincmd = false, -- Switch back to current file. after using Jaq
         float = {
           border = "rounded", -- Floating window border (see ':h nvim_open_win')
           height = 0.8,

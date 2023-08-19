@@ -1,12 +1,12 @@
 return {
   "nvim-neotest/neotest",
   dependencies = {
-    { "nvim-neotest/neotest-go",      ft = "go" },
+    { "nvim-neotest/neotest-go", ft = "go" },
     { "nvim-neotest/neotest-plenary", ft = { "lua" } },
-    { "haydenmeade/neotest-jest",     ft = { "ts", "tsx" } },
+    { "haydenmeade/neotest-jest", ft = { "ts", "tsx" } },
   },
   keys = {
-    { "<leader>tn", "<cmd>lua require'neotest'.run.run()<CR>",        { desc = "run test" } },
+    { "<leader>tn", "<cmd>lua require'neotest'.run.run()<CR>", { desc = "run test" } },
     {
       "<leader>tf",
       "<cmd>lua require'neotest'.run.run(vim.fn.expand('%'))<CR>",
@@ -21,9 +21,6 @@ return {
   },
   config = function()
     require("neotest").setup({
-      icons = {
-        running = "↻",
-      },
       adapters = {
         require("neotest-plenary"),
         require("neotest-go"),
@@ -36,18 +33,18 @@ return {
           end,
         }),
       },
-      highlights = {},
-      floating = {
-        border = "rounded",
-        max_height = 0.5,
-        max_width = 0.6,
-      },
-      strategies = {
-        integrated = {
-          width = 120,
-          height = 40,
-        },
-      },
+      -- highlights = {},
+      -- floating = {
+      --   border = "rounded",
+      --   max_height = 0.5,
+      --   max_width = 0.6,
+      -- },
+      -- strategies = {
+      --   integrated = {
+      --     width = 120,
+      --     height = 40,
+      --   },
+      -- },
     })
   end,
 }

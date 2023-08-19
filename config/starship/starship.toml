@@ -11,39 +11,48 @@ style = "fg:#8ec07c"
 [aws]
 format = '\[[$symbol($profile)]($style)\]'
 style = "fg:#fe8019"
-symbol = " "
+symbol = " "
 
 [docker_context]
 symbol = " "
 
 [git_branch]
-format = '\[[$symbol$branch]($style)\]'
+format = '\[[$symbol $branch]($style)\]'
 style = "fg:#fabd2f"
+symbol = ""
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
 style = "fg:#fb4934"
 
 [golang]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[$symbol ($version)]($style)\]'
 style = "fg:#83a598"
-symbol = " "
+symbol = ""
 
 [gradle]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[$symbol ($version)]($style)\]'
 version_format = "v${raw}"
-symbol = '🅶'
+symbol = ""
 detect_folders = ["gradle"]
 style = "bold bright-cyan"
 
 [java]
-format = '\[[${symbol}(${version})]($style)\]'
+format = '\[[${symbol} (${version})]($style)\]'
+symbol = ""
 
 [kotlin]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[$symbol ($version)]($style)\]'
+symbol = ""
+
+[kubernetes]
+disabled = false
+format = '[$symbol $context( \($namespace\))]($style) in '
+symbol = "󱃾"
 
 [nodejs]
 format = '\[[$symbol($version)]($style)\]'
+symbol = "󰎙"
 
 [python]
 format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
@@ -56,3 +65,4 @@ symbol = " "
 [terraform]
 format = '\[[$symbol$workspace]($style)\]'
 detect_files = [".terraform-version"]
+symbol = "󱁢"

@@ -1,43 +1,12 @@
 return {
+
   {
     "nvim-treesitter/nvim-treesitter",
     event = "BufReadPost",
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "comment",
-          "bash",
-          "cmake",
-          "make",
-          "dockerfile",
-          "dot",
-          "http",
-          "html",
-          "go",
-          "gomod",
-          "json",
-          "jsonc",
-          "lua",
-          "php",
-          "python",
-          "query",
-          "kotlin",
-          "regex",
-          "markdown",
-          "markdown_inline",
-          "sql",
-          "tsx",
-          "javascript",
-          "terraform",
-          "typescript",
-          "toml",
-          "svelte",
-          "hcl",
-          "vim",
-          "vimdoc",
-          "yaml",
-        },
+        ensure_installed = "all",
         sync_install = false,
         highlight = { enable = true },
         indent = {
@@ -57,6 +26,7 @@ return {
 
   {
     "nvim-treesitter/playground",
+    enabled = false,
     keys = {
       { "<leader>th", "<cmd>TSHighlightCapturesUnderCursor<cr>" },
     },
@@ -83,4 +53,5 @@ return {
       })
     end,
   },
+
 }
