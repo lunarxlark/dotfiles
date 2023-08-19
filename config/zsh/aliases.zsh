@@ -14,6 +14,8 @@ alias ll='exa -la'
 alias ..='cd .. && ll'
 alias ...='cd ../../ && ll'
 
+alias lg='lazygit'
+
 alias gs='git status'
 alias gp='git pull origin'
 alias ga='git add'
@@ -37,6 +39,8 @@ alias ghprv="gh pr view --web"
 alias dc="docker compose"
 alias dps="docker ps"
 
+alias k="kubectl"
+
 alias tf='terraform'
 
-alias db='devbox'
+alias idea='open -na "IntelliJ IDEA.app" .'
