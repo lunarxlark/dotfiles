@@ -13,6 +13,9 @@
 	pager = delta
 	preloadindex = true
 
+[push]
+	autoSetupRemote = true
+
 [color "diff"]
 	meta = 242 238
 	frag = 239 236
