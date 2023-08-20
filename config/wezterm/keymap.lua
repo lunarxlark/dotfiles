@@ -104,4 +104,8 @@ return {
 		mods = "SUPER|CTRL",
 		action = wezterm.action.ToggleFullScreen,
 	},
+	-- ----------------------------
+	-- Quick Select Mode
+	-- ----------------------------
+	{ key = "c", mods = "SHIFT|CTRL", action = wezterm.action.ActivateCopyMode },
 }
