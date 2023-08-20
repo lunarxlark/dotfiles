@@ -95,7 +95,7 @@ return {
     },
     event = "BufReadPre",
     config = function()
-      -- vim.lsp.set_log_level(vim.log.levels.DEBUG)
+      -- vim.lsp.set_log_level(vim.log.levels.INFO)
       vim.lsp.set_log_level(vim.log.levels.OFF)
       require("neodev").setup({
         library = { plugins = { "neotest" }, types = true },
