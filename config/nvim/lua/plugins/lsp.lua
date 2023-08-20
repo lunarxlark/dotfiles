@@ -195,10 +195,8 @@ return {
       -- {{{ kotlin_language_server
       lspconfig["kotlin_language_server"].setup(vim.tbl_deep_extend("force", options, {
         root_dir = require("lspconfig.util").root_pattern({ "settings.gradle", "settings.gradle.kts" }),
-        settings = {
-          initializationOptions = {
-            storagePath = vim.fn.stdpath("cache") .. "/kotlin-language-server",
-          },
+        init_options = {
+          storagePath = vim.fn.stdpath("cache") .. "/kotlin-language-server",
         },
       }))
       -- }}}
