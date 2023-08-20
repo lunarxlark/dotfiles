@@ -6,21 +6,21 @@ local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
 -- The filled in variant of the > symbol
 local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
-local TAB_BAR_BG = "#1d2021"
-local ACTIVE_TAB_BG = "#fe8019"
+local TAB_BAR_BG = "#2e3440"
+local ACTIVE_TAB_BG = "#81a1c1"
 local ACTIVE_TAB_FG = "Black"
 local NORMAL_TAB_BG = "#7c6f64"
 local NORMAL_TAB_FG = "Black"
-local HOVER_TAB_BG = "#fabd2f"
-local HOVER_TAB_FG = "Black"
--- wezterm.on("update-right-status", function(window, pane)
--- 	local success, date, stderr = wezterm.run_child_process({ "date" })
--- 	date = wezterm.strftime("%Y/%m/%d %H:%M")
---
--- 	window:set_right_status(wezterm.format({
--- 		{ Text = date },
--- 	}))
--- end)
+local HOVER_TAB_BG = "#3e4a5b"
+local HOVER_TAB_FG = "#cdcecf"
+wezterm.on("update-right-status", function(window, pane)
+	local success, date, stderr = wezterm.run_child_process({ "date" })
+	date = wezterm.strftime("%Y/%m/%d %H:%M")
+
+	window:set_right_status(wezterm.format({
+		{ Text = date },
+	}))
+end)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local background = NORMAL_TAB_BG
@@ -73,8 +73,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-	--color_scheme = "gruvfox",
-	color_scheme = "futurepunk",
+	color_scheme = "nordfox",
 	leader = { key = "t", mods = "CTRL", timeout_milliseconds = 1000 },
 	font = wezterm.font("MesloLGM Nerd Font", { weight = "Regular", stretch = "Normal", style = "Normal" }),
 	font_size = 14.0,
@@ -110,11 +109,11 @@ return {
 		}),
 	},
 	window_padding = {
-		top = 0,
-		bottom = 0,
-		left = 0,
-		right = 0,
+		top = 5,
+		bottom = 5,
+		left = 5,
+		right = 5,
 	},
-	window_decorations = "RESIZE",
+	-- window_decorations = "RESIZE",
 	keys = require("keymap"),
 }
